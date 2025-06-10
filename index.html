@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SwapEra - Skill Swap Platform</title>
+  <meta name="description" content="SwapEra is a skill swap platform where you teach what you know and learn what you love. Join the skill exchange community today!">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -19,34 +20,50 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     .logo {
       font-size: 1.8rem;
       font-weight: 600;
+      letter-spacing: 1px;
     }
     nav a {
       color: white;
       margin-left: 20px;
       text-decoration: none;
       font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #ffd700;
+      text-decoration: underline;
     }
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      padding: 80px 20px 60px 20px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff 90%);
       color: white;
       text-align: center;
+      min-height: 350px;
+      position: relative;
+      overflow: hidden;
     }
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 10px;
+      letter-spacing: 1px;
+      animation: fadeInDown 1s;
     }
     .hero p {
       font-size: 1.2rem;
       max-width: 600px;
+      margin-bottom: 20px;
+      animation: fadeInUp 1.2s;
     }
     .cta-button {
       margin-top: 20px;
@@ -58,7 +75,23 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      transition: background 0.2s, color 0.2s, transform 0.12s;
     }
+    .cta-button:hover {
+      background-color: #ffd700;
+      color: #0055aa;
+      transform: translateY(-2px) scale(1.03);
+    }
+    @keyframes fadeInDown {
+      from { opacity:0; transform:translateY(-30px);}
+      to { opacity:1; transform:translateY(0);}
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px);}
+      to { opacity:1; transform:translateY(0);}
+    }
+
     .features {
       padding: 60px 20px;
       background-color: #ffffff;
@@ -66,6 +99,8 @@
     }
     .features h2 {
       margin-bottom: 40px;
+      font-size: 2rem;
+      color: #0055aa;
     }
     .skills-list {
       display: flex;
@@ -79,12 +114,180 @@
       border-radius: 20px;
       font-weight: 500;
       color: #0055aa;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.15s;
+      box-shadow: 0 2px 6px rgba(0,119,204,0.04);
     }
+    .skill-item:hover, .skill-item.selected {
+      background: #0072ff;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(0,119,204,0.13);
+    }
+    .expander {
+      margin: 40px auto 0;
+      max-width: 640px;
+      background: #f1f7ff;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,119,204,0.07);
+      padding: 24px 28px;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 1.06rem;
+      color: #0055aa;
+      position: relative;
+    }
+    .expander .arrow {
+      float: right;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+    .expander.open {
+      background: #e6f0ff;
+    }
+    .expander-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-top: 0;
+      opacity: 0.5;
+    }
+    .expander.open .expander-content {
+      max-height: 500px;
+      margin-top: 14px;
+      opacity: 1;
+    }
+
+    /* Signup Form Section */
+    .signup-form-section {
+      background:#f4faff;
+      padding:60px 20px 70px 20px;
+      text-align:center;
+    }
+    .signup-form-section h2 {
+      margin-bottom: 30px;
+      color: #0055aa;
+      font-size: 2rem;
+    }
+    .signup-form {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      background: #fff;
+      padding: 32px 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s;
+      position: relative;
+    }
+    .signup-form:focus-within {
+      box-shadow: 0 4px 24px rgba(0,119,204,0.12);
+    }
+    .signup-form label {
+      font-weight: 500;
+      display: block;
+      margin-top: 10px;
+    }
+    .signup-form input, .signup-form textarea, .signup-form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccd;
+      margin-bottom: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #f9f9fd;
+      transition: border 0.2s;
+    }
+    .signup-form input:focus, .signup-form textarea:focus, .signup-form select:focus {
+      border: 1.5px solid #0077cc;
+      outline: none;
+    }
+    .signup-form .optional {
+      color: #888;
+      font-size: 0.98em;
+      font-weight: normal;
+      margin-left: 4px;
+    }
+    .signup-form button[type="submit"] {
+      background: #0072ff;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 1.08rem;
+      transition: background 0.18s, transform 0.12s;
+      box-shadow: 0 2px 10px rgba(0,119,204,0.07);
+    }
+    .signup-form button[type="submit"]:hover {
+      background: #0055aa;
+      transform: scale(1.04);
+    }
+    .signup-form .success-message, .signup-form .error-message {
+      margin-top: 18px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 1.04em;
+      text-align: center;
+      font-weight: 500;
+    }
+    .signup-form .success-message {
+      background: #e5ffe5;
+      color: #078100;
+      border: 1px solid #aee5ae;
+    }
+    .signup-form .error-message {
+      background: #fff2f2;
+      color: #d00000;
+      border: 1px solid #ffb3b3;
+    }
+
+    /* Footer */
     footer {
       background-color: #002244;
       color: white;
       text-align: center;
       padding: 20px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 650px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 10px;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+      nav {
+        margin-top: 10px;
+        width: 100%;
+      }
+      nav a {
+        display: inline-block;
+        margin: 8px 10px 0 0;
+      }
+      .hero {
+        padding: 50px 8px 40px 8px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .features h2, .signup-form-section h2 {
+        font-size: 1.25rem;
+      }
+      .signup-form {
+        padding: 18px 8px;
+      }
+      .expander {
+        padding: 15px 8px;
+      }
     }
   </style>
 </head>
@@ -101,12 +304,12 @@
   <section class="hero">
     <h1>Swap Skills. Share Growth.</h1>
     <p>Join SwapEra — the platform where people teach what they know and learn what they love. Start your skill exchange journey today!</p>
-    <button class="cta-button" onclick="location.href='https://forms.gle'">Join the Era</button>
+    <button class="cta-button" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'});">Join the Era</button>
   </section>
 
   <section class="features" id="skills">
     <h2>Popular Skills to Swap</h2>
-    <div class="skills-list">
+    <div class="skills-list" id="skills-list">
       <div class="skill-item">English Speaking</div>
       <div class="skill-item">Digital Marketing</div>
       <div class="skill-item">Yoga</div>
@@ -118,10 +321,159 @@
       <div class="skill-item">Content Writing</div>
       <div class="skill-item">Graphic Design</div>
     </div>
+    <div class="expander" tabindex="0" id="how">
+      <span>How it Works</span>
+      <span class="arrow">&#9660;</span>
+      <div class="expander-content">
+        <ol style="margin:1em 0 0 1.5em; color:#222; font-size:1.04em;">
+          <li><strong>Sign Up</strong>: Fill out the form below with your skills and what you want to learn.</li>
+          <li><strong>Match</strong>: We'll connect you with people who want to learn what you teach and can teach you what you want to learn.</li>
+          <li><strong>Connect & Swap</strong>: Chat, schedule a session, and swap your skills!</li>
+          <li><strong>Grow</strong>: Learn, teach, and grow your network and abilities together.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="signup-form-section" id="join">
+    <h2>Join SwapEra</h2>
+    <form class="signup-form" id="signup-form" autocomplete="off">
+      <label for="name">Name<span style="color:#e00">*</span></label>
+      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your Name">
+
+      <label for="email">Email<span style="color:#e00">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@email.com">
+
+      <label for="teach">What can you teach?<span style="color:#e00">*</span></label>
+      <input type="text" id="teach" name="teach" list="teach-options" required placeholder="E.g., Yoga, Excel, Cooking" spellcheck="true">
+      <datalist id="teach-options">
+        <option value="English Speaking">
+        <option value="Digital Marketing">
+        <option value="Yoga">
+        <option value="Photoshop">
+        <option value="Coding Basics">
+        <option value="Cooking">
+        <option value="Public Speaking">
+        <option value="Excel">
+        <option value="Content Writing">
+        <option value="Graphic Design">
+      </datalist>
+
+      <label for="learn">What do you want to learn?<span style="color:#e00">*</span></label>
+      <input type="text" id="learn" name="learn" list="learn-options" required placeholder="E.g., Digital Marketing, Public Speaking" spellcheck="true">
+      <datalist id="learn-options">
+        <option value="English Speaking">
+        <option value="Digital Marketing">
+        <option value="Yoga">
+        <option value="Photoshop">
+        <option value="Coding Basics">
+        <option value="Cooking">
+        <option value="Public Speaking">
+        <option value="Excel">
+        <option value="Content Writing">
+        <option value="Graphic Design">
+      </datalist>
+
+      <label for="location">Location<span class="optional">(optional)</span></label>
+      <input type="text" id="location" name="location" placeholder="City, Country">
+
+      <label for="availability">Availability<span class="optional">(optional)</span></label>
+      <input type="text" id="availability" name="availability" placeholder="E.g., Evenings, Weekends">
+
+      <button type="submit">Sign Up</button>
+      <div class="success-message" id="success-message" style="display:none;">
+        Thank you for joining SwapEra! We'll contact you soon with your first skill match.
+      </div>
+      <div class="error-message" id="error-message" style="display:none;">
+        Oops! Please check your details and try again.
+      </div>
+    </form>
   </section>
 
   <footer>
-    &copy; 2025 SwapEra. All rights reserved.
+    &copy; 2025 SwapEra. All rights reserved. | <a href="mailto:contact@swapera.com" style="color:#ffd700;text-decoration:underline;">Contact</a>
   </footer>
+
+  <script>
+    // Expander for "How it Works"
+    const expander = document.querySelector('.expander');
+    expander.addEventListener('click', function() {
+      expander.classList.toggle('open');
+      expander.querySelector('.arrow').style.transform =
+        expander.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
+    expander.addEventListener('keyup', function(e) {
+      if (e.key === "Enter" || e.key === " ") expander.click();
+    });
+
+    // Interactive skill selection in the skills-list
+    const skillsList = document.getElementById('skills-list');
+    let selectedSkill = null;
+    skillsList.addEventListener('click', function(e) {
+      if (e.target.classList.contains('skill-item')) {
+        if (selectedSkill) selectedSkill.classList.remove('selected');
+        selectedSkill = e.target;
+        e.target.classList.add('selected');
+        // Autofill form fields as a demo
+        document.getElementById('teach').value = e.target.textContent;
+        document.getElementById('teach').focus();
+      }
+    });
+
+    // Animated Form: Save and show success without backend (demo)
+    document.getElementById('signup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const teach = document.getElementById('teach').value.trim();
+      const learn = document.getElementById('learn').value.trim();
+      const error = document.getElementById('error-message');
+      const success = document.getElementById('success-message');
+      error.style.display = 'none';
+      success.style.display = 'none';
+
+      // Simple validation
+      if (!name || !email || !teach || !learn || !validateEmail(email)) {
+        error.textContent = "Please fill all required fields with valid information.";
+        error.style.display = 'block';
+        return;
+      }
+
+      // Simulate AJAX
+      setTimeout(() => {
+        success.style.display = 'block';
+        error.style.display = 'none';
+        e.target.reset();
+        setTimeout(() => { success.style.display = 'none'; }, 7000);
+      }, 900);
+    });
+
+    // Email validation function
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // Autofill teach/learn on skill click for even more interactivity
+    document.querySelectorAll('.skill-item').forEach(item => {
+      item.addEventListener('dblclick', () => {
+        document.getElementById('learn').value = item.textContent;
+        document.getElementById('learn').focus();
+      });
+    });
+
+    // Allow pressing Enter in nav to scroll smoothly
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('keydown', function(e) {
+        if (e.key === "Enter" || e.key === " ") {
+          document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+
+    // For accessibility: focus on form after clicking "Join the Era"
+    document.querySelector('.cta-button').addEventListener('click', function() {
+      setTimeout(()=>{document.getElementById('name').focus()}, 700);
+    });
+  </script>
 </body>
 </html>
