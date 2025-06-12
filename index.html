@@ -2,478 +2,353 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SwapEra - Skill Swap Platform</title>
-  <meta name="description" content="SwapEra is a skill swap platform where you teach what you know and learn what you love. Join the skill exchange community today!">
+  <title>SwapEra | Skill Swap Platform - App Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #0077cc;
+      --primary-dark: #005fa3;
+      --accent: #ffd700;
+      --bg: #f9fafe;
+      --card-bg: #fff;
+      --shadow: 0 8px 32px rgba(0,0,0,0.09);
+      --radius: 18px;
+      --green: #11b17c;
+      --red: #e73c3c;
+    }
+    html { scroll-behavior: smooth;}
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f9f9f9;
-      color: #333;
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: #222;
     }
-    header {
-      background-color: #0077cc;
-      padding: 20px 40px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .navbar {
+      position: sticky; top: 0; left: 0; right: 0;
+      z-index: 100; background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.3rem 1.5rem;
     }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+    .navbar .logo {
+      display: flex; align-items: center;
+      font-weight: 600; font-size: 1.3rem; color: var(--primary);
+      gap: 0.7rem; text-decoration: none;
     }
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
+    .navbar .avatar {
+      width: 36px; height: 36px; border-radius: 50%; object-fit: cover;
+      border: 2.5px solid var(--primary);
     }
-    nav a:hover {
-      color: #ffd700;
-      text-decoration: underline;
-    }
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 20px 60px 20px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff 90%);
-      color: white;
-      text-align: center;
-      min-height: 350px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-      animation: fadeInDown 1s;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin-bottom: 20px;
-      animation: fadeInUp 1.2s;
-    }
-    .cta-button {
-      margin-top: 20px;
-      padding: 12px 30px;
-      font-size: 1rem;
-      background-color: white;
-      color: #0077cc;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-      transition: background 0.2s, color 0.2s, transform 0.12s;
-    }
-    .cta-button:hover {
-      background-color: #ffd700;
-      color: #0055aa;
-      transform: translateY(-2px) scale(1.03);
-    }
-    @keyframes fadeInDown {
-      from { opacity:0; transform:translateY(-30px);}
-      to { opacity:1; transform:translateY(0);}
-    }
-    @keyframes fadeInUp {
-      from { opacity:0; transform:translateY(30px);}
-      to { opacity:1; transform:translateY(0);}
-    }
-
-    .features {
-      padding: 60px 20px;
-      background-color: #ffffff;
-      text-align: center;
-    }
-    .features h2 {
-      margin-bottom: 40px;
-      font-size: 2rem;
-      color: #0055aa;
-    }
-    .skills-list {
+    .main-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 12px 40px 12px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+      gap: 32px;
     }
-    .skill-item {
-      background-color: #e6f0ff;
-      padding: 12px 24px;
-      border-radius: 20px;
-      font-weight: 500;
-      color: #0055aa;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, box-shadow 0.15s;
-      box-shadow: 0 2px 6px rgba(0,119,204,0.04);
+    /* Left: Sidebar/Profile */
+    .sidebar {
+      flex: 1 1 270px; max-width: 320px; min-width: 250px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 20px 24px 20px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px;
     }
-    .skill-item:hover, .skill-item.selected {
-      background: #0072ff;
-      color: #fff;
-      box-shadow: 0 4px 18px rgba(0,119,204,0.13);
+    .sidebar .profile-pic {
+      width: 86px; height: 86px; border-radius: 50%;
+      object-fit: cover; border: 3.5px solid var(--primary);
+      margin-bottom: 7px;
     }
-    .expander {
-      margin: 40px auto 0;
-      max-width: 640px;
-      background: #f1f7ff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,119,204,0.07);
-      padding: 24px 28px;
-      text-align: left;
-      cursor: pointer;
-      transition: background 0.2s;
-      font-size: 1.06rem;
-      color: #0055aa;
-      position: relative;
+    .sidebar .verified {
+      display: inline-block;
+      color: var(--green);
+      font-size: 1.15em;
+      margin-left: 5px;
+      vertical-align: middle;
     }
-    .expander .arrow {
-      float: right;
+    .sidebar h2 {
+      margin: 0 0 8px 0;
       font-size: 1.2rem;
-      transition: transform 0.3s;
+      font-weight: 600;
+      color: var(--primary-dark);
     }
-    .expander.open {
-      background: #e6f0ff;
+    .sidebar .bio { color:#444;font-size:1em;text-align:center;margin-bottom:10px;}
+    .sidebar .badge {display:inline-block;background:var(--accent);color:#222;padding:2px 12px;border-radius:8px;margin:2px 2px 2px 0;font-size:0.97em;}
+    .sidebar .lang {
+      background: #e2e6ff;
+      color: #2b2b89;
+      padding: 2px 9px;
+      border-radius: 7px;
+      margin: 2px 2px 2px 0;
+      font-size: 0.93em;
     }
-    .expander-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      margin-top: 0;
-      opacity: 0.5;
-    }
-    .expander.open .expander-content {
-      max-height: 500px;
-      margin-top: 14px;
-      opacity: 1;
-    }
-
-    /* Signup Form Section */
-    .signup-form-section {
-      background:#f4faff;
-      padding:60px 20px 70px 20px;
-      text-align:center;
-    }
-    .signup-form-section h2 {
-      margin-bottom: 30px;
-      color: #0055aa;
-      font-size: 2rem;
-    }
-    .signup-form {
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: left;
-      background: #fff;
-      padding: 32px 24px;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      transition: box-shadow 0.2s;
-      position: relative;
-    }
-    .signup-form:focus-within {
-      box-shadow: 0 4px 24px rgba(0,119,204,0.12);
-    }
-    .signup-form label {
-      font-weight: 500;
-      display: block;
-      margin-top: 10px;
-    }
-    .signup-form input, .signup-form textarea, .signup-form select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccd;
-      margin-bottom: 10px;
-      font-family: inherit;
-      font-size: 1rem;
-      background: #f9f9fd;
-      transition: border 0.2s;
-    }
-    .signup-form input:focus, .signup-form textarea:focus, .signup-form select:focus {
-      border: 1.5px solid #0077cc;
-      outline: none;
-    }
-    .signup-form .optional {
-      color: #888;
-      font-size: 0.98em;
-      font-weight: normal;
-      margin-left: 4px;
-    }
-    .signup-form button[type="submit"] {
-      background: #0072ff;
+    .sidebar .kyc-btn {
+      margin-top: 7px;
+      background: var(--primary);
       color: #fff;
       border: none;
+      border-radius: 7px;
+      padding: 7px 18px;
       font-weight: 600;
-      padding: 12px 30px;
-      border-radius: 8px;
-      margin-top: 10px;
       cursor: pointer;
-      font-size: 1.08rem;
-      transition: background 0.18s, transform 0.12s;
-      box-shadow: 0 2px 10px rgba(0,119,204,0.07);
+      font-size: 0.99rem;
+      transition: background 0.19s;
     }
-    .signup-form button[type="submit"]:hover {
-      background: #0055aa;
-      transform: scale(1.04);
-    }
-    .signup-form .success-message, .signup-form .error-message {
-      margin-top: 18px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 1.04em;
+    .sidebar .kyc-btn:hover { background: var(--primary-dark);}
+    .sidebar .qr-link {
+      margin-top: 12px;
       text-align: center;
-      font-weight: 500;
+      font-size: 0.97em;
     }
-    .signup-form .success-message {
-      background: #e5ffe5;
-      color: #078100;
-      border: 1px solid #aee5ae;
+    /* Center: Main Area */
+    .main-area {
+      flex: 2 1 480px;
+      min-width: 340px;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
     }
-    .signup-form .error-message {
-      background: #fff2f2;
-      color: #d00000;
-      border: 1px solid #ffb3b3;
+    /* Skill Discovery & Matchmaking */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 23px 20px;
+      margin-bottom: 0.6em;
     }
-
-    /* Footer */
-    footer {
-      background-color: #002244;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 1rem;
-      letter-spacing: 0.5px;
+    .card h3 {
+      margin-top: 0; margin-bottom: 11px;
+      font-size: 1.22rem;
+      font-weight: 600; color: var(--primary-dark);
     }
-
-    /* Responsive Styles */
-    @media (max-width: 650px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 16px 10px;
-      }
-      .logo {
-        font-size: 1.3rem;
-      }
-      nav {
-        margin-top: 10px;
-        width: 100%;
-      }
-      nav a {
-        display: inline-block;
-        margin: 8px 10px 0 0;
-      }
-      .hero {
-        padding: 50px 8px 40px 8px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .features h2, .signup-form-section h2 {
-        font-size: 1.25rem;
-      }
-      .signup-form {
-        padding: 18px 8px;
-      }
-      .expander {
-        padding: 15px 8px;
-      }
+    .match-list {
+      display: flex; flex-wrap: wrap; gap: 18px;
+    }
+    .match-item {
+      flex: 1 1 210px; min-width: 180px; max-width: 260px;
+      background: #eaf8ff;
+      border-radius: 12px;
+      padding: 14px 13px 12px 13px;
+      box-shadow: 0 2px 10px rgba(0,119,204,0.06);
+      display: flex; flex-direction: column; gap: 5px;
+      align-items: flex-start;
+      margin-bottom: 4px;
+      transition: box-shadow 0.18s, background 0.18s;
+    }
+    .match-item:hover { background: #d1ecfa; box-shadow: 0 4px 20px rgba(0,119,204,0.14);}
+    .match-item .name { font-weight: 600; color: #0077cc; }
+    .match-item .skills { font-size: 0.98em; color: #444;}
+    .match-item .btn { margin-top: 8px; background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: 5px 15px; font-weight: 500; cursor: pointer; font-size: 0.97em;}
+    /* Session Scheduler */
+    .calendar {
+      width: 100%;
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .calendar .session {
+      background: #e9ffe9;
+      border-radius: 11px;
+      padding: 13px 18px;
+      margin-bottom: 9px;
+      box-shadow: 0 1px 8px rgba(0,170,80,0.06);
+      color: #117c45;
+      min-width: 180px;
+      flex: 1 1 180px;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .calendar .session .actions button {
+      background: #fff; color: var(--green); border:1px solid var(--green); border-radius: 6px; padding: 3px 12px;margin-right:6px;cursor:pointer;font-size:0.97em;transition:background 0.13s;
+    }
+    .calendar .session .actions button:hover { background: var(--green); color: #fff;}
+    /* Video & Chat */
+    .video-area { display: flex; gap: 22px; flex-wrap: wrap;}
+    .video-box, .chat-box {
+      background: #f2f8ff;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,119,204,0.08);
+      padding: 16px 13px;
+      min-width: 220px; flex: 1 1 260px;
+      max-width: 400px;
+      display: flex; flex-direction: column; height: 260px;
+    }
+    .video-box { align-items: center; justify-content: center; }
+    .chat-box { overflow-y: auto; }
+    .chat-msg { margin: 5px 0; }
+    .chat-msg.me { text-align: right; color: var(--primary); }
+    .chat-input-row { display: flex; gap: 6px; margin-top: auto;}
+    .chat-input-row input { flex:1; border-radius:6px; border:1px solid #aad; padding:7px;}
+    .chat-input-row button { background:var(--primary); color:#fff; border:none; border-radius:6px; padding:7px 16px; font-weight:500; cursor:pointer;}
+    /* Ratings */
+    .ratings-row { display: flex; gap: 14px; align-items: center; }
+    .star { color: #ffd700; font-size: 1.3em;}
+    .review { font-size: 1em; color: #555;}
+    /* Notifications */
+    .notif-list { margin-top:10px;}
+    .notif { background:#fffbe6; border-left:4px solid #ffd700; border-radius:7px; padding:7px 11px; margin-bottom:5px; font-size:0.98em;}
+    /* Progress */
+    .progress-bar {
+      background:#e3f0fe;
+      border-radius:8px;
+      height:18px;
+      width:100%;
+      margin:10px 0 6px 0;
+      position:relative;
+    }
+    .progress { background:var(--primary); height:100%; border-radius:8px; }
+    .progress-label { font-size:0.95em; color:#222; margin-top:2px;}
+    /* Responsive */
+    @media (max-width: 950px) {
+      .main-container { flex-direction: column; align-items: stretch;}
+      .sidebar { max-width: 100%; margin-bottom: 16px; }
+      .main-area { max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .main-container { padding: 12px 2vw 24px 2vw;}
+      .sidebar, .card { padding: 12px 6vw;}
+      .match-list, .video-area, .calendar { flex-direction: column;}
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">SwapEra</div>
-    <nav>
-      <a href="#how">How it Works</a>
-      <a href="#skills">Skills</a>
-      <a href="#join">Join</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h1>Swap Skills. Share Growth.</h1>
-    <p>Join SwapEra — the platform where people teach what they know and learn what they love. Start your skill exchange journey today!</p>
-    <button class="cta-button" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'});">Join the Era</button>
-  </section>
-
-  <section class="features" id="skills">
-    <h2>Popular Skills to Swap</h2>
-    <div class="skills-list" id="skills-list">
-      <div class="skill-item">English Speaking</div>
-      <div class="skill-item">Digital Marketing</div>
-      <div class="skill-item">Yoga</div>
-      <div class="skill-item">Photoshop</div>
-      <div class="skill-item">Coding Basics</div>
-      <div class="skill-item">Cooking</div>
-      <div class="skill-item">Public Speaking</div>
-      <div class="skill-item">Excel</div>
-      <div class="skill-item">Content Writing</div>
-      <div class="skill-item">Graphic Design</div>
-    </div>
-    <div class="expander" tabindex="0" id="how">
-      <span>How it Works</span>
-      <span class="arrow">&#9660;</span>
-      <div class="expander-content">
-        <ol style="margin:1em 0 0 1.5em; color:#222; font-size:1.04em;">
-          <li><strong>Sign Up</strong>: Fill out the form below with your skills and what you want to learn.</li>
-          <li><strong>Match</strong>: We'll connect you with people who want to learn what you teach and can teach you what you want to learn.</li>
-          <li><strong>Connect & Swap</strong>: Chat, schedule a session, and swap your skills!</li>
-          <li><strong>Grow</strong>: Learn, teach, and grow your network and abilities together.</li>
-        </ol>
+  <nav class="navbar">
+    <span class="logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#0077cc"/><text x="16" y="21" text-anchor="middle" font-size="15" fill="#fff" font-family="Poppins, Arial, sans-serif" font-weight="bold">S</text></svg>
+      SwapEra
+    </span>
+    <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar">
+  </nav>
+  <div class="main-container">
+    <!-- Sidebar / Profile -->
+    <aside class="sidebar">
+      <img class="profile-pic" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+      <h2>Rahul Sharma
+        <span class="verified" title="KYC Verified">✔️</span>
+      </h2>
+      <div class="bio">Enthusiastic learner & teacher. Love sharing coding skills. <span class="badge">Premium</span></div>
+      <div>
+        <span class="badge">Can Teach: Python, Excel</span>
+        <span class="badge">Wants: Digital Marketing, Yoga</span>
       </div>
-    </div>
-  </section>
-
-  <section class="signup-form-section" id="join">
-    <h2>Join SwapEra</h2>
-    <form class="signup-form" id="signup-form" autocomplete="off">
-      <label for="name">Name<span style="color:#e00">*</span></label>
-      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your Name">
-
-      <label for="email">Email<span style="color:#e00">*</span></label>
-      <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@email.com">
-
-      <label for="teach">What can you teach?<span style="color:#e00">*</span></label>
-      <input type="text" id="teach" name="teach" list="teach-options" required placeholder="E.g., Yoga, Excel, Cooking" spellcheck="true">
-      <datalist id="teach-options">
-        <option value="English Speaking">
-        <option value="Digital Marketing">
-        <option value="Yoga">
-        <option value="Photoshop">
-        <option value="Coding Basics">
-        <option value="Cooking">
-        <option value="Public Speaking">
-        <option value="Excel">
-        <option value="Content Writing">
-        <option value="Graphic Design">
-      </datalist>
-
-      <label for="learn">What do you want to learn?<span style="color:#e00">*</span></label>
-      <input type="text" id="learn" name="learn" list="learn-options" required placeholder="E.g., Digital Marketing, Public Speaking" spellcheck="true">
-      <datalist id="learn-options">
-        <option value="English Speaking">
-        <option value="Digital Marketing">
-        <option value="Yoga">
-        <option value="Photoshop">
-        <option value="Coding Basics">
-        <option value="Cooking">
-        <option value="Public Speaking">
-        <option value="Excel">
-        <option value="Content Writing">
-        <option value="Graphic Design">
-      </datalist>
-
-      <label for="location">Location<span class="optional">(optional)</span></label>
-      <input type="text" id="location" name="location" placeholder="City, Country">
-
-      <label for="availability">Availability<span class="optional">(optional)</span></label>
-      <input type="text" id="availability" name="availability" placeholder="E.g., Evenings, Weekends">
-
-      <button type="submit">Sign Up</button>
-      <div class="success-message" id="success-message" style="display:none;">
-        This is Just a Sample webpage, Thankyou for Showing your interest.
+      <div>
+        <span class="lang">English</span>
+        <span class="lang">Hindi</span>
+        <span class="lang">मराठी</span>
       </div>
-      <div class="error-message" id="error-message" style="display:none;">
-        Oops! Please check your details and try again.
+      <div class="qr-link">
+        <div>Profile QR:</div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://swapera.com/u/rahul" width="80" alt="QR">
+        <div><a href="#">Share Profile</a></div>
       </div>
-    </form>
-  </section>
-
-  <footer>
-    &copy; 2025 SwapEra. All rights reserved. | <a href="mailto:contact@swapera.com" style="color:#ffd700;text-decoration:underline;">Contact</a>
-  </footer>
-
-  <script>
-    // Expander for "How it Works"
-    const expander = document.querySelector('.expander');
-    expander.addEventListener('click', function() {
-      expander.classList.toggle('open');
-      expander.querySelector('.arrow').style.transform =
-        expander.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-    });
-    expander.addEventListener('keyup', function(e) {
-      if (e.key === "Enter" || e.key === " ") expander.click();
-    });
-
-    // Interactive skill selection in the skills-list
-    const skillsList = document.getElementById('skills-list');
-    let selectedSkill = null;
-    skillsList.addEventListener('click', function(e) {
-      if (e.target.classList.contains('skill-item')) {
-        if (selectedSkill) selectedSkill.classList.remove('selected');
-        selectedSkill = e.target;
-        e.target.classList.add('selected');
-        // Autofill form fields as a demo
-        document.getElementById('teach').value = e.target.textContent;
-        document.getElementById('teach').focus();
-      }
-    });
-
-    // Animated Form: Save and show success without backend (demo)
-    document.getElementById('signup-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const teach = document.getElementById('teach').value.trim();
-      const learn = document.getElementById('learn').value.trim();
-      const error = document.getElementById('error-message');
-      const success = document.getElementById('success-message');
-      error.style.display = 'none';
-      success.style.display = 'none';
-
-      // Simple validation
-      if (!name || !email || !teach || !learn || !validateEmail(email)) {
-        error.textContent = "Please fill all required fields with valid information.";
-        error.style.display = 'block';
-        return;
-      }
-
-      // Simulate AJAX
-      setTimeout(() => {
-        success.style.display = 'block';
-        error.style.display = 'none';
-        e.target.reset();
-        setTimeout(() => { success.style.display = 'none'; }, 7000);
-      }, 900);
-    });
-
-    // Email validation function
-    function validateEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    // Autofill teach/learn on skill click for even more interactivity
-    document.querySelectorAll('.skill-item').forEach(item => {
-      item.addEventListener('dblclick', () => {
-        document.getElementById('learn').value = item.textContent;
-        document.getElementById('learn').focus();
-      });
-    });
-
-    // Allow pressing Enter in nav to scroll smoothly
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('keydown', function(e) {
-        if (e.key === "Enter" || e.key === " ") {
-          document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-        }
-      });
-    });
-
-    // For accessibility: focus on form after clicking "Join the Era"
-    document.querySelector('.cta-button').addEventListener('click', function() {
-      setTimeout(()=>{document.getElementById('name').focus()}, 700);
-    });
-  </script>
+      <button class="kyc-btn">Upgrade / Verify</button>
+    </aside>
+    <!-- Main Area -->
+    <section class="main-area">
+      <!-- Skill Discovery & Matchmaking -->
+      <div class="card">
+        <h3>🔍 Skill Discovery & Matchmaking</h3>
+        <div class="match-list">
+          <div class="match-item">
+            <div class="name">Priya Dubey <span class="badge">Yoga</span></div>
+            <div class="skills"><b>Wants:</b> Coding Basics<br><b>Can Teach:</b> Yoga</div>
+            <button class="btn">Match & Chat</button>
+          </div>
+          <div class="match-item">
+            <div class="name">Amit Verma <span class="badge">Excel</span></div>
+            <div class="skills"><b>Wants:</b> Digital Marketing<br><b>Can Teach:</b> Excel</div>
+            <button class="btn">Match & Chat</button>
+          </div>
+          <div class="match-item">
+            <div class="name">Ankita Joshi <span class="badge">Photoshop</span></div>
+            <div class="skills"><b>Wants:</b> Content Writing<br><b>Can Teach:</b> Photoshop</div>
+            <button class="btn">Match & Chat</button>
+          </div>
+        </div>
+      </div>
+      <!-- Session Scheduler -->
+      <div class="card">
+        <h3>🗓️ Session Scheduler</h3>
+        <div class="calendar">
+          <div class="session">
+            <div><b>Yoga with Priya</b></div>
+            <div>14 Jun, 7:00 AM <span style="color:#888;font-size:0.97em;">(Asia/Kolkata)</span></div>
+            <div class="actions">
+              <button>Reschedule</button>
+              <button style="color:var(--red);border-color:var(--red);">Cancel</button>
+            </div>
+          </div>
+          <div class="session">
+            <div><b>Excel with Amit</b></div>
+            <div>15 Jun, 6:30 PM <span style="color:#888;font-size:0.97em;">(Asia/Kolkata)</span></div>
+            <div class="actions">
+              <button>Join</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Live Video & Chat -->
+      <div class="card">
+        <h3>🎥 Live Class & 💬 Chat</h3>
+        <div class="video-area">
+          <div class="video-box">
+            <div style="background:#0077cc22;border-radius:16px;height:120px;width:95%;margin:auto;display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:1.4em;color:#0077cc;">[ Video Call (Zoom/Meet) ]</span>
+            </div>
+            <button style="margin-top:18px;background:var(--green);padding:7px 18px;color:#fff;border:none;border-radius:7px;font-weight:600;">Start/Join Live Session</button>
+          </div>
+          <div class="chat-box" id="chat">
+            <div class="chat-msg">Priya: Good morning!</div>
+            <div class="chat-msg me">You: Hi! Ready for yoga?</div>
+            <div class="chat-msg">Priya: Absolutely. Let's begin.</div>
+            <div class="chat-input-row">
+              <input type="text" placeholder="Type a message..." id="chatInput">
+              <button onclick="document.getElementById('chat').innerHTML += '<div class=\'chat-msg me\'>' + document.getElementById('chatInput').value + '</div>';document.getElementById('chatInput').value='';">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Rating & Reviews -->
+      <div class="card">
+        <h3>⭐ Rate & Review</h3>
+        <div class="ratings-row">
+          <span style="font-weight:500;">Yoga with Priya</span>
+          <span class="star">★ ★ ★ ★ ★</span>
+          <span class="review">"Great class, very interactive!"</span>
+        </div>
+        <div class="ratings-row">
+          <span style="font-weight:500;">Excel with Amit</span>
+          <span class="star">★ ★ ★ ★ ☆</span>
+          <span class="review">"Learnt new tips. Thanks!"</span>
+        </div>
+      </div>
+      <!-- Notifications -->
+      <div class="card">
+        <h3>🔔 Notifications</h3>
+        <div class="notif-list">
+          <div class="notif">Reminder: "Yoga with Priya" starts in 1 hour!</div>
+          <div class="notif">You have a new skill match: "Amit Verma (Excel)"</div>
+          <div class="notif">You received a review from Priya: "Amazing student!"</div>
+        </div>
+      </div>
+      <!-- Progress Tracker -->
+      <div class="card">
+        <h3>📈 Learning Progress</h3>
+        <div class="progress-label">Sessions Attended: 5 / 10</div>
+        <div class="progress-bar"><div class="progress" style="width:50%;background:var(--primary);height:100%;border-radius:8px;"></div></div>
+        <div class="progress-label">Skills Learned: 2</div>
+        <div class="progress-bar"><div class="progress" style="width:70%;background:var(--green);height:100%;border-radius:8px;"></div></div>
+        <div style="margin-top:10px;">
+          <span class="badge" style="background:#d0ffe7;color:#117c45;">Streak: 3 days</span>
+          <span class="badge" style="background:#e0e6ff;color:#2b2b89;">Python Badge</span>
+          <span class="badge" style="background:#fff5c7;color:#b09300;">Excel Certification</span>
+        </div>
+      </div>
+    </section>
+  </div>
 </body>
 </html>
