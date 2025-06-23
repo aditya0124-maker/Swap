@@ -113,6 +113,112 @@
     .aud-card .icon { font-size:1.13rem; color:#ffe066;}
     .why-card p, .how-step .step-desc, .aud-card { color:#c9e5ff; font-size:0.97rem;}
 
+    /* ==== MORE WAYS TO LEARN ==== */
+    .more-ways-section {
+      margin: 0 auto 1.5rem auto;
+      max-width: 430px;
+      padding: 0 4vw;
+      text-align: center;
+    }
+    .more-ways-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffe066;
+      letter-spacing: 0.01em;
+      margin-bottom: 1.1rem;
+    }
+    .more-ways-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .more-ways-card {
+      background: #fff;
+      color: #233a59;
+      border-radius: 13px;
+      box-shadow: 0 4px 18px #1e3c7233, 0 1.5px 6px #2a529822;
+      padding: 1rem 1rem 1.3rem 1rem;
+      max-width: 350px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeInUp 1.2s both;
+      opacity: 0;
+      transform: translateY(40px);
+      animation-fill-mode: forwards;
+    }
+    .more-ways-card .mw-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+      margin-top: 0.15rem;
+      box-shadow: 0 2.5px 12px #2a529822;
+    }
+    .mw-card-title {
+      font-size: 1.07rem;
+      font-weight: 700;
+      color: #1e3c72;
+      margin-bottom: 0.6rem;
+      margin-top: 0.3rem;
+    }
+    .mw-card-desc {
+      font-size: 0.98rem;
+      color: #233a59;
+      margin-bottom: 1.1rem;
+      min-height: 64px;
+    }
+    .mw-card-btn {
+      background: linear-gradient(90deg, #2a5298 10%, #39c6e7 90%);
+      color: #fff;
+      border: none;
+      border-radius: 22px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 0.58rem 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #2a529822;
+      outline: none;
+      transition: background 0.18s, color 0.18s, transform 0.13s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .mw-card-btn:focus, .mw-card-btn:active {
+      outline: 2px solid #39c6e7;
+      outline-offset: 2px;
+    }
+    .mw-card-btn:hover {
+      background: linear-gradient(90deg, #39c6e7 10%, #2a5298 90%);
+      color: #ffe066;
+      transform: scale(1.04);
+    }
+    @media (min-width: 700px) {
+      .more-ways-cards {
+        flex-direction: row;
+        gap: 1.35rem;
+        justify-content: center;
+        align-items: stretch;
+      }
+      .more-ways-section { max-width: 1100px; }
+      .more-ways-card { max-width: 350px; }
+    }
+    @media (max-width: 700px) {
+      .more-ways-section { max-width: 98vw; }
+      .more-ways-card { max-width: 99vw; }
+    }
+    /* subtle fade in */
+    @keyframes fadeInUp {
+      0% { opacity:0; transform:translateY(40px);}
+      100% { opacity:1; transform:translateY(0);}
+    }
+    /* re-animate on scroll (optional) */
+    .fade-in.visible { opacity: 1 !important; transform: translateY(0) !important; }
+
     /* ==== VISION & BETA ==== */
     .vision-section, .beta-notice {
       background: linear-gradient(120deg,#15263d 60%,#233a59 100%);
@@ -209,9 +315,20 @@
     .footer .footer-social a:hover { color:#fff; transform:scale(1.09) rotate(-6deg); }
     .footer .copyright { font-size:0.87rem; color:#c7e6ff; margin-top:0.5rem; letter-spacing:0.01em; }
 
-    @keyframes fadeInUp {
-      0% { opacity:0; transform:translateY(32px);}
-      100% { opacity:1; transform:translateY(0);}
+    @media (min-width: 700px) {
+      .more-ways-cards {
+        flex-direction: row;
+        gap: 1.35rem;
+        justify-content: center;
+        align-items: stretch;
+      }
+      .more-ways-section { max-width: 1100px; }
+      .more-ways-card { max-width: 350px; }
+      .page-center { max-width: 1100px; }
+    }
+    @media (max-width: 700px) {
+      .more-ways-section { max-width: 98vw; }
+      .more-ways-card { max-width: 99vw; }
     }
   </style>
 </head>
@@ -245,6 +362,40 @@
     <div class="how-step"><span class="icon"><i class="fa-solid fa-user-plus"></i></span><div class="step-title">Sign up and list skills</div><div class="step-desc">Tell us what you can teach and what you want to learn.</div></div>
     <div class="how-step"><span class="icon"><i class="fa-solid fa-link"></i></span><div class="step-title">Get matched</div><div class="step-desc">We connect you with people who have complementary skills.</div></div>
     <div class="how-step"><span class="icon"><i class="fa-solid fa-arrows-rotate"></i></span><div class="step-title">Connect &amp; Exchange</div><div class="step-desc">Exchange skills online or offline, learn and teach together.</div></div>
+  </div>
+</section>
+
+<!-- MORE WAYS TO LEARN (NEW SECTION) -->
+<section class="more-ways-section page-center" id="more-ways-to-learn">
+  <div class="more-ways-title">More Ways to Learn</div>
+  <div class="more-ways-cards">
+    <!-- Card 1 -->
+    <div class="more-ways-card fade-in">
+      <div class="mw-icon" style="background: linear-gradient(135deg, #2986fd 40%, #39c6e7 100%); color:white;">
+        <i class="fa-solid fa-user-shield"></i>
+      </div>
+      <div class="mw-card-title">Learn from Verified Trainers</div>
+      <div class="mw-card-desc">Want to master a skill from professionals? SwapEra connects you with verified trainers offering paid sessions in top-demand skills like UI/UX, Yoga, Photoshop, and more.</div>
+      <a href="#" class="mw-card-btn" tabindex="0">Explore Trainers</a>
+    </div>
+    <!-- Card 2 -->
+    <div class="more-ways-card fade-in" style="--card-color:#1ecb7b;">
+      <div class="mw-icon" style="background: linear-gradient(135deg, #1ecb7b 40%, #39c6e7 100%); color:white;">
+        <i class="fa-solid fa-handshake-angle"></i>
+      </div>
+      <div class="mw-card-title">Learn Without Teaching</div>
+      <div class="mw-card-desc">Don’t have a skill to swap? You can still learn! Simply connect with a peer, agree on a fee, and start 1-on-1 learning — either online or in person.</div>
+      <a href="#" class="mw-card-btn" tabindex="0">Find a Mentor</a>
+    </div>
+    <!-- Card 3 -->
+    <div class="more-ways-card fade-in" style="--card-color:#ff8a36;">
+      <div class="mw-icon" style="background: linear-gradient(135deg,#ff8a36 40%, #39c6e7 100%); color:white;">
+        <i class="fa-solid fa-chalkboard-user"></i>
+      </div>
+      <div class="mw-card-title">Become a Trainer</div>
+      <div class="mw-card-desc">Are you an expert in something? Join SwapEra as a certified trainer and earn by teaching real people who are eager to learn your skill. No commissions during beta launch.</div>
+      <a href="#" class="mw-card-btn" tabindex="0">Start Teaching</a>
+    </div>
   </div>
 </section>
 
@@ -484,6 +635,19 @@
   }
   setupDropdown('teach-dropdown', 'teach-selected');
   setupDropdown('learn-dropdown', 'learn-selected');
+
+  // Fade-in animation for "More Ways to Learn" cards when scrolled into view
+  function handleFadeIn() {
+    const fadeEls = document.querySelectorAll('.more-ways-card');
+    fadeEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 40) {
+        el.classList.add("visible");
+      }
+    });
+  }
+  window.addEventListener('scroll', handleFadeIn);
+  window.addEventListener('load', handleFadeIn);
 </script>
 </body>
 </html>
