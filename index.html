@@ -8,26 +8,29 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <style>
     :root {
-      --primary: #007bff;
-      --secondary: #4cc9f0;
+      --primary: #4cc9f0;
+      --primary-light: #8ee9fd;
+      --secondary: #007bff;
       --accent: #ffe066;
-      --bg-light: #f4f8fb;
-      --card-bg: #ffffff;
-      --shadow: 0 4px 18px rgba(0,123,255,0.08);
-      --text-main: #17202a;
-      --text-sub: #374151;
+      --bg-dark: #0a1627;
+      --card-bg: #fff;
+      --card-bg-dark: #1a2332;
+      --shadow: 0 6px 32px rgba(0,0,0,0.28);
+      --text-main: #fff;
+      --text-sub: #d1eaff;
+      --text-card: #232d3a;
+      --text-card-dark: #f6fafc;
     }
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f3f8ff;
-      color: var(--text-main);
+      background: var(--bg-dark);
       min-height: 100vh;
-      box-sizing: border-box;
+      color: var(--text-main);
       position: relative;
+      box-sizing: border-box;
     }
-    /* ========== INTERACTIVE BACKGROUND ========== */
     #background-canvas {
       position: fixed;
       left: 0; top: 0;
@@ -35,16 +38,16 @@
       height: 100vh;
       z-index: 0;
       pointer-events: none;
-      background: linear-gradient(120deg, #f3f8ff 62%, #e0f0ff 100%);
+      background: linear-gradient(120deg, #061023 60%, #1b2540 100%);
     }
 
-    /* ========== HEADER ========== */
+    /* HEADER */
     header {
-      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
-      color: #fff;
+      background: linear-gradient(90deg, #16244a 60%, var(--secondary) 100%);
+      color: var(--text-main);
       padding: 2.2rem 1rem 1.2rem 1rem;
       text-align: center;
-      box-shadow: 0 2px 12px rgba(0,123,255,0.10);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.22);
       position: relative;
       z-index: 3;
       border-radius: 0 0 2.5rem 2.5rem / 0 0 1.5rem 1.5rem;
@@ -53,7 +56,7 @@
       font-size: 2.7rem;
       font-weight: 900;
       letter-spacing: 0.08em;
-      background: linear-gradient(120deg, var(--accent) 10%, #fff 40%, var(--secondary) 90%);
+      background: linear-gradient(120deg, var(--accent) 10%, #fff 40%, var(--primary) 90%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -67,23 +70,23 @@
       font-size: 1.18rem;
       font-weight: 500;
       opacity: 0.97;
-      color: #eaf6ff;
+      color: var(--primary-light);
       text-shadow: 0 1px 8px rgba(0,123,255,0.08);
     }
 
-    /* ========== HERO ========== */
+    /* HERO */
     .hero {
       position: relative;
       z-index: 2;
       margin-top: 0;
       text-align: center;
       padding: 3.3rem 1.5rem 2.5rem 1.5rem;
-      background: rgba(255,255,255,0.90);
+      background: rgba(10, 22, 39, 0.97);
       border-radius: 2.5rem;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 6px 32px 0 rgba(100,180,255,0.08);
+      box-shadow: var(--shadow);
       margin-bottom: 1rem;
     }
     .hero h2 {
@@ -101,14 +104,14 @@
     }
     .cta {
       background: var(--primary);
-      color: #fff;
+      color: #1f2937;
       padding: 1rem 2.5rem;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.14rem;
       border: none;
-      box-shadow: 0 3px 16px rgba(0,123,255,0.10);
+      box-shadow: 0 3px 16px rgba(76,201,240,0.22);
       transition: background 0.2s, color 0.2s, transform 0.17s;
       letter-spacing: 0.03em;
       display: inline-block;
@@ -116,12 +119,12 @@
       cursor: pointer;
     }
     .cta:hover {
-      background: var(--secondary);
-      color: var(--primary);
+      background: var(--accent);
+      color: var(--secondary);
       transform: scale(1.04);
     }
 
-    /* ========== SECTIONS ========== */
+    /* SECTIONS */
     section {
       padding: 2.8rem 1.2rem;
       max-width: 1100px;
@@ -138,7 +141,7 @@
       color: var(--primary);
     }
 
-    /* ========== CARDS ========== */
+    /* CARDS */
     .feature-grid, .profile-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -146,7 +149,7 @@
       margin-top: 2rem;
     }
     .card {
-      background: var(--card-bg);
+      background: var(--card-bg-dark);
       border-radius: 18px;
       box-shadow: var(--shadow);
       padding: 1.6rem;
@@ -154,20 +157,21 @@
       position: relative;
       transition: transform 0.15s, box-shadow 0.15s;
       z-index: 1;
+      color: var(--text-card-dark);
     }
     .card:hover {
       transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 10px 26px rgba(0,123,255,0.13);
+      box-shadow: 0 10px 26px rgba(76,201,240,0.22);
     }
     .card .icon {
       font-size: 2.2rem;
-      color: var(--secondary);
+      color: var(--primary);
       margin-bottom: 0.7rem;
       display: inline-block;
       transition: color 0.2s, transform 0.18s;
     }
     .card:hover .icon {
-      color: var(--primary);
+      color: var(--accent);
       transform: scale(1.14) rotate(-8deg);
     }
     .card h3 {
@@ -182,15 +186,15 @@
       opacity: 0.93;
     }
 
-    /* ========== FORM ========== */
+    /* FORM */
     .form-section input, .form-section textarea, select {
       width: 100%;
       padding: 0.8rem 1rem;
       margin-bottom: 1.1rem;
       border-radius: 12px;
-      border: 1px solid #b7dff8;
+      border: 1px solid #4cc9f0;
       font-size: 1rem;
-      background: #f7fbff;
+      background: #19243a;
       box-sizing: border-box;
       transition: border 0.16s;
       color: var(--text-main);
@@ -198,11 +202,11 @@
     .form-section input:focus, .form-section textarea:focus, .form-section select:focus {
       outline: none;
       border: 1.5px solid var(--primary);
-      background: #fff;
+      background: #101c31;
     }
     .form-section button {
       background: var(--primary);
-      color: #fff;
+      color: #1a2332;
       padding: 0.95rem 2.3rem;
       border: none;
       border-radius: 30px;
@@ -213,13 +217,13 @@
       margin-top: 0.1rem;
       margin-bottom: 0.5rem;
     }
-    .form-section button:hover { background: var(--secondary); color: var(--primary);}
+    .form-section button:hover { background: var(--accent); color: var(--secondary);}
     .form-section form {
       max-width: 480px;
       margin: auto;
     }
 
-    /* ========== ABOUT IMAGE ========== */
+    /* ABOUT IMAGE */
     .about-img {
       max-width: 320px;
       width: 100%;
@@ -230,7 +234,7 @@
       background: #fff;
     }
 
-    /* ========== CONTACT ========== */
+    /* CONTACT */
     #contact a {
       color: var(--primary);
       text-decoration: underline;
@@ -238,10 +242,10 @@
       word-break: break-all;
     }
 
-    /* ========== FOOTER ========== */
+    /* FOOTER */
     footer {
-      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
-      color: #fff;
+      background: linear-gradient(90deg, #16244a 60%, var(--secondary) 100%);
+      color: var(--primary-light);
       padding: 1.1rem 0 1.1rem 0;
       text-align: center;
       font-size: 1rem;
@@ -252,8 +256,13 @@
       z-index: 2;
       position: relative;
     }
+    footer .brand-text {
+      background: none;
+      -webkit-text-fill-color: #4cc9f0;
+      color: #4cc9f0;
+    }
 
-    /* ========== RESPONSIVE ========== */
+    /* RESPONSIVE */
     @media (max-width: 850px) {
       .hero {
         padding: 2.4rem 0.6rem 2rem 0.6rem;
@@ -319,7 +328,7 @@
   <!-- HERO -->
   <section class="hero">
     <h2>
-      <span style="color:#007bff;font-weight:900;">India's First <span style="color:#ffe066;">Peer-to-Peer</span></span> <br>
+      <span style="color:#4cc9f0;font-weight:900;">India's First <span style="color:#ffe066;">Peer-to-Peer</span></span> <br>
       Skill Swapping Platform
     </h2>
     <p>No Fees. No Instructors. Just Real People Helping Each Other Grow.</p>
@@ -424,13 +433,13 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="brand-text" style="font-size:1.25rem;letter-spacing:0.06em;background:none;-webkit-text-fill-color:#fff;color:#fff;">SwapEra</span>
+    <span class="brand-text" style="font-size:1.25rem;letter-spacing:0.06em;">SwapEra</span>
     &nbsp;|&nbsp;© 2025 | Built for India’s Skill Revolution <span title="growth" style="font-size:1.2em;">🌱</span>
   </footer>
 
-  <!-- INTERACTIVE BACKGROUND SCRIPT -->
+  <!-- INTERACTIVE DARK PARTICLE BACKGROUND SCRIPT -->
   <script>
-    // --- Interactive Particles Background ---
+    // --- Interactive Brand-Colored Particles Background ---
     const canvas = document.getElementById('background-canvas');
     const ctx = canvas.getContext('2d');
     let width = window.innerWidth;
@@ -448,23 +457,29 @@
     resizeCanvas();
 
     function randomColor() {
-      // Use SwapEra brand colors softly
-      const colors = ['#007bff22','#4cc9f022','#ffe06633','#9be7ff22'];
+      // SwapEra brand colors, glowing on dark
+      const colors = [
+        "rgba(76,201,240,0.32)",   // light blue
+        "rgba(0,123,255,0.30)",    // blue
+        "rgba(255,224,102,0.18)",  // accent yellow
+        "rgba(142,233,253,0.25)",  // lighter blue
+        "rgba(30,180,219,0.18)"    // turquoise
+      ];
       return colors[Math.floor(Math.random() * colors.length)];
     }
 
     function createParticles() {
       particles = [];
-      let count = Math.floor((width * height) / 12000);
+      let count = Math.floor((width * height) / 9500);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          r: 8 + Math.random() * 18,
+          r: 12 + Math.random() * 16,
           color: randomColor(),
-          dx: (Math.random() - 0.5) * 0.3,
-          dy: (Math.random() - 0.5) * 0.3,
-          alpha: 0.3 + Math.random() * 0.25,
+          dx: (Math.random() - 0.5) * 0.4,
+          dy: (Math.random() - 0.5) * 0.4,
+          alpha: 0.3 + Math.random() * 0.33,
         });
       }
     }
@@ -476,6 +491,8 @@
         ctx.globalAlpha = p.alpha;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 25;
         ctx.fillStyle = p.color;
         ctx.fill();
         ctx.restore();
@@ -483,8 +500,8 @@
         p.x += p.dx;
         p.y += p.dy;
         // Bounce off edges
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
+        if (p.x < -20 || p.x > width + 20) p.dx *= -1;
+        if (p.y < -20 || p.y > height + 20) p.dy *= -1;
       }
     }
 
@@ -496,7 +513,6 @@
     createParticles();
     animate();
 
-    // Recreate particles on resize for density
     window.addEventListener('resize', () => {
       resizeCanvas();
       createParticles();
