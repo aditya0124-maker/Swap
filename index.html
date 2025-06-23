@@ -5,35 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SwapEra | Learn by Teaching</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <style>
     body { margin: 0; font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #333; }
     header, footer { background: #007bff; color: white; padding: 1rem; text-align: center; }
     section { padding: 3rem 1.5rem; max-width: 1200px; margin: auto; }
     h1, h2, h3 { color: #007bff; }
-    .hero { background: linear-gradient(to right, #4cc9f0, #007bff); color: white; padding: 5rem 2rem; text-align: center; }
-    .cta { background: white; color: #007bff; padding: 0.75rem 2rem; border-radius: 30px; text-decoration: none; font-weight: bold; }
-    .feature-grid, .profile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-    .card { background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 1.5rem; }
+    .hero {
+      background: linear-gradient(120deg, #4cc9f0 30%, #007bff 100%);
+      color: white;
+      padding: 5rem 2rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 1.2rem;
+      animation: bounceIn 1.2s;
+    }
+    /* Example SVG logo, replace with your own for branding */
+    .hero-logo svg { width: 56px; height: 56px; }
+    @keyframes bounceIn {
+      0% { transform: scale(0.2); opacity: 0; }
+      70% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    .cta {
+      background: white;
+      color: #007bff;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: background 0.18s, color 0.18s;
+    }
+    .cta:hover { background: #007bff; color: #fff; }
+    .feature-grid, .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,123,255,0.15);
+    }
+    .card .icon {
+      font-size: 2.2rem;
+      color: #4cc9f0;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
     .form-section input, .form-section textarea, select {
       width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 10px; border: 1px solid #ccc;
+      font-size: 1rem;
     }
-    button { background: #007bff; color: white; padding: 0.75rem 2rem; border: none; border-radius: 30px; cursor: pointer; }
+    button {
+      background: #007bff; color: white; padding: 0.75rem 2rem;
+      border: none; border-radius: 30px; cursor: pointer;
+      font-weight: 600; font-size: 1.1rem;
+      transition: background 0.18s;
+    }
+    button:hover { background: #005dc1; }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 0.5rem 1rem 0.5rem; }
+      section { padding: 2rem 0.5rem; }
+    }
+    /* Simple animated waves for hero background */
+    .wave {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      width: 100%; height: 80px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    /* Fun icon transition on hover */
+    .card .icon { transition: color 0.2s, transform 0.2s; }
+    .card:hover .icon { color: #007bff; transform: scale(1.15) rotate(-6deg);}
   </style>
 </head>
-
 <body>
 
   <!-- HEADER -->
   <header>
-    <h1>SwapEra</h1>
+    <h1>
+      <span style="vertical-align: middle; margin-right:10px;">
+        <!-- Inline SVG logo mini for header, match branding -->
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="32" fill="#fff"/>
+          <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
+          <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="28" font-family="Poppins" font-weight="bold">S</text>
+        </svg>
+      </span>
+      SwapEra
+    </h1>
     <p>Teach What You Know. Learn What You Love.</p>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <h2>India's First Peer-to-Peer Skill Swapping Platform</h2>
-    <p>No Fees. No Instructors. Just Real People Helping Each Other Grow.</p>
-    <a href="#signup" class="cta">Get Started</a>
+    <div class="hero-logo">
+      <!-- Replace below SVG with your brand logo if available -->
+      <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
+        <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="28" font-family="Poppins" font-weight="bold">S</text>
+      </svg>
+    </div>
+    <h2>India's First <span style="color:#ffe066;">Peer-to-Peer</span> Skill Swapping Platform</h2>
+    <p style="font-size:1.2rem;">No Fees. No Instructors. Just Real People Helping Each Other Grow.</p>
+    <a href="#signup" class="cta"><i class="fas fa-hands-helping"></i> Get Started</a>
+    <!-- Animated SVG waves for visual interest -->
+    <svg class="wave" viewBox="0 0 1440 80"><path fill="#fff" fill-opacity="1" d="M0,32L60,37.3C120,43,240,53,360,64C480,75,600,85,720,80C840,75,960,53,1080,42.7C1200,32,1320,32,1380,32L1440,32L1440,80L1380,80C1320,80,1200,80,1080,80C960,80,840,80,720,80C600,80,480,80,360,80C240,80,120,80,60,80L0,80Z"></path></svg>
   </section>
 
   <!-- HOW IT WORKS -->
@@ -41,14 +145,17 @@
     <h2>How It Works</h2>
     <div class="feature-grid">
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-user-plus"></i></span>
         <h3>1. Sign Up</h3>
         <p>Tell us what you can teach and what you want to learn.</p>
       </div>
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-link"></i></span>
         <h3>2. Get Matched</h3>
         <p>We connect you with people who have matching skills.</p>
       </div>
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-arrows-rotate"></i></span>
         <h3>3. Swap & Learn</h3>
         <p>Learn one skill by teaching another. It’s free, always.</p>
       </div>
@@ -60,18 +167,22 @@
     <h2>Platform Features</h2>
     <div class="feature-grid">
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-magnifying-glass-location"></i></span>
         <h3>Skill Matching</h3>
         <p>Find users with complementary skills in your city or online.</p>
       </div>
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-gauge"></i></span>
         <h3>Profile Dashboard</h3>
         <p>View your swap history, matches, and availability easily.</p>
       </div>
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-shield-check"></i></span>
         <h3>Verified Swappers</h3>
         <p>Optional verified profiles for trust and safety.</p>
       </div>
       <div class="card">
+        <span class="icon"><i class="fa-solid fa-users"></i></span>
         <h3>Online & In-Person</h3>
         <p>Swap skills virtually or meet in your locality. You choose.</p>
       </div>
@@ -80,7 +191,7 @@
 
   <!-- SIGNUP FORM -->
   <section id="signup" class="form-section">
-    <h2>Join SwapEra Now</h2>
+    <h2><i class="fa-solid fa-rocket"></i> Join SwapEra Now</h2>
     <p>Fill the form below. We'll match you soon.</p>
     <form>
       <input type="text" placeholder="Full Name" required />
@@ -102,25 +213,42 @@
         <option>Both</option>
       </select>
       <textarea placeholder="Short Bio" rows="3" required></textarea>
-      <button type="submit">Submit</button>
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
     </form>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
-    <h2>About SwapEra</h2>
+    <h2><i class="fa-solid fa-info-circle"></i> About SwapEra</h2>
     <p>SwapEra is a grassroots movement to change how we learn. In a country where access to skills often depends on money, we're flipping the game — you learn by teaching others. It’s social, it’s fun, and it’s completely free.</p>
+    <div style="text-align:center; margin-top:2rem;">
+      <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/learn-2030267_1280.png" alt="Skill Swapping Graphics" style="max-width:320px;width:100%;border-radius:20px;box-shadow:0 4px 16px rgba(76,201,240,0.09)">
+    </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions or feedback? Reach out at <a href="mailto:hello@swapera.in">hello@swapera.in</a></p>
+    <h2><i class="fa-solid fa-envelope"></i> Contact Us</h2>
+    <p>
+      Have questions or feedback? 
+      <br>
+      <a href="mailto:hello@swapera.in" style="color:#007bff;text-decoration:underline; font-weight:bold;">
+        <i class="fa-solid fa-paper-plane"></i> hello@swapera.in
+      </a>
+    </p>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 SwapEra | Built for India’s Skill Revolution 🌱</p>
+    <p>
+      <span style="vertical-align:middle;">
+        <svg width="22" height="22" viewBox="0 0 64 64" fill="none" style="vertical-align:middle;">
+          <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
+          <text x="32" y="42" text-anchor="middle" fill="#fff" font-size="24" font-family="Poppins" font-weight="bold">S</text>
+        </svg>
+      </span>
+      © 2025 SwapEra | Built for India’s Skill Revolution <span title="growth" style="font-size:1.2em;">🌱</span>
+    </p>
   </footer>
 
 </body>
