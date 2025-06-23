@@ -17,15 +17,12 @@
       scroll-behavior: smooth;
     }
     body { overflow-x: hidden; }
-
     #background-canvas {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0; pointer-events: none;
       max-width: 100vw !important; max-height: 100vh !important;
     }
-
-    /* ==== GLOBAL CONTAINER ==== */
     .page-center {
       width: 100%;
       max-width: 430px;
@@ -36,8 +33,6 @@
       position: relative;
       z-index: 2;
     }
-
-    /* ==== HERO ==== */
     .hero-section {
       background: linear-gradient(120deg, #1e3c72 0%, #2a5298 60%, #39c6e7 100%);
       border-bottom-left-radius: 18px;
@@ -80,8 +75,6 @@
     }
     .cta-btn:focus, .cta-btn:active { outline:2px solid #ffe066; outline-offset:2px;}
     .cta-btn:hover { background: #39c6e7; color: #fff; }
-
-    /* ==== SECTION ==== */
     .container-section {
       margin: 0 auto;
       margin-bottom: 1rem;
@@ -113,46 +106,55 @@
     .aud-card .icon { font-size:1.13rem; color:#ffe066;}
     .why-card p, .how-step .step-desc, .aud-card { color:#c9e5ff; font-size:0.97rem;}
 
-    /* ==== MORE WAYS TO LEARN ==== */
-    .more-ways-section {
-      margin: 0 auto 1.5rem auto;
-      max-width: 430px;
-      padding: 0 4vw;
+    /* FLEXIBLE LEARNING OPTIONS (NEW SECTION) */
+    .flexible-options-section {
+      background: #fff;
+      padding: 2.1rem 0.7rem 1.2rem 0.7rem;
+      margin: 1.5rem auto 1.5rem auto;
+      border-radius: 18px;
+      box-shadow: 0 2.5px 18px #2a529811;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .flexible-options-title {
+      font-size: 1.17rem;
+      font-weight: 900;
+      color: #2a5298;
       text-align: center;
-    }
-    .more-ways-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #ffe066;
+      margin-bottom: 1.3rem;
       letter-spacing: 0.01em;
-      margin-bottom: 1.1rem;
     }
-    .more-ways-cards {
+    .flexible-options-cards {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.1rem;
       align-items: center;
       justify-content: center;
+      width: 100%;
+      margin: 0 auto;
     }
-    .more-ways-card {
+    .flexible-options-card {
       background: #fff;
       color: #233a59;
-      border-radius: 13px;
-      box-shadow: 0 4px 18px #1e3c7233, 0 1.5px 6px #2a529822;
-      padding: 1rem 1rem 1.3rem 1rem;
-      max-width: 350px;
+      border-radius: 15px;
+      box-shadow: 0 2.5px 14px #2a529822;
+      padding: 1.15rem 1.1rem 1.35rem 1.1rem;
+      max-width: 340px;
       width: 100%;
+      min-width: unset;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      animation: fadeInUp 1.2s both;
-      opacity: 0;
-      transform: translateY(40px);
-      animation-fill-mode: forwards;
+      border: 2px solid transparent;
+      transition: border 0.18s, box-shadow 0.18s;
     }
-    .more-ways-card .mw-icon {
+    .flexible-options-card:hover {
+      border: 2px solid #39c6e7;
+      box-shadow: 0 6px 24px #39c6e744;
+    }
+    .fo-icon {
       width: 48px; height: 48px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.45rem;
@@ -160,20 +162,35 @@
       margin-top: 0.15rem;
       box-shadow: 0 2.5px 12px #2a529822;
     }
-    .mw-card-title {
-      font-size: 1.07rem;
+    .flexible-options-card .fo-icon-1 { background: linear-gradient(135deg, #2986fd 40%, #39c6e7 100%); color: #fff; }
+    .flexible-options-card .fo-icon-2 { background: linear-gradient(135deg, #1ecb7b 40%, #39c6e7 100%); color: #fff; }
+    .flexible-options-card .fo-icon-3 { background: linear-gradient(135deg,#ff8a36 40%, #39c6e7 100%); color: #fff; }
+    .fo-card-title {
+      font-size: 1.08rem;
       font-weight: 700;
-      color: #1e3c72;
+      color: #2a5298;
       margin-bottom: 0.6rem;
       margin-top: 0.3rem;
     }
-    .mw-card-desc {
-      font-size: 0.98rem;
+    .fo-card-popular {
+      display: inline-block;
+      background: #39c6e7;
+      color: #fff;
+      font-size: 0.80rem;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 0.13rem 0.7rem;
+      margin-bottom: 0.38rem;
+      margin-top: -0.15rem;
+      letter-spacing: 0.05em;
+    }
+    .fo-card-desc {
+      font-size: 0.99rem;
       color: #233a59;
       margin-bottom: 1.1rem;
       min-height: 64px;
     }
-    .mw-card-btn {
+    .fo-card-btn {
       background: linear-gradient(90deg, #2a5298 10%, #39c6e7 90%);
       color: #fff;
       border: none;
@@ -188,35 +205,51 @@
       text-decoration: none;
       display: inline-block;
     }
-    .mw-card-btn:focus, .mw-card-btn:active {
+    .fo-card-btn:focus, .fo-card-btn:active {
       outline: 2px solid #39c6e7;
       outline-offset: 2px;
     }
-    .mw-card-btn:hover {
+    .fo-card-btn:hover {
       background: linear-gradient(90deg, #39c6e7 10%, #2a5298 90%);
       color: #ffe066;
       transform: scale(1.04);
     }
-    @media (min-width: 700px) {
-      .more-ways-cards {
+    .flexible-options-tagline {
+      margin-top: 1.7rem;
+      color: #2a5298;
+      font-size: 0.97rem;
+      font-weight: 600;
+      text-align: center;
+      background: #eaf5fb;
+      border-radius: 9px;
+      padding: 0.5rem 1.1rem;
+      display: inline-block;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 0.5px 3px #2a529813;
+    }
+    @media (min-width: 900px) {
+      .flexible-options-section {
+        max-width: 1100px;
+        padding: 2.1rem 0.7rem 2.3rem 0.7rem;
+      }
+      .flexible-options-cards {
         flex-direction: row;
-        gap: 1.35rem;
-        justify-content: center;
+        gap: 1.5rem;
         align-items: stretch;
       }
-      .more-ways-section { max-width: 1100px; }
-      .more-ways-card { max-width: 350px; }
+      .flexible-options-card { max-width: 340px; }
     }
     @media (max-width: 700px) {
-      .more-ways-section { max-width: 98vw; }
-      .more-ways-card { max-width: 99vw; }
+      .flexible-options-section { max-width: 99vw; }
+      .flexible-options-card { max-width: 99vw; }
     }
-    /* subtle fade in */
+    /* fade in effect for section (optional) */
     @keyframes fadeInUp {
       0% { opacity:0; transform:translateY(40px);}
       100% { opacity:1; transform:translateY(0);}
     }
-    /* re-animate on scroll (optional) */
     .fade-in.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
     /* ==== VISION & BETA ==== */
@@ -314,22 +347,6 @@
     .footer .footer-social a { color:var(--accent); font-size:1.3em; margin:0 0.12em; transition:color .15s,transform .12s; }
     .footer .footer-social a:hover { color:#fff; transform:scale(1.09) rotate(-6deg); }
     .footer .copyright { font-size:0.87rem; color:#c7e6ff; margin-top:0.5rem; letter-spacing:0.01em; }
-
-    @media (min-width: 700px) {
-      .more-ways-cards {
-        flex-direction: row;
-        gap: 1.35rem;
-        justify-content: center;
-        align-items: stretch;
-      }
-      .more-ways-section { max-width: 1100px; }
-      .more-ways-card { max-width: 350px; }
-      .page-center { max-width: 1100px; }
-    }
-    @media (max-width: 700px) {
-      .more-ways-section { max-width: 98vw; }
-      .more-ways-card { max-width: 99vw; }
-    }
   </style>
 </head>
 <body>
@@ -365,37 +382,40 @@
   </div>
 </section>
 
-<!-- MORE WAYS TO LEARN (NEW SECTION) -->
-<section class="more-ways-section page-center" id="more-ways-to-learn">
-  <div class="more-ways-title">More Ways to Learn</div>
-  <div class="more-ways-cards">
+<!-- FLEXIBLE LEARNING OPTIONS (NEW SECTION) -->
+<section class="flexible-options-section" id="flexible-learning-options">
+  <div class="flexible-options-title">Flexible Learning Options</div>
+  <div class="flexible-options-cards">
     <!-- Card 1 -->
-    <div class="more-ways-card fade-in">
-      <div class="mw-icon" style="background: linear-gradient(135deg, #2986fd 40%, #39c6e7 100%); color:white;">
-        <i class="fa-solid fa-user-shield"></i>
+    <div class="flexible-options-card fade-in">
+      <div class="fo-icon fo-icon-1">
+        <i class="fa-solid fa-retweet"></i>
       </div>
-      <div class="mw-card-title">Learn from Verified Trainers</div>
-      <div class="mw-card-desc">Want to master a skill from professionals? SwapEra connects you with verified trainers offering paid sessions in top-demand skills like UI/UX, Yoga, Photoshop, and more.</div>
-      <a href="#" class="mw-card-btn" tabindex="0">Explore Trainers</a>
+      <div class="fo-card-title">Swap Skills Freely <span class="fo-card-popular">(Most Popular)</span></div>
+      <div class="fo-card-desc">Teach what you know and learn what you want — all for free. SwapEra connects you with people ready to grow like you. No money. Just mutual growth.</div>
+      <a href="#" class="fo-card-btn" tabindex="0">Start Swapping</a>
     </div>
     <!-- Card 2 -->
-    <div class="more-ways-card fade-in" style="--card-color:#1ecb7b;">
-      <div class="mw-icon" style="background: linear-gradient(135deg, #1ecb7b 40%, #39c6e7 100%); color:white;">
-        <i class="fa-solid fa-handshake-angle"></i>
+    <div class="flexible-options-card fade-in">
+      <div class="fo-icon fo-icon-2">
+        <i class="fa-solid fa-user-shield"></i>
       </div>
-      <div class="mw-card-title">Learn Without Teaching</div>
-      <div class="mw-card-desc">Don’t have a skill to swap? You can still learn! Simply connect with a peer, agree on a fee, and start 1-on-1 learning — either online or in person.</div>
-      <a href="#" class="mw-card-btn" tabindex="0">Find a Mentor</a>
+      <div class="fo-card-title">Learn from Professionals <span style="font-size:0.82em;font-weight:500;color:#1ecb7b;">(Optional)</span></div>
+      <div class="fo-card-desc">Prefer structured learning? Book a session with verified trainers offering paid classes in high-demand skills like UI/UX, Excel, Yoga, and more.</div>
+      <a href="#" class="fo-card-btn" tabindex="0">Explore Trainers</a>
     </div>
     <!-- Card 3 -->
-    <div class="more-ways-card fade-in" style="--card-color:#ff8a36;">
-      <div class="mw-icon" style="background: linear-gradient(135deg,#ff8a36 40%, #39c6e7 100%); color:white;">
-        <i class="fa-solid fa-chalkboard-user"></i>
+    <div class="flexible-options-card fade-in">
+      <div class="fo-icon fo-icon-3">
+        <i class="fa-solid fa-lightbulb"></i>
       </div>
-      <div class="mw-card-title">Become a Trainer</div>
-      <div class="mw-card-desc">Are you an expert in something? Join SwapEra as a certified trainer and earn by teaching real people who are eager to learn your skill. No commissions during beta launch.</div>
-      <a href="#" class="mw-card-btn" tabindex="0">Start Teaching</a>
+      <div class="fo-card-title">Don’t Want to Teach? Just Learn</div>
+      <div class="fo-card-desc">Not ready to teach yet? You can still learn. Pay a small fee to connect with someone offering real 1-on-1 sessions. Your growth, your way.</div>
+      <a href="#" class="fo-card-btn" tabindex="0">Find a Mentor</a>
     </div>
+  </div>
+  <div class="flexible-options-tagline">
+    <b>SwapEra is and will always be free for those who want to teach and learn. Paid options are available for added flexibility.</b>
   </div>
 </section>
 
@@ -636,9 +656,9 @@
   setupDropdown('teach-dropdown', 'teach-selected');
   setupDropdown('learn-dropdown', 'learn-selected');
 
-  // Fade-in animation for "More Ways to Learn" cards when scrolled into view
+  // Fade-in animation for "Flexible Learning Options" cards when scrolled into view
   function handleFadeIn() {
-    const fadeEls = document.querySelectorAll('.more-ways-card');
+    const fadeEls = document.querySelectorAll('.flexible-options-card');
     fadeEls.forEach(el => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 40) {
