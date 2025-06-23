@@ -4,54 +4,141 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SwapEra | Learn by Teaching</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome for icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <style>
-    body { margin: 0; font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #333; }
-    header, footer { background: #007bff; color: white; padding: 1rem; text-align: center; }
-    section { padding: 3rem 1.5rem; max-width: 1200px; margin: auto; }
-    h1, h2, h3 { color: #007bff; }
-    .hero {
-      background: linear-gradient(120deg, #4cc9f0 30%, #007bff 100%);
-      color: white;
-      padding: 5rem 2rem 2rem 2rem;
-      text-align: center;
+    :root {
+      --primary: #007bff;
+      --secondary: #4cc9f0;
+      --accent: #ffe066;
+      --bg-light: #f4f8fb;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 18px rgba(0,123,255,0.08);
+      --text-main: #17202a;
+      --text-sub: #374151;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f3f8ff;
+      color: var(--text-main);
+      min-height: 100vh;
+      box-sizing: border-box;
       position: relative;
-      overflow: hidden;
     }
-    .hero-logo {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: white;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      margin-bottom: 1.2rem;
-      animation: bounceIn 1.2s;
+    /* ========== INTERACTIVE BACKGROUND ========== */
+    #background-canvas {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, #f3f8ff 62%, #e0f0ff 100%);
     }
-    /* Example SVG logo, replace with your own for branding */
-    .hero-logo svg { width: 56px; height: 56px; }
-    @keyframes bounceIn {
-      0% { transform: scale(0.2); opacity: 0; }
-      70% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); }
+
+    /* ========== HEADER ========== */
+    header {
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+      color: #fff;
+      padding: 2.2rem 1rem 1.2rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,123,255,0.10);
+      position: relative;
+      z-index: 3;
+      border-radius: 0 0 2.5rem 2.5rem / 0 0 1.5rem 1.5rem;
+    }
+    .brand-text {
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      background: linear-gradient(120deg, var(--accent) 10%, #fff 40%, var(--secondary) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 2px 16px rgba(0,123,255,0.07);
+    }
+    header p {
+      margin: 0.2rem 0 0 0;
+      font-size: 1.18rem;
+      font-weight: 500;
+      opacity: 0.97;
+      color: #eaf6ff;
+      text-shadow: 0 1px 8px rgba(0,123,255,0.08);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      z-index: 2;
+      margin-top: 0;
+      text-align: center;
+      padding: 3.3rem 1.5rem 2.5rem 1.5rem;
+      background: rgba(255,255,255,0.90);
+      border-radius: 2.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 6px 32px 0 rgba(100,180,255,0.08);
+      margin-bottom: 1rem;
+    }
+    .hero h2 {
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      font-size: 2.2rem;
+      line-height: 1.12;
+    }
+    .hero p {
+      color: var(--text-sub);
+      margin-bottom: 2rem;
+      font-size: 1.15rem;
+      font-weight: 500;
     }
     .cta {
-      background: white;
-      color: #007bff;
-      padding: 0.75rem 2rem;
+      background: var(--primary);
+      color: #fff;
+      padding: 1rem 2.5rem;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.14rem;
+      border: none;
+      box-shadow: 0 3px 16px rgba(0,123,255,0.10);
+      transition: background 0.2s, color 0.2s, transform 0.17s;
+      letter-spacing: 0.03em;
       display: inline-block;
-      margin-top: 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: background 0.18s, color 0.18s;
+      margin-top: 0.8rem;
+      cursor: pointer;
     }
-    .cta:hover { background: #007bff; color: #fff; }
+    .cta:hover {
+      background: var(--secondary);
+      color: var(--primary);
+      transform: scale(1.04);
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 2.8rem 1.2rem;
+      max-width: 1100px;
+      margin: 1rem auto;
+      position: relative;
+      z-index: 2;
+    }
+    section h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+    section h3 {
+      color: var(--primary);
+    }
+
+    /* ========== CARDS ========== */
     .feature-grid, .profile-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -59,85 +146,184 @@
       margin-top: 2rem;
     }
     .card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 1.5rem 1rem;
+      background: var(--card-bg);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.6rem;
       text-align: center;
-      transition: transform 0.15s, box-shadow 0.15s;
       position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+      z-index: 1;
     }
     .card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(0,123,255,0.15);
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 10px 26px rgba(0,123,255,0.13);
     }
     .card .icon {
       font-size: 2.2rem;
-      color: #4cc9f0;
+      color: var(--secondary);
       margin-bottom: 0.7rem;
       display: inline-block;
+      transition: color 0.2s, transform 0.18s;
     }
+    .card:hover .icon {
+      color: var(--primary);
+      transform: scale(1.14) rotate(-8deg);
+    }
+    .card h3 {
+      font-size: 1.19rem;
+      margin-top: 0.3rem;
+      margin-bottom: 0.7rem;
+      color: var(--primary);
+    }
+    .card p {
+      color: var(--text-sub);
+      font-size: 1.01rem;
+      opacity: 0.93;
+    }
+
+    /* ========== FORM ========== */
     .form-section input, .form-section textarea, select {
-      width: 100%; padding: 0.75rem; margin-bottom: 1rem; border-radius: 10px; border: 1px solid #ccc;
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.1rem;
+      border-radius: 12px;
+      border: 1px solid #b7dff8;
       font-size: 1rem;
+      background: #f7fbff;
+      box-sizing: border-box;
+      transition: border 0.16s;
+      color: var(--text-main);
     }
-    button {
-      background: #007bff; color: white; padding: 0.75rem 2rem;
-      border: none; border-radius: 30px; cursor: pointer;
-      font-weight: 600; font-size: 1.1rem;
-      transition: background 0.18s;
+    .form-section input:focus, .form-section textarea:focus, .form-section select:focus {
+      outline: none;
+      border: 1.5px solid var(--primary);
+      background: #fff;
     }
-    button:hover { background: #005dc1; }
-    /* Responsive */
+    .form-section button {
+      background: var(--primary);
+      color: #fff;
+      padding: 0.95rem 2.3rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.13rem;
+      transition: background 0.16s;
+      margin-top: 0.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-section button:hover { background: var(--secondary); color: var(--primary);}
+    .form-section form {
+      max-width: 480px;
+      margin: auto;
+    }
+
+    /* ========== ABOUT IMAGE ========== */
+    .about-img {
+      max-width: 320px;
+      width: 100%;
+      display: block;
+      margin: 2rem auto 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(76,201,240,0.14);
+      background: #fff;
+    }
+
+    /* ========== CONTACT ========== */
+    #contact a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: bold;
+      word-break: break-all;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+      color: #fff;
+      padding: 1.1rem 0 1.1rem 0;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      margin-top: 2.5rem;
+      border-radius: 26px 26px 0 0/ 8px 8px 0 0;
+      box-shadow: 0 -2px 12px rgba(0,123,255,0.10);
+      z-index: 2;
+      position: relative;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 850px) {
+      .hero {
+        padding: 2.4rem 0.6rem 2rem 0.6rem;
+        border-radius: 1.5rem;
+      }
+      .brand-text {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 2rem 0.5rem;
+      }
+      .feature-grid, .profile-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+    }
     @media (max-width: 600px) {
-      .hero { padding: 3rem 0.5rem 1rem 0.5rem; }
-      section { padding: 2rem 0.5rem; }
+      header {
+        padding-top: 1.4rem;
+        padding-bottom: 0.9rem;
+        border-radius: 0 0 1.2rem 1.2rem;
+      }
+      .brand-text {
+        font-size: 1.5rem;
+      }
+      .hero {
+        padding: 1.2rem 0.3rem 1.2rem 0.3rem;
+        margin-bottom: 0.5rem;
+        border-radius: 1rem;
+      }
+      .hero h2 {
+        font-size: 1.23rem;
+      }
+      section {
+        padding: 1.2rem 0.3rem;
+      }
+      .feature-grid, .profile-grid {
+        gap: 1.1rem;
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 1.2rem 0.7rem;
+      }
+      .about-img {
+        margin-top: 1.2rem;
+      }
+      footer {
+        border-radius: 16px 16px 0 0/ 5px 5px 0 0;
+        font-size: 0.95rem;
+      }
     }
-    /* Simple animated waves for hero background */
-    .wave {
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      width: 100%; height: 80px;
-      pointer-events: none;
-      z-index: 1;
-    }
-    /* Fun icon transition on hover */
-    .card .icon { transition: color 0.2s, transform 0.2s; }
-    .card:hover .icon { color: #007bff; transform: scale(1.15) rotate(-6deg);}
   </style>
 </head>
 <body>
+  <!-- INTERACTIVE BACKGROUND -->
+  <canvas id="background-canvas"></canvas>
 
   <!-- HEADER -->
   <header>
-    <h1>
-      <span style="vertical-align: middle; margin-right:10px;">
-        <!-- Inline SVG logo mini for header, match branding -->
-        <svg width="32" height="32" viewBox="0 0 64 64" fill="none">
-          <circle cx="32" cy="32" r="32" fill="#fff"/>
-          <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
-          <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="28" font-family="Poppins" font-weight="bold">S</text>
-        </svg>
-      </span>
-      SwapEra
-    </h1>
+    <span class="brand-text">SwapEra</span>
     <p>Teach What You Know. Learn What You Love.</p>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-logo">
-      <!-- Replace below SVG with your brand logo if available -->
-      <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
-        <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
-        <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="28" font-family="Poppins" font-weight="bold">S</text>
-      </svg>
-    </div>
-    <h2>India's First <span style="color:#ffe066;">Peer-to-Peer</span> Skill Swapping Platform</h2>
-    <p style="font-size:1.2rem;">No Fees. No Instructors. Just Real People Helping Each Other Grow.</p>
+    <h2>
+      <span style="color:#007bff;font-weight:900;">India's First <span style="color:#ffe066;">Peer-to-Peer</span></span> <br>
+      Skill Swapping Platform
+    </h2>
+    <p>No Fees. No Instructors. Just Real People Helping Each Other Grow.</p>
     <a href="#signup" class="cta"><i class="fas fa-hands-helping"></i> Get Started</a>
-    <!-- Animated SVG waves for visual interest -->
-    <svg class="wave" viewBox="0 0 1440 80"><path fill="#fff" fill-opacity="1" d="M0,32L60,37.3C120,43,240,53,360,64C480,75,600,85,720,80C840,75,960,53,1080,42.7C1200,32,1320,32,1380,32L1440,32L1440,80L1380,80C1320,80,1200,80,1080,80C960,80,840,80,720,80C600,80,480,80,360,80C240,80,120,80,60,80L0,80Z"></path></svg>
   </section>
 
   <!-- HOW IT WORKS -->
@@ -221,9 +407,7 @@
   <section id="about">
     <h2><i class="fa-solid fa-info-circle"></i> About SwapEra</h2>
     <p>SwapEra is a grassroots movement to change how we learn. In a country where access to skills often depends on money, we're flipping the game — you learn by teaching others. It’s social, it’s fun, and it’s completely free.</p>
-    <div style="text-align:center; margin-top:2rem;">
-      <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/learn-2030267_1280.png" alt="Skill Swapping Graphics" style="max-width:320px;width:100%;border-radius:20px;box-shadow:0 4px 16px rgba(76,201,240,0.09)">
-    </div>
+    <img src="https://cdn.pixabay.com/photo/2017/02/01/22/02/learn-2030267_1280.png" alt="Skill Swapping Graphics" class="about-img">
   </section>
 
   <!-- CONTACT -->
@@ -232,7 +416,7 @@
     <p>
       Have questions or feedback? 
       <br>
-      <a href="mailto:hello@swapera.in" style="color:#007bff;text-decoration:underline; font-weight:bold;">
+      <a href="mailto:hello@swapera.in">
         <i class="fa-solid fa-paper-plane"></i> hello@swapera.in
       </a>
     </p>
@@ -240,16 +424,83 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>
-      <span style="vertical-align:middle;">
-        <svg width="22" height="22" viewBox="0 0 64 64" fill="none" style="vertical-align:middle;">
-          <circle cx="32" cy="32" r="27" fill="#007bff" stroke="#4cc9f0" stroke-width="5"/>
-          <text x="32" y="42" text-anchor="middle" fill="#fff" font-size="24" font-family="Poppins" font-weight="bold">S</text>
-        </svg>
-      </span>
-      © 2025 SwapEra | Built for India’s Skill Revolution <span title="growth" style="font-size:1.2em;">🌱</span>
-    </p>
+    <span class="brand-text" style="font-size:1.25rem;letter-spacing:0.06em;background:none;-webkit-text-fill-color:#fff;color:#fff;">SwapEra</span>
+    &nbsp;|&nbsp;© 2025 | Built for India’s Skill Revolution <span title="growth" style="font-size:1.2em;">🌱</span>
   </footer>
 
+  <!-- INTERACTIVE BACKGROUND SCRIPT -->
+  <script>
+    // --- Interactive Particles Background ---
+    const canvas = document.getElementById('background-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let particles = [];
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function randomColor() {
+      // Use SwapEra brand colors softly
+      const colors = ['#007bff22','#4cc9f022','#ffe06633','#9be7ff22'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function createParticles() {
+      particles = [];
+      let count = Math.floor((width * height) / 12000);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: 8 + Math.random() * 18,
+          color: randomColor(),
+          dx: (Math.random() - 0.5) * 0.3,
+          dy: (Math.random() - 0.5) * 0.3,
+          alpha: 0.3 + Math.random() * 0.25,
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of particles) {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        ctx.restore();
+        // Move
+        p.x += p.dx;
+        p.y += p.dy;
+        // Bounce off edges
+        if (p.x < 0 || p.x > width) p.dx *= -1;
+        if (p.y < 0 || p.y > height) p.dy *= -1;
+      }
+    }
+
+    function animate() {
+      drawParticles();
+      requestAnimationFrame(animate);
+    }
+
+    createParticles();
+    animate();
+
+    // Recreate particles on resize for density
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+  </script>
 </body>
 </html>
