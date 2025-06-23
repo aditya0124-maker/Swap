@@ -17,42 +17,56 @@
       scroll-behavior: smooth;
     }
     body { overflow-x: hidden; }
+
     #background-canvas {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: 0; pointer-events: none;
       max-width: 100vw !important; max-height: 100vh !important;
     }
+
     .page-center {
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
       margin: 0 auto;
-      padding-left: 4vw;
-      padding-right: 4vw;
+      padding-left: 5vw;
+      padding-right: 5vw;
       box-sizing: border-box;
       position: relative;
       z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    /* ==== HERO ==== */
     .hero-section {
       background: linear-gradient(120deg, #1e3c72 0%, #2a5298 60%, #39c6e7 100%);
       border-bottom-left-radius: 18px;
       border-bottom-right-radius: 18px;
       box-shadow: 0 2px 16px #0002;
       text-align: center;
-      padding: 2.2rem 0 1.7rem 0;
+      padding: 2rem 0 1.2rem 0;
       margin-bottom: 0.6rem;
       position: relative;
       z-index: 2;
       animation: gradientBG 12s ease-in-out infinite alternate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       100% { background-position: 100% 50%; }
     }
     .hero-content {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      max-width: 430px; margin: 0 auto;
-      padding-left: 4vw; padding-right: 4vw;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      text-align: center;
     }
     .platform-name {
       font-size: 2.1rem; font-weight:900; letter-spacing:0.08em;
@@ -62,6 +76,7 @@
       text-shadow: 0 2px 20px #0003;
       text-align: center;
       width: 100%;
+      display: block;
     }
     .tagline { font-size: 1.07rem; font-weight:600; margin-bottom:0.5rem; text-align: center;}
     .subtext { color: #ffe066; font-size:0.97rem; margin-bottom:1.1rem; text-align: center;}
@@ -75,18 +90,24 @@
     }
     .cta-btn:focus, .cta-btn:active { outline:2px solid #ffe066; outline-offset:2px;}
     .cta-btn:hover { background: #39c6e7; color: #fff; }
+
+    /* ==== SECTION ==== */
     .container-section {
       margin: 0 auto;
       margin-bottom: 1rem;
       background: none;
       padding: 0;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .section-title { font-size:1.15rem; font-weight:700; color:#ffe066; margin-bottom:1.2rem; letter-spacing:0.01em;}
+    .section-title { font-size:1.15rem; font-weight:700; color:#ffe066; margin-bottom:1.2rem; letter-spacing:0.01em; text-align: center;}
     .how-section .section-title, .who-section .section-title { color:#39c6e7;}
     .why-cards, .how-steps, .audience-cards, .signup-form-container {
       display: flex; flex-direction: column; gap: 0.75rem; align-items: center; justify-content: flex-start;
       margin-bottom: 1rem;
+      width: 100%;
     }
     .why-card, .how-step, .aud-card {
       background: linear-gradient(120deg, #233a59 0%, #22577a 100%);
@@ -96,15 +117,20 @@
       padding: 1rem 0.7rem 1rem 0.7rem;
       width: 100%; max-width: 370px; min-width: unset;
       text-align: center; font-size: 0.97rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
     }
     .how-step { background: #19243a;}
-    .aud-card { display:flex; align-items:center; gap:0.7rem; max-width:370px;}
+    .aud-card { display:flex; align-items:center; gap:0.7rem; max-width:370px; justify-content: center;}
     .why-card .icon, .how-step .icon, .aud-card .icon {
       font-size: 1.35rem; color:#39c6e7; margin-bottom:0.6rem;flex-shrink:0;
+      text-align: center;
     }
     .how-step .icon { color: #ffe066;}
     .aud-card .icon { font-size:1.13rem; color:#ffe066;}
-    .why-card p, .how-step .step-desc, .aud-card { color:#c9e5ff; font-size:0.97rem;}
+    .why-card p, .how-step .step-desc, .aud-card { color:#c9e5ff; font-size:0.97rem; text-align: center;}
 
     /* FLEXIBLE LEARNING OPTIONS (NEW SECTION) */
     .flexible-options-section {
@@ -115,6 +141,9 @@
       box-shadow: 0 2.5px 18px #2a529811;
       max-width: 1100px;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .flexible-options-title {
       font-size: 1.17rem;
@@ -123,6 +152,8 @@
       text-align: center;
       margin-bottom: 1.3rem;
       letter-spacing: 0.01em;
+      width: 100%;
+      display: block;
     }
     .flexible-options-cards {
       display: flex;
@@ -171,6 +202,8 @@
       color: #2a5298;
       margin-bottom: 0.6rem;
       margin-top: 0.3rem;
+      text-align: center;
+      width: 100%;
     }
     .fo-card-popular {
       display: inline-block;
@@ -189,6 +222,8 @@
       color: #233a59;
       margin-bottom: 1.1rem;
       min-height: 64px;
+      text-align: center;
+      width: 100%;
     }
     .fo-card-btn {
       background: linear-gradient(90deg, #2a5298 10%, #39c6e7 90%);
@@ -204,6 +239,8 @@
       transition: background 0.18s, color 0.18s, transform 0.13s;
       text-decoration: none;
       display: inline-block;
+      margin: 0 auto;
+      text-align: center;
     }
     .fo-card-btn:focus, .fo-card-btn:active {
       outline: 2px solid #39c6e7;
@@ -228,6 +265,7 @@
       margin-left: auto;
       margin-right: auto;
       box-shadow: 0 0.5px 3px #2a529813;
+      width: 100%;
     }
     @media (min-width: 900px) {
       .flexible-options-section {
@@ -240,6 +278,7 @@
         align-items: stretch;
       }
       .flexible-options-card { max-width: 340px; }
+      .page-center { max-width: 1100px; }
     }
     @media (max-width: 700px) {
       .flexible-options-section { max-width: 99vw; }
@@ -258,6 +297,7 @@
       border-radius:10px; box-shadow:0 4px 16px #39c6e73a;
       padding:1.1rem 0.7rem; margin:1.3rem auto 1.1rem auto;
       max-width:410px; font-size:0.99rem; text-align:center;
+      display: flex; flex-direction: column; align-items: center;
     }
     .vision-section h2 { color: #ffe066; font-size:1.09rem; font-weight:700; margin-bottom:0.8rem;}
     .vision-section .mission-title { color: #39c6e7; font-size:1.07rem; font-weight:600; margin-top:1.1rem; margin-bottom:0.5rem;}
@@ -267,13 +307,15 @@
     .signup-form-box {
       background: #19243a; border-radius: 10px; box-shadow: 0 2px 8px rgba(44,153,255,0.13);
       padding: 1.2rem 0.7rem; max-width:370px; width:100%; margin: 0 auto 1.2rem auto;
+      display: flex; flex-direction: column; align-items: center;
     }
-    .signup-form { display:flex; flex-direction:column; gap:0.7rem;}
-    .signup-form label { font-size:0.99rem; font-weight:500; color:#39c6e7; margin-bottom:0.18rem; margin-top:0.15rem; text-align:left;}
+    .signup-form { display:flex; flex-direction:column; gap:0.7rem; align-items: center; width: 100%;}
+    .signup-form label { font-size:0.99rem; font-weight:500; color:#39c6e7; margin-bottom:0.18rem; margin-top:0.15rem; text-align:left; align-self: flex-start;}
     .signup-form input, .signup-form select, .signup-form textarea {
       padding:0.6rem 0.8rem; border-radius:8px; border:1.2px solid #39c6e7bb;
       font-size:0.97rem; background:#132345; color:#fff;
       box-shadow:0 1px 6px #2a529811; margin-bottom:0.09rem; width:100%; box-sizing:border-box;
+      display: block;
     }
     .signup-form textarea { min-height:62px; max-width:100%; resize:vertical;}
     .signup-form .btn {
