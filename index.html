@@ -11,13 +11,12 @@
       margin: 0; padding: 0;
       font-family: 'Poppins',sans-serif;
       background: #101b2e;
-      min-height: 100vh;
       color: #fff;
+      min-height: 100vh;
       box-sizing: border-box;
       scroll-behavior: smooth;
     }
     body { overflow-x: hidden; }
-
     #background-canvas {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -91,14 +90,14 @@
     .cta-btn:hover { background: #39c6e7; color: #fff; }
 
     .container-section {
-      margin: 0 auto;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem auto;
       background: none;
       padding: 0;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
     }
     .section-title { font-size:1.15rem; font-weight:700; color:#ffe066; margin-bottom:1.2rem; letter-spacing:0.01em; text-align: center;}
     .how-section .section-title, .who-section .section-title { color:#39c6e7;}
@@ -137,8 +136,8 @@
       margin: 1.5rem auto 1.5rem auto;
       border-radius: 18px;
       box-shadow: 0 2.5px 18px #2a529811;
-      max-width: 1100px;
       width: 100%;
+      max-width: 1140px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -266,34 +265,25 @@
       width: 100%;
     }
     @media (min-width: 900px) {
-      .flexible-options-section {
-        max-width: 1100px;
-        padding: 2.1rem 0.7rem 2.3rem 0.7rem;
-      }
+      .page-center { max-width: 1140px; }
+      .flexible-options-section { max-width: 1140px; }
       .flexible-options-cards {
         flex-direction: row;
-        gap: 1.5rem;
-        align-items: flex-start;
+        gap: 2.2rem;
+        align-items: stretch;
         justify-content: center;
         width: 100%;
       }
       .flexible-options-card {
-        max-width: 320px;
-        min-width: 270px;
-        margin-left: auto;
-        margin-right: auto;
+        max-width: 340px;
+        width: 100%;
+        margin-left: 0; margin-right: 0; /* Remove auto for perfect centering in flex row */
       }
     }
-    @media (max-width: 900px) {
-      .flexible-options-cards {
-        flex-direction: column;
-        align-items: center;
-      }
-      .flexible-options-card {
-        max-width: 99vw;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    @media (max-width: 899px) {
+      .page-center, .flexible-options-section { max-width: 99vw; }
+      .flexible-options-cards { flex-direction: column; align-items: center; }
+      .flexible-options-card { max-width: 99vw; margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 500px) {
       .page-center, .vision-section, .beta-notice, .flexible-options-section {
