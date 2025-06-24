@@ -8,25 +8,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
   <!-- Simple Icons CDN for Social -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css">
-
   <style>
     :root {
       --primary: #3b82f6;
-      --primary-light: #eff6ff;
+      --primary-light: #e5eafe;
       --white: #fff;
-      --gray: #f4f4f6;
-      --text: #131313;
+      --gray: #f2f3f7;
+      --gray-dark: #e4e7ee;
+      --text: #181a1e;
       --text-light: #6b7280;
       --border-radius: 18px;
       --box-shadow: 0 2px 32px 0 rgba(59,130,246,0.05), 0 1.5px 5px rgba(59,130,246,0.10);
       --transition: 0.35s cubic-bezier(.4,0,.2,1);
     }
-    * {
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--text);
@@ -35,22 +31,16 @@
       padding: 0;
       min-height: 100vh;
     }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    /* Navbar */
+    a { text-decoration: none; color: inherit; }
+
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.7rem 7vw;
+      padding: 1.5rem 7vw;
       background: var(--white);
       box-shadow: 0 2px 16px rgba(59,130,246,0.03);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      transition: background 0.2s;
+      position: sticky; top: 0; z-index: 50;
     }
     .logo {
       font-weight: 800;
@@ -62,6 +52,7 @@
     .nav-links {
       display: flex;
       gap: 2.3rem;
+      align-items: center;
     }
     .nav-links a {
       font-weight: 500;
@@ -85,23 +76,27 @@
       border-radius: 2px;
       background: var(--primary);
     }
-    /* Hamburger for mobile */
+    .nav-links .cta-btn {
+      padding: 0.5rem 1.3rem !important;
+      font-size:1.01rem !important;
+      background: var(--primary);
+      color: #fff!important;
+      border-radius: 40px;
+      font-weight: 600;
+      box-shadow: 0 1.5px 5px rgba(59,130,246,0.12);
+      transition: background var(--transition), transform var(--transition);
+      border: none;
+      margin-left: 1.6rem;
+      display: inline-block;
+    }
+    .nav-links .cta-btn:hover { background: #2563eb; color: #fff;}
     .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      margin-left: 1rem;
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 1rem;
     }
     .nav-toggle span {
-      width: 26px;
-      height: 3px;
-      background: var(--primary);
-      border-radius: 2px;
+      width: 26px; height: 3px; background: var(--primary); border-radius: 2px;
       transition: background 0.2s;
     }
-
-    /* HERO */
     header, .section {
       max-width: 1120px;
       margin: 0 auto;
@@ -114,12 +109,9 @@
       justify-content: space-between;
       gap: 2.5rem;
       min-height: 80vh;
+      padding-top: 2.5rem;
     }
-    .hero-info {
-      flex: 1 1 340px;
-      min-width: 290px;
-      z-index: 2;
-    }
+    .hero-info { flex: 1 1 350px; min-width: 270px; z-index: 2; }
     .hero-title {
       font-size: 2.6rem;
       font-weight: 800;
@@ -158,16 +150,16 @@
       animation: fadeInUp 2.1s;
       margin-bottom: 0.4rem;
       letter-spacing: 0.02em;
+      display: inline-block;
     }
-    .cta-btn:hover,
-    .cta-btn:focus {
+    .cta-btn:hover, .cta-btn:focus {
       background: #2563eb;
       transform: translateY(-2px) scale(1.03);
       box-shadow: 0 8px 28px rgba(59,130,246,0.22);
     }
     .hero-graphic {
-      flex: 1 1 350px;
-      min-width: 260px;
+      flex: 1 1 330px;
+      min-width: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -176,24 +168,10 @@
       z-index: 1;
       animation: fadeInUp 1.5s;
     }
-    /* Floating, animated cartoon SVG */
-    .floating {
-      animation: floatY 3.3s ease-in-out infinite alternate;
-      will-change: transform;
-      z-index: 1;
-    }
-    @keyframes floatY {
-      0% {transform: translateY(0);}
-      100% {transform: translateY(-18px);}
-    }
-    @keyframes fadeInDown {
-      0% {opacity: 0; transform: translateY(-40px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(40px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
+    .floating { animation: floatY 3.3s ease-in-out infinite alternate; will-change: transform; z-index: 1; }
+    @keyframes floatY { 0% {transform: translateY(0);} 100% {transform: translateY(-18px);} }
+    @keyframes fadeInDown { 0% {opacity: 0; transform: translateY(-40px);} 100% {opacity: 1; transform: translateY(0);} }
+    @keyframes fadeInUp { 0% {opacity: 0; transform: translateY(40px);} 100% {opacity: 1; transform: translateY(0);} }
     /* Fade-in on scroll for sections */
     .fade-scroll {
       opacity: 0;
@@ -204,14 +182,17 @@
       opacity: 1;
       transform: none;
     }
-
+    .section-title-row {
+      display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1rem;
+      justify-content: center;
+    }
+    .section-title-row svg {
+      width: 48px; height: 48px; flex-shrink: 0;
+    }
     /* Why SwapEra */
     .why-cards {
-      display: flex;
-      gap: 2.1rem;
-      justify-content: center;
-      margin: 2.2rem 0 0.7rem;
-      flex-wrap: wrap;
+      display: flex; gap: 2.1rem; justify-content: center;
+      margin: 2.2rem 0 0.7rem; flex-wrap: wrap;
     }
     .why-card {
       background: var(--white);
@@ -221,9 +202,7 @@
       flex-direction: column;
       align-items: center;
       padding: 2.2rem 1.8rem;
-      min-width: 220px;
-      max-width: 320px;
-      flex: 1 1 210px;
+      min-width: 220px; max-width: 320px; flex: 1 1 210px;
       transition: transform var(--transition), box-shadow var(--transition);
       position: relative;
       cursor: default;
@@ -233,33 +212,19 @@
       box-shadow: 0 8px 36px rgba(59,130,246,0.11);
     }
     .why-card .icon {
-      font-size: 2.7rem;
-      margin-bottom: 1.05rem;
-      transition: transform var(--transition);
+      font-size: 2.7rem; margin-bottom: 1.05rem; transition: transform var(--transition);
     }
-    .why-card:hover .icon {
-      transform: scale(1.18) rotate(-6deg);
-    }
+    .why-card:hover .icon { transform: scale(1.18) rotate(-6deg); }
     .why-card .card-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.55rem;
-      text-align: center;
+      font-size: 1.15rem; font-weight: 600; color: var(--primary);
+      margin-bottom: 0.55rem; text-align: center;
     }
     .why-card .card-desc {
-      font-size: 0.98rem;
-      color: var(--text-light);
-      text-align: center;
+      font-size: 0.98rem; color: var(--text-light); text-align: center;
     }
-
     /* How it works */
     .how-cards {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin: 2.3rem 0 1.4rem;
-      justify-content: space-between;
+      display: flex; gap: 2rem; flex-wrap: wrap; margin: 2.3rem 0 1.4rem; justify-content: space-between;
     }
     .how-card {
       background: var(--white);
@@ -276,34 +241,16 @@
       transform: translateX(60px);
       transition: all 0.8s var(--transition);
     }
-    .how-card.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .how-card.visible { opacity: 1; transform: none; }
     .how-card .icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.88rem;
-      color: var(--primary);
+      font-size: 2.5rem; margin-bottom: 0.88rem; color: var(--primary);
     }
     .how-card .step-title {
-      font-size: 1.03rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      text-align: center;
+      font-size: 1.03rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center;
     }
-    .how-card .step-desc {
-      font-size: 0.98rem;
-      color: var(--text-light);
-      text-align: center;
-    }
-
     /* Flexible Learning Options */
     .flex-cards {
-      display: flex;
-      gap: 2rem;
-      margin: 2.4rem 0 0.5rem;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      display: flex; gap: 2rem; margin: 2.4rem 0 0.5rem; flex-wrap: wrap; justify-content: space-between;
     }
     .flex-card {
       background: var(--white);
@@ -326,16 +273,10 @@
       box-shadow: 0 8px 36px rgba(59,130,246,0.13);
     }
     .flex-card .flex-title {
-      font-size: 1.13rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+      font-size: 1.13rem; font-weight: 600; color: var(--primary); margin-bottom: 0.5rem;
     }
     .flex-card .flex-desc {
-      font-size: 1.01rem;
-      color: var(--text-light);
-      margin-bottom: 1.3rem;
-      min-height: 48px;
+      font-size: 1.01rem; color: var(--text-light); margin-bottom: 1.3rem; min-height: 48px;
     }
     .flex-card .flex-btn {
       background: var(--primary);
@@ -349,6 +290,7 @@
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
       box-shadow: 0 3px 12px rgba(59,130,246,0.09);
       margin-bottom: 0.15rem;
+      align-self: flex-start;
     }
     .flex-card .flex-btn:hover {
       background: #2563eb;
@@ -358,15 +300,9 @@
     .flex-cards .flex-card:nth-child(2) { animation-delay: 0.3s;}
     .flex-cards .flex-card:nth-child(3) { animation-delay: 0.45s;}
     .flex-subtext {
-      font-size: 0.99rem;
-      color: var(--text-light);
-      margin: 1.4rem 0 0.5rem 0;
-      font-style: italic;
-      text-align: center;
-      display: block;
-      width: 100%;
+      font-size: 0.99rem; color: var(--text-light); margin: 1.4rem 0 0.5rem 0;
+      font-style: italic; text-align: center; display: block; width: 100%;
     }
-
     /* Vision & Mission */
     .vm-section {
       background: var(--white);
@@ -385,12 +321,8 @@
       letter-spacing: 0.09em;
     }
     .vm-section .vm-quote {
-      font-size: 1.07rem;
-      color: var(--text-light);
-      font-style: italic;
-      margin-bottom: 0.8rem;
+      font-size: 1.07rem; color: var(--text-light); font-style: italic; margin-bottom: 0.8rem;
     }
-
     /* Who It's For */
     .who-grid {
       display: grid;
@@ -426,44 +358,45 @@
       box-shadow: 0 8px 36px rgba(59,130,246,0.11);
       transform: scale(1.05);
     }
-
-    /* Why this will work */
-    .whywork-section {
+    /* What Makes SwapEra Different */
+    .different-section {
       display: flex;
       gap: 2.5rem;
       margin: 2.7rem 0 1.4rem;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: flex-start;
     }
-    .whywork-col {
+    .different-col {
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
-      flex: 1 1 310px;
+      flex: 1 1 340px;
       min-width: 240px;
-      padding: 2rem 1.1rem 1.5rem 1.1rem;
+      max-width: 430px;
+      padding: 2rem 1.5rem 1.6rem 1.5rem;
       margin-bottom: 1.2rem;
     }
-    .whywork-col .col-title {
+    .different-col .col-title {
       font-size: 1.09rem;
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 1.1rem;
+      text-align: left;
     }
-    .whywork-col ul {
+    .different-col ul {
       padding-left: 1.3em;
       margin: 0;
     }
-    .whywork-col ul li {
+    .different-col ul li {
       color: var(--text-light);
       font-size: 0.98rem;
       margin-bottom: 0.7em;
       list-style: disc inside;
     }
-    .whywork-col ul li strong {
+    .different-col ul li strong {
       color: var(--primary);
     }
-
     /* Modal */
     .modal-bg {
       display: none;
@@ -473,71 +406,64 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 0.3s;
     }
-    .modal-bg.active {
-      display: flex;
-      animation: fadeInModal 0.5s;
-    }
-    @keyframes fadeInModal {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
+    .modal-bg.active { display: flex; animation: fadeInModal 0.5s; }
+    @keyframes fadeInModal { 0% { opacity: 0; } 100% { opacity: 1; } }
     .modal {
       background: var(--white);
       border-radius: 18px;
       box-shadow: 0 8px 48px rgba(59,130,246,0.18);
-      padding: 2.8rem 1.7rem 2.0rem 1.7rem;
+      padding: 2.1rem 1.2rem 2.0rem 1.2rem;
       width: 100%;
-      max-width: 410px;
+      max-width: 370px;
       position: relative;
       animation: fadeInUp 0.6s;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
     .modal-close {
       position: absolute;
-      top: 18px; right: 20px;
-      font-size: 1.6rem;
+      top: 15px; right: 15px;
+      font-size: 1.5rem;
       color: var(--text-light);
       background: none;
       border: none;
       cursor: pointer;
       transition: color var(--transition);
+      z-index: 2;
     }
-    .modal-close:hover {
-      color: var(--primary);
-    }
+    .modal-close:hover { color: var(--primary);}
     .modal h2 {
-      font-size: 1.35rem;
+      font-size: 1.18rem;
       font-weight: 700;
       text-align: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.1rem;
       color: var(--primary);
     }
     .modal form {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 0.7rem;
     }
     .modal label {
       font-weight: 600;
       color: var(--text);
-      font-size: 1.01rem;
-      margin-bottom: 0.3rem;
+      font-size: 0.96rem;
+      margin-bottom: 0.18rem;
     }
     .modal input, .modal select, .modal textarea {
       width: 100%;
-      padding: 0.7rem 1rem;
+      padding: 0.6rem 0.92rem;
       border-radius: 7px;
       border: 1px solid #e0e7ef;
       background: #f8fafc;
       font-family: inherit;
-      font-size: 1rem;
+      font-size: 0.98rem;
       resize: none;
-      margin-bottom: 0.1rem;
+      margin-bottom: 0.02rem;
       transition: border-color 0.2s;
     }
     .modal input:focus, .modal select:focus, .modal textarea:focus {
@@ -546,31 +472,31 @@
       background: #fff;
     }
     .modal .submit-btn {
-      margin-top: 0.7rem;
-      padding: 0.88rem 0;
+      margin-top: 0.6rem;
+      padding: 0.82rem 0;
       background: var(--primary);
       color: #fff;
       border: none;
       border-radius: 40px;
-      font-size: 1.07rem;
+      font-size: 1.06rem;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 18px rgba(59,130,246,0.13);
       transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      align-self: center;
+      width: 100%;
+      max-width: 270px;
+      display: block;
     }
-    .modal .submit-btn:hover {
-      background: #2563eb;
-      transform: scale(1.05);
-    }
+    .modal .submit-btn:hover { background: #2563eb; transform: scale(1.03);}
     .modal .success-msg {
       color: var(--primary);
-      font-size: 1.18rem;
+      font-size: 1.16rem;
       font-weight: 600;
       text-align: center;
-      margin-top: 1.7rem;
+      margin-top: 1.3rem;
       animation: fadeInDown 1s;
     }
-
     /* Footer */
     footer {
       margin-top: 2.7rem;
@@ -582,12 +508,7 @@
       box-shadow: 0 -2px 20px rgba(59,130,246,0.04);
     }
     .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.7rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.7rem;
+      display: flex; align-items: center; justify-content: center; gap: 1.7rem; flex-wrap: wrap; margin-bottom: 0.7rem;
     }
     .footer-logo {
       font-size: 1.36rem;
@@ -597,8 +518,7 @@
       margin-right: 0.7rem;
     }
     .footer-social {
-      display: flex;
-      gap: 1.1rem;
+      display: flex; gap: 1.1rem;
     }
     .footer-social a {
       color: var(--primary);
@@ -611,18 +531,8 @@
       width: 38px; height: 38px;
       transition: background var(--transition), color var(--transition), transform var(--transition);
     }
-    .footer-social a:hover {
-      background: var(--primary);
-      color: #fff;
-      transform: scale(1.11);
-    }
-    .footer-text {
-      color: var(--text-light);
-      font-size: 0.99rem;
-      margin-top: 0.35rem;
-      letter-spacing: 0.01em;
-    }
-
+    .footer-social a:hover { background: var(--primary); color: #fff; transform: scale(1.11);}
+    .footer-text { color: var(--text-light); font-size: 0.99rem; margin-top: 0.35rem; letter-spacing: 0.01em;}
     /* Responsive */
     @media (max-width: 950px) {
       header {
@@ -632,22 +542,18 @@
         min-height: 60vh;
       }
       .hero-info, .hero-graphic { min-width: 0; }
-      .flex-cards, .how-cards, .why-cards, .whywork-section {
-        flex-direction: column;
-        gap: 1.5rem;
+      .flex-cards, .how-cards, .why-cards, .different-section {
+        flex-direction: column; gap: 1.5rem;
       }
       .why-cards, .how-cards, .flex-cards { align-items: stretch; }
-      .whywork-section { gap: 1.2rem; }
+      .different-section { gap: 1.2rem; }
     }
     @media (max-width: 700px) {
       nav { padding: 1.2rem 4vw; }
       header, .section { padding: 0 4vw; }
       .flex-cards, .how-cards, .why-cards { gap: 1rem; }
-      .why-cards, .how-cards, .flex-cards, .whywork-section { align-items: stretch; }
-      .who-grid {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
-        gap: 1.1rem;
-      }
+      .why-cards, .how-cards, .flex-cards, .different-section { align-items: stretch; }
+      .who-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 1.1rem;}
     }
     @media (max-width: 520px) {
       nav { padding: 0.8rem 3vw; }
@@ -658,7 +564,6 @@
       .why-cards, .how-cards, .flex-cards { gap: 0.77rem;}
       .who-grid { grid-template-columns: 1fr; }
     }
-    /* Hamburger for mobile */
     @media (max-width: 900px) {
       .nav-links {
         display: none;
@@ -673,13 +578,9 @@
         padding: 1.2rem 1.4rem;
         z-index: 100;
       }
-      .nav-links.open {
-        display: flex;
-        animation: fadeInDown 0.3s;
-      }
+      .nav-links.open { display: flex; animation: fadeInDown 0.3s;}
       .nav-toggle { display: flex; }
     }
-
   </style>
 </head>
 <body>
@@ -691,13 +592,12 @@
       <a href="#how" class="">How It Works</a>
       <a href="#flexible" class="">Learning Options</a>
       <a href="#who" class="">Who’s It For?</a>
-      <a href="#register" class="cta-btn" style="padding:0.5rem 1.3rem; font-size:1.01rem;">Register</a>
+      <a href="#register" class="cta-btn">Register</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
-
   <!-- Hero -->
   <header id="home">
     <div class="hero-info">
@@ -710,14 +610,14 @@
       <!-- Cartoon-style SVG illustration: people learning/teaching online -->
       <svg width="310" height="245" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <!-- Desk -->
-        <rect x="55" y="170" width="230" height="22" rx="8" fill="#e0e7ef"/>
+        <rect x="55" y="170" width="230" height="22" rx="8" fill="#e4e7ee"/>
         <!-- Monitor 1 -->
         <rect x="65" y="105" width="70" height="53" rx="7" fill="#fff" stroke="#3b82f6" stroke-width="3"/>
-        <ellipse cx="100" cy="138" rx="15" ry="18" fill="#f4f4f6"/>
+        <ellipse cx="100" cy="138" rx="15" ry="18" fill="#f2f3f7"/>
         <ellipse cx="100" cy="133" rx="7" ry="7.8" fill="#3b82f6"/>
         <!-- Monitor 2 -->
         <rect x="205" y="95" width="70" height="53" rx="7" fill="#fff" stroke="#3b82f6" stroke-width="3"/>
-        <ellipse cx="240" cy="128" rx="15" ry="18" fill="#f4f4f6"/>
+        <ellipse cx="240" cy="128" rx="15" ry="18" fill="#f2f3f7"/>
         <ellipse cx="240" cy="123" rx="7" ry="7.8" fill="#06b6d4"/>
         <!-- Person 1 -->
         <ellipse cx="90" cy="190" rx="22" ry="23" fill="#3b82f6"/>
@@ -745,33 +645,37 @@
       </svg>
     </div>
   </header>
-
   <main>
     <!-- Why SwapEra? -->
     <section class="section fade-scroll" id="why">
-      <h2 style="font-size:1.4rem;font-weight:700;color:var(--primary);margin-bottom:1.3rem;text-align:center;">Why SwapEra?</h2>
+      <div class="section-title-row">
+        <svg viewBox="0 0 56 56"><ellipse cx="28" cy="28" rx="26" ry="20" fill="#f2f3f7"/><ellipse cx="20" cy="26" rx="7" ry="8" fill="#fff"/><ellipse cx="36" cy="30" rx="7" ry="8" fill="#fff"/><ellipse cx="28" cy="34" rx="6" ry="7" fill="#e4e7ee"/></svg>
+        <h2 style="font-size:1.4rem;font-weight:700;color:var(--primary);margin:0;text-align:left;">Why SwapEra?</h2>
+      </div>
       <div class="why-cards">
         <div class="why-card">
-          <span class="icon" aria-label="Free Learning" title="100% Free Learning">💡</span>
+          <span class="icon" aria-label="Free Learning">💡</span>
           <span class="card-title">100% Free Learning</span>
           <span class="card-desc">No fees. No hidden costs. Just pure learning and growth.</span>
         </div>
         <div class="why-card">
-          <span class="icon" aria-label="Skill-for-skill" title="Skill-for-Skill Swapping">🔁</span>
+          <span class="icon" aria-label="Skill-for-skill">🔁</span>
           <span class="card-title">Skill-for-Skill Swapping</span>
           <span class="card-desc">Exchange what you know for what you want to learn. Everyone wins!</span>
         </div>
         <div class="why-card">
-          <span class="icon" aria-label="Real Growth" title="Real People, Real Growth">👥</span>
+          <span class="icon" aria-label="Real Growth">👥</span>
           <span class="card-title">Real People, Real Growth</span>
           <span class="card-desc">Connect with real learners & teachers — not just videos.</span>
         </div>
       </div>
     </section>
-
     <!-- How it works -->
     <section class="section fade-scroll" id="how">
-      <h2 style="font-size:1.33rem;font-weight:700;color:var(--primary);margin-bottom:1.1rem;text-align:center;">How It Works</h2>
+      <div class="section-title-row">
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="15" fill="#e4e7ee"/><ellipse cx="17" cy="22" rx="6" ry="7" fill="#fff"/><ellipse cx="31" cy="26" rx="6" ry="7" fill="#fff"/></svg>
+        <h2 style="font-size:1.33rem;font-weight:700;color:var(--primary);margin:0;text-align:left;">How It Works</h2>
+      </div>
       <div class="how-cards" id="howCards">
         <div class="how-card">
           <span class="icon" aria-label="Profile">👤</span>
@@ -791,10 +695,12 @@
         </div>
       </div>
     </section>
-
     <!-- Flexible Learning Options -->
     <section class="section fade-scroll" id="flexible">
-      <h2 style="font-size:1.30rem;font-weight:700;color:var(--primary);margin-bottom:1.1rem;text-align:center;">Flexible Learning Options</h2>
+      <div class="section-title-row">
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#f2f3f7"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#fff"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#e4e7ee"/></svg>
+        <h2 style="font-size:1.30rem;font-weight:700;color:var(--primary);margin:0;text-align:left;">Flexible Learning Options</h2>
+      </div>
       <div class="flex-cards">
         <div class="flex-card">
           <div class="flex-title">Swap Skills Freely <span style="font-size:0.92em; background:#fee; color:#facc15; border-radius:9px; padding:0.1em 0.7em; margin-left:0.4em; font-weight:600;">Most Popular</span></div>
@@ -816,7 +722,6 @@
         “SwapEra is and will always be free for those who want to teach & learn. Paid options are just for added flexibility.”
       </span>
     </section>
-
     <!-- Vision & Mission -->
     <section class="section fade-scroll">
       <div class="vm-section">
@@ -826,10 +731,12 @@
         <div class="vm-quote">“To empower anyone, anywhere to teach or learn a skill through exchange, not payment.”</div>
       </div>
     </section>
-
     <!-- Who is it for -->
     <section class="section fade-scroll" id="who">
-      <h2 style="font-size:1.23rem;font-weight:700;color:var(--primary);margin-bottom:1.1rem;text-align:center;">Who is SwapEra For?</h2>
+      <div class="section-title-row">
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="13" fill="#e4e7ee"/><ellipse cx="15" cy="19" rx="7" ry="7" fill="#fff"/><ellipse cx="33" cy="28" rx="7" ry="7" fill="#fff"/></svg>
+        <h2 style="font-size:1.23rem;font-weight:700;color:var(--primary);margin:0;text-align:left;">Who is SwapEra For?</h2>
+      </div>
       <div class="who-grid">
         <div class="who-card"><span class="icon">🎓</span>Students</div>
         <div class="who-card"><span class="icon">💼</span>Freshers</div>
@@ -839,35 +746,38 @@
         <div class="who-card"><span class="icon">🧑‍💻</span>Freelancers</div>
       </div>
     </section>
-
-    <!-- Why this will work -->
+    <!-- What Makes SwapEra Different -->
     <section class="section fade-scroll">
-      <div class="whywork-section">
-        <div class="whywork-col">
-          <div class="col-title">The Problems with Skill-Swap Platforms</div>
+      <div class="section-title-row">
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#f2f3f7"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#fff"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#e4e7ee"/></svg>
+        <h2 style="font-size:1.23rem;font-weight:700;color:var(--primary);margin:0;text-align:left;">What Makes SwapEra Different</h2>
+      </div>
+      <div class="different-section">
+        <div class="different-col">
+          <div class="col-title">Our Approach</div>
           <ul>
-            <li>Needs both teachers and learners</li>
-            <li>Hard to monetize</li>
-            <li>Low retention</li>
-            <li>Trust &amp; safety issues</li>
-            <li>Skill mismatch</li>
-            <li>Previous platforms failed</li>
+            <li><strong>Manual matching</strong> in beta for better quality connections</li>
+            <li><strong>Barter + Paid = Flexible</strong> (swap for free or pay for mentors/trainers)</li>
+            <li>Profile-based, skill-tagged connections</li>
+            <li>City-by-city launch for local trust</li>
+            <li><strong>Always free</strong> for peer swapping</li>
+            <li>Simple, mobile-friendly design</li>
+            <li>Real people, not bots</li>
           </ul>
         </div>
-        <div class="whywork-col">
-          <div class="col-title">Why SwapEra Will Work</div>
+        <div class="different-col">
+          <div class="col-title">Why It Works</div>
           <ul>
-            <li>Manual matching in beta</li>
-            <li>Barter + Paid = Flexible</li>
-            <li>Profile-based connections</li>
-            <li>Starts city-by-city</li>
-            <li>Free forever for peer swapping</li>
-            <li>Simple, mobile-friendly design</li>
+            <li>Solves the teacher-learner gap with <strong>mutual swaps</strong></li>
+            <li>Flexible model supports both <strong>free and paid learning</strong></li>
+            <li>Focus on <strong>trust & safety</strong> with real profiles</li>
+            <li>Early users get priority matching</li>
+            <li>Retains users via <strong>community and real value</strong></li>
+            <li>No ads, no spam, just <strong>growth together</strong></li>
           </ul>
         </div>
       </div>
     </section>
-
     <!-- Registration Modal (hidden) -->
     <div class="modal-bg" id="modalBg" aria-modal="true" role="dialog">
       <div class="modal" id="registerModal">
@@ -932,7 +842,6 @@
       </div>
     </div>
   </main>
-
   <!-- Footer -->
   <footer>
     <div class="footer-row">
@@ -944,7 +853,6 @@
     </div>
     <div class="footer-text">© 2025 SwapEra. All rights reserved.</div>
   </footer>
-
   <script>
     // Hamburger menu
     const navToggle = document.getElementById('navToggle');
@@ -952,13 +860,9 @@
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('open');
     });
-    // Close nav on link click (mobile)
     Array.from(navLinks.querySelectorAll('a')).forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-      });
+      link.addEventListener('click', () => { navLinks.classList.remove('open'); });
     });
-
     // Smooth scroll & active link
     const navAnchorLinks = navLinks.querySelectorAll('a[href^="#"]');
     navAnchorLinks.forEach(link => {
@@ -974,7 +878,6 @@
         }
       });
     });
-
     // Fade-in on scroll for sections
     function fadeInSections() {
       document.querySelectorAll('.fade-scroll').forEach(sec => {
@@ -986,7 +889,6 @@
     }
     window.addEventListener('DOMContentLoaded', fadeInSections);
     window.addEventListener('scroll', fadeInSections);
-
     // How It Works slide-in cards
     function slideInHowCards() {
       const cards = document.querySelectorAll('.how-card');
@@ -999,7 +901,6 @@
     }
     window.addEventListener('DOMContentLoaded', slideInHowCards);
     window.addEventListener('scroll', slideInHowCards);
-
     // Modal logic
     function openModal() {
       document.getElementById('modalBg').classList.add('active');
@@ -1014,7 +915,6 @@
     document.getElementById('modalBg').addEventListener('click', function(e) {
       if (e.target === this) closeModal();
     });
-
     // Registration Form Submission
     document.getElementById('waitlistForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1024,7 +924,6 @@
       setTimeout(() => {
         document.getElementById('successBg').querySelector('.success-msg').focus();
       }, 200);
-      // Optionally, here you could POST data to an API endpoint
       this.reset();
     });
     // Close success modal
@@ -1035,18 +934,13 @@
     document.getElementById('successBg').addEventListener('click', function(e) {
       if (e.target === this) closeSuccess();
     });
-
     // Allow all CTA buttons to open modal
     document.querySelectorAll('.flex-btn').forEach(btn => {
       btn.addEventListener('click', openModal);
     });
-
     // Keyboard accessibility for modals
     window.addEventListener('keydown', function(e) {
-      if (e.key === "Escape") {
-        closeModal();
-        closeSuccess();
-      }
+      if (e.key === "Escape") { closeModal(); closeSuccess(); }
     });
   </script>
 </body>
