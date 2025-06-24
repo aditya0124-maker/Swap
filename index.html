@@ -1,719 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>SwapEra | Teach What You Know. Learn What You Love.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwapEra - Peer-to-Peer Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      margin: 0; padding: 0;
-      font-family: 'Poppins',sans-serif;
-      background: #101b2e;
-      color: #fff;
-      min-height: 100vh;
+    :root {
+      --primary-color: #ffffff;
+      --secondary-color: #f2f2f2;
+      --accent-color: #333;
+      --button-bg: #0077ff;
+      --button-hover: #005ecb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
-    body { overflow-x: hidden; }
-    #background-canvas {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 0; pointer-events: none;
-      max-width: 100vw !important; max-height: 100vh !important;
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--primary-color);
+      color: var(--accent-color);
+      line-height: 1.6;
     }
 
-    .page-center {
-      width: 100%;
-      max-width: 440px;
-      margin: 0 auto;
-      padding-left: 5vw;
-      padding-right: 5vw;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 2;
+    header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 20px 10%;
+      background-color: var(--secondary-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .hero-section {
-      background: linear-gradient(120deg, #1e3c72 0%, #2a5298 60%, #39c6e7 100%);
-      border-bottom-left-radius: 18px;
-      border-bottom-right-radius: 18px;
-      box-shadow: 0 2px 16px #0002;
-      text-align: center;
-      padding: 2rem 0 1.2rem 0;
-      margin-bottom: 0.6rem;
-      position: relative;
-      z-index: 2;
-      animation: gradientBG 12s ease-in-out infinite alternate;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .hero-content {
-      width: 100%;
-      max-width: 440px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .platform-name {
-      font-size: 2.1rem; font-weight:900; letter-spacing:0.08em;
-      background: linear-gradient(90deg,#ffe066 10%,#fff 50%,#39c6e7 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
-      margin-bottom:0.35rem; margin-top:0;
-      text-shadow: 0 2px 20px #0003;
-      text-align: center;
-      width: 100%;
-      display: block;
-    }
-    .tagline { font-size: 1.07rem; font-weight:600; margin-bottom:0.5rem; text-align: center;}
-    .subtext { color: #ffe066; font-size:0.97rem; margin-bottom:1.1rem; text-align: center;}
-    .cta-btn {
-      background: #ffe066; color:#0a1627;
-      padding: 0.68rem 1.4rem; font-size: 1rem;
-      font-weight:700; border:none; border-radius: 2rem;
-      cursor:pointer; box-shadow:0 2px 10px #2a529855;
-      transition: 0.3s cubic-bezier(.77,0,.18,1);
-      margin-top:0.2rem; outline:none; display:inline-block;
-    }
-    .cta-btn:focus, .cta-btn:active { outline:2px solid #ffe066; outline-offset:2px;}
-    .cta-btn:hover { background: #39c6e7; color: #fff; }
-
-    .container-section {
-      margin: 0 auto 1rem auto;
-      background: none;
-      padding: 0;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .section-title { font-size:1.15rem; font-weight:700; color:#ffe066; margin-bottom:1.2rem; letter-spacing:0.01em; text-align: center;}
-    .how-section .section-title, .who-section .section-title { color:#39c6e7;}
-    .why-cards, .how-steps, .audience-cards, .signup-form-container {
-      display: flex; flex-direction: column; gap: 0.75rem; align-items: center; justify-content: flex-start;
-      margin-bottom: 1rem;
-      width: 100%;
-    }
-    .why-card, .how-step, .aud-card {
-      background: linear-gradient(120deg, #233a59 0%, #22577a 100%);
-      color:#fff;
-      border-radius:12px;
-      box-shadow: 0 2px 8px rgba(44,153,255,0.13);
-      padding: 1rem 0.7rem 1rem 0.7rem;
-      width: 100%; max-width: 370px; min-width: unset;
-      text-align: center; font-size: 0.97rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto;
-    }
-    .how-step { background: #19243a;}
-    .aud-card { display:flex; align-items:center; gap:0.7rem; max-width:370px; justify-content: center;}
-    .why-card .icon, .how-step .icon, .aud-card .icon {
-      font-size: 1.35rem; color:#39c6e7; margin-bottom:0.6rem;flex-shrink:0;
-      text-align: center;
-    }
-    .how-step .icon { color: #ffe066;}
-    .aud-card .icon { font-size:1.13rem; color:#ffe066;}
-    .why-card p, .how-step .step-desc, .aud-card { color:#c9e5ff; font-size:0.97rem; text-align: center;}
-
-    /* FLEXIBLE LEARNING OPTIONS (NEW SECTION) */
-    .flexible-options-section {
-      background: #fff;
-      padding: 2.1rem 0.7rem 1.2rem 0.7rem;
-      margin: 1.5rem auto 1.5rem auto;
-      border-radius: 18px;
-      box-shadow: 0 2.5px 18px #2a529811;
-      width: 100%;
-      max-width: 1140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .flexible-options-title {
-      font-size: 1.17rem;
-      font-weight: 900;
-      color: #2a5298;
-      text-align: center;
-      margin-bottom: 1.3rem;
-      letter-spacing: 0.01em;
-      width: 100%;
-      display: block;
-    }
-    .flexible-options-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .flexible-options-card {
-      background: #fff;
-      color: #233a59;
-      border-radius: 15px;
-      box-shadow: 0 2.5px 14px #2a529822;
-      padding: 1.15rem 1.1rem 1.35rem 1.1rem;
-      max-width: 340px;
-      width: 100%;
-      min-width: 0;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border: 2px solid transparent;
-      transition: border 0.18s, box-shadow 0.18s;
-    }
-    .flexible-options-card:hover {
-      border: 2px solid #39c6e7;
-      box-shadow: 0 6px 24px #39c6e744;
-    }
-    .fo-icon {
-      width: 48px; height: 48px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.45rem;
-      margin-bottom: 0.75rem;
-      margin-top: 0.15rem;
-      box-shadow: 0 2.5px 12px #2a529822;
-    }
-    .flexible-options-card .fo-icon-1 { background: linear-gradient(135deg, #2986fd 40%, #39c6e7 100%); color: #fff; }
-    .flexible-options-card .fo-icon-2 { background: linear-gradient(135deg, #1ecb7b 40%, #39c6e7 100%); color: #fff; }
-    .flexible-options-card .fo-icon-3 { background: linear-gradient(135deg,#ff8a36 40%, #39c6e7 100%); color: #fff; }
-    .fo-card-title {
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: #2a5298;
-      margin-bottom: 0.6rem;
-      margin-top: 0.3rem;
-      text-align: center;
-      width: 100%;
-    }
-    .fo-card-popular {
-      display: inline-block;
-      background: #39c6e7;
-      color: #fff;
-      font-size: 0.80rem;
-      font-weight: 700;
-      border-radius: 8px;
-      padding: 0.13rem 0.7rem;
-      margin-bottom: 0.38rem;
-      margin-top: -0.15rem;
-      letter-spacing: 0.05em;
-    }
-    .fo-card-desc {
-      font-size: 0.99rem;
-      color: #233a59;
-      margin-bottom: 1.1rem;
-      min-height: 64px;
-      text-align: center;
-      width: 100%;
-    }
-    .fo-card-btn {
-      background: linear-gradient(90deg, #2a5298 10%, #39c6e7 90%);
-      color: #fff;
-      border: none;
-      border-radius: 22px;
+    header .logo {
+      font-size: 1.8rem;
       font-weight: 600;
-      font-size: 0.98rem;
-      padding: 0.58rem 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px #2a529822;
-      outline: none;
-      transition: background 0.18s, color 0.18s, transform 0.13s;
+    }
+
+    nav a {
+      margin-left: 25px;
       text-decoration: none;
-      display: inline-block;
-      margin: 0 auto;
+      color: var(--accent-color);
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--button-bg);
+    }
+
+    section {
+      padding: 80px 10%;
+      position: relative;
+    }
+
+    .hero {
       text-align: center;
     }
-    .fo-card-btn:focus, .fo-card-btn:active {
-      outline: 2px solid #39c6e7;
-      outline-offset: 2px;
-    }
-    .fo-card-btn:hover {
-      background: linear-gradient(90deg, #39c6e7 10%, #2a5298 90%);
-      color: #ffe066;
-      transform: scale(1.04);
-    }
-    .flexible-options-tagline {
-      margin-top: 1.7rem;
-      color: #2a5298;
-      font-size: 0.97rem;
-      font-weight: 600;
-      text-align: center;
-      background: #eaf5fb;
-      border-radius: 9px;
-      padding: 0.5rem 1.1rem;
-      display: inline-block;
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 0.5px 3px #2a529813;
-      width: 100%;
-    }
-    @media (min-width: 900px) {
-      .page-center { max-width: 1140px; }
-      .flexible-options-section { max-width: 1140px; }
-      .flexible-options-cards {
-        flex-direction: row;
-        gap: 2.2rem;
-        align-items: stretch;
-        justify-content: center;
-        width: 100%;
-      }
-      .flexible-options-card {
-        max-width: 340px;
-        width: 100%;
-        margin-left: 0; margin-right: 0; /* Remove auto for perfect centering in flex row */
-      }
-    }
-    @media (max-width: 899px) {
-      .page-center, .flexible-options-section { max-width: 99vw; }
-      .flexible-options-cards { flex-direction: column; align-items: center; }
-      .flexible-options-card { max-width: 99vw; margin-left: auto; margin-right: auto; }
-    }
-    @media (max-width: 500px) {
-      .page-center, .vision-section, .beta-notice, .flexible-options-section {
-        padding-left: 2vw;
-        padding-right: 2vw;
-      }
-      .flexible-options-card { padding-left: 0.7rem; padding-right: 0.7rem; }
-      .signup-form-box { padding-left: 0.7rem; padding-right: 0.7rem; }
-    }
-    @keyframes fadeInUp {
-      0% { opacity:0; transform:translateY(40px);}
-      100% { opacity:1; transform:translateY(0);}
-    }
-    .fade-in.visible { opacity: 1 !important; transform: translateY(0) !important; }
 
-    .vision-section, .beta-notice {
-      background: linear-gradient(120deg,#15263d 60%,#233a59 100%);
-      border-radius:10px; box-shadow:0 4px 16px #39c6e73a;
-      padding:1.1rem 0.7rem; margin:1.3rem auto 1.1rem auto;
-      max-width:410px; font-size:0.99rem; text-align:center;
-      display: flex; flex-direction: column; align-items: center;
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease;
     }
-    .vision-section h2 { color: #ffe066; font-size:1.09rem; font-weight:700; margin-bottom:0.8rem;}
-    .vision-section .mission-title { color: #39c6e7; font-size:1.07rem; font-weight:600; margin-top:1.1rem; margin-bottom:0.5rem;}
-    .beta-notice { background:linear-gradient(90deg,#ffe066 10%,#39c6e7 100%); color:#232d3a; font-size:1.01rem;}
 
-    .signup-form-box {
-      background: #19243a; border-radius: 10px; box-shadow: 0 2px 8px rgba(44,153,255,0.13);
-      padding: 1.2rem 0.7rem; max-width:370px; width:100%; margin: 0 auto 1.2rem auto;
-      display: flex; flex-direction: column; align-items: center;
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
     }
-    .signup-form { display:flex; flex-direction:column; gap:0.7rem; align-items: center; width: 100%;}
-    .signup-form label { font-size:0.99rem; font-weight:500; color:#39c6e7; margin-bottom:0.18rem; margin-top:0.15rem; text-align:left; align-self: flex-start;}
-    .signup-form input, .signup-form select, .signup-form textarea {
-      padding:0.6rem 0.8rem; border-radius:8px; border:1.2px solid #39c6e7bb;
-      font-size:0.97rem; background:#132345; color:#fff;
-      box-shadow:0 1px 6px #2a529811; margin-bottom:0.09rem; width:100%; box-sizing:border-box;
-      display: block;
-    }
-    .signup-form textarea { min-height:62px; max-width:100%; resize:vertical;}
-    .signup-form .btn {
-      background:#39c6e7; color:#fff; padding:0.7rem 1.2rem; border:none;
-      border-radius:2rem; cursor:pointer; font-weight:700; font-size:1rem;
-      box-shadow:0 2px 10px #2a529888; letter-spacing:0.03em; margin-top:0.5rem;
-      width:100%; transition:background .18s,color .18s,transform .14s; outline:none;
-    }
-    .signup-form .btn:focus,
-    .signup-form .btn:active { outline:2px solid #ffe066; outline-offset:2px;}
-    .signup-form .btn:hover,
-    .signup-form .btn:active { background:#ffe066; color:#39c6e7; transform:scale(1.03); }
-    .dropdown-multiselect { position:relative; user-select:none; margin-bottom:0.39rem; width:100%;}
-    .dropdown-multiselect .dropdown-header {
-      padding:0.6rem 0.7rem; background:#132345; border:1.2px solid #39c6e7bb;
-      border-radius:8px; color:#fff; cursor:pointer; font-size:0.97rem;
-      display:flex; align-items:center; justify-content:space-between; width:100%; box-sizing:border-box;
-    }
-    .dropdown-multiselect.open .dropdown-header,
-    .dropdown-multiselect .dropdown-header:focus {
-      border:1.8px solid #ffe066; background:#1c3258; box-shadow:0 2px 12px #ffe06633; outline:none;
-    }
-    .dropdown-multiselect .dropdown-list {
-      position:absolute; top:110%; left:0; width:100vw; max-width:370px;
-      background:#1c3258; border-radius:8px; box-shadow:0 4px 10px #2a529866;
-      z-index:4; max-height:130px; overflow-y:auto; margin-top:2px; animation:fadeInUp .22s both;
-      box-sizing:border-box;
-    }
-    .dropdown-multiselect .dropdown-list label {
-      display:flex; align-items:center; padding:0.28rem 0.7rem; color:#fff; font-size:0.96rem;
-      cursor:pointer; transition:background .13s; margin:0;
-    }
-    .dropdown-multiselect .dropdown-list label:hover { background:#233a59;}
-    .dropdown-multiselect .dropdown-list input[type="checkbox"] {
-      margin-right:0.7em; accent-color:var(--accent); transform:scale(1.08);
-    }
-    .dropdown-multiselect .selected-options {
-      display:inline; color:#ffe066; font-size:0.97rem; font-weight:500;
-      max-width:65vw; overflow-x:auto; white-space:nowrap;
-    }
-    .dropdown-multiselect .dropdown-arrow { font-size:1em; margin-left:0.4em; color:#ffe066; }
-    .dropdown-multiselect.open .dropdown-arrow { transform:rotate(-180deg);}
 
-    .footer {
-      background: linear-gradient(120deg, #1e3c72 0%, #2a5298 60%, #39c6e7 100%);
-      color:#fff; padding:1.1rem 0.5rem 0.7rem 0.5rem;
-      text-align:center; font-size:0.95rem;
-      border-top-left-radius:10px; border-top-right-radius:10px;
-      box-shadow:0 -2px 10px #2a529844; margin-top:1.8rem; position:relative; z-index:2;
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      background-color: var(--button-bg);
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .footer .footer-inner {
-      max-width: 390px;
-      margin: 0 auto;
-      padding-left: 4vw; padding-right: 4vw;
+
+    .btn:hover {
+      background-color: var(--button-hover);
+    }
+
+    .cards {
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
       justify-content: center;
     }
-    .footer .footer-brand { font-weight:800; font-size:1rem; letter-spacing:0.04em; color:#ffe066; margin-bottom:0.3rem; display:block;}
-    .footer .footer-links {
-      margin:0.5rem 0 0.1rem 0; display:flex; justify-content:center; align-items:center; gap:0.7rem; flex-wrap:wrap; font-size:0.99rem;
+
+    .card {
+      background-color: var(--secondary-color);
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
     }
-    .footer .footer-links a {
-      color:#fff; text-decoration:none; font-weight:500; transition:color .18s; display:flex; align-items:center; gap:0.55em;
+
+    .card:hover {
+      transform: translateY(-8px);
     }
-    .footer .footer-links a:hover { color:var(--accent); text-decoration:underline; }
-    .footer .footer-extra { margin-top:0.7rem; color:#ffe066; font-size:0.97rem; font-weight:600; letter-spacing:0.01em; display:block; }
-    .footer .footer-social { margin-top:0.55rem; display:flex; justify-content:center; gap:1em; }
-    .footer .footer-social a { color:var(--accent); font-size:1.3em; margin:0 0.12em; transition:color .15s,transform .12s; }
-    .footer .footer-social a:hover { color:#fff; transform:scale(1.09) rotate(-6deg); }
-    .footer .copyright { font-size:0.87rem; color:#c7e6ff; margin-top:0.5rem; letter-spacing:0.01em; }
+
+    .two-column {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .column {
+      flex: 1;
+    }
+
+    .grid-icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content h3 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content input, .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    footer {
+      background-color: var(--secondary-color);
+      text-align: center;
+      padding: 40px 10%;
+    }
+
+    .floating-icon {
+      position: absolute;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @media (max-width: 768px) {
+      .cards, .two-column {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
+
 <body>
-<canvas id="background-canvas"></canvas>
+  <header>
+    <div class="logo">SwapEra</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#why">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#signup">Signup</a>
+    </nav>
+  </header>
 
-<!-- HERO -->
-<div class="hero-section">
-  <div class="hero-content">
-    <div class="platform-name">SwapEra</div>
-    <div class="tagline">Teach What You Know. Learn What You Love.</div>
-    <div class="subtext">A skill-sharing platform made for everyone who wants to grow.</div>
-    <a href="#signup" class="cta-btn">Join the Beta</a>
-  </div>
-</div>
+  <section id="hero" class="hero">
+    <h1>Learn Anything. Teach Anything. For Free.</h1>
+    <p>India’s first peer-to-peer learning platform. No fees. No barriers. Just real growth.</p>
+    <button class="btn" onclick="openModal()">Join the Beta</button>
+  </section>
 
-<!-- WHY SWAPERA -->
-<section class="container-section page-center why-section">
-  <div class="section-title">Why SwapEra?</div>
-  <div class="why-cards">
-    <div class="why-card"><span class="icon"><i class="fa-solid fa-hand-holding-heart"></i></span><p>No money required &mdash; just exchange skills</p></div>
-    <div class="why-card"><span class="icon"><i class="fa-solid fa-users-rays"></i></span><p>Learn from real people, not professional tutors</p></div>
-    <div class="why-card"><span class="icon"><i class="fa-solid fa-network-wired"></i></span><p>Build a trusted network while gaining knowledge</p></div>
-  </div>
-</section>
+  <section id="why">
+    <h2>Why SwapEra?</h2>
+    <div class="cards">
+      <div class="card">100% Free Learning</div>
+      <div class="card">Skill for Skill Swapping</div>
+      <div class="card">Real People, Real Growth</div>
+    </div>
+  </section>
 
-<!-- HOW IT WORKS -->
-<section class="container-section page-center how-section">
-  <div class="section-title">How It Works</div>
-  <div class="how-steps">
-    <div class="how-step"><span class="icon"><i class="fa-solid fa-user-plus"></i></span><div class="step-title">Sign up and list skills</div><div class="step-desc">Tell us what you can teach and what you want to learn.</div></div>
-    <div class="how-step"><span class="icon"><i class="fa-solid fa-link"></i></span><div class="step-title">Get matched</div><div class="step-desc">We connect you with people who have complementary skills.</div></div>
-    <div class="how-step"><span class="icon"><i class="fa-solid fa-arrows-rotate"></i></span><div class="step-title">Connect &amp; Exchange</div><div class="step-desc">Exchange skills online or offline, learn and teach together.</div></div>
-  </div>
-</section>
+  <section id="features">
+    <h2>How It Works</h2>
+    <div class="cards">
+      <div class="card">Create Your Profile</div>
+      <div class="card">Add Skills You Can Teach & Want to Learn</div>
+      <div class="card">Get Matched</div>
+      <div class="card">Start a Live Session (Chat / Call)</div>
+    </div>
+  </section>
 
-<!-- FLEXIBLE LEARNING OPTIONS (NEW SECTION) -->
-<section class="flexible-options-section" id="flexible-learning-options">
-  <div class="flexible-options-title">Flexible Learning Options</div>
-  <div class="flexible-options-cards">
-    <!-- Card 1 -->
-    <div class="flexible-options-card fade-in">
-      <div class="fo-icon fo-icon-1">
-        <i class="fa-solid fa-retweet"></i>
+  <section>
+    <h2>Flexible Learning Options</h2>
+    <div class="cards">
+      <div class="card">
+        Swap Skills Freely
+        <button class="btn">View</button>
       </div>
-      <div class="fo-card-title">Swap Skills Freely <span class="fo-card-popular">(Most Popular)</span></div>
-      <div class="fo-card-desc">Teach what you know and learn what you want — all for free. SwapEra connects you with people ready to grow like you. No money. Just mutual growth.</div>
-      <a href="#" class="fo-card-btn" tabindex="0">Start Swapping</a>
-    </div>
-    <!-- Card 2 -->
-    <div class="flexible-options-card fade-in">
-      <div class="fo-icon fo-icon-2">
-        <i class="fa-solid fa-user-shield"></i>
+      <div class="card">
+        Learn from Professionals
+        <button class="btn">View</button>
       </div>
-      <div class="fo-card-title">Learn from Professionals <span style="font-size:0.82em;font-weight:500;color:#1ecb7b;">(Optional)</span></div>
-      <div class="fo-card-desc">Prefer structured learning? Book a session with verified trainers offering paid classes in high-demand skills like UI/UX, Excel, Yoga, and more.</div>
-      <a href="#" class="fo-card-btn" tabindex="0">Explore Trainers</a>
-    </div>
-    <!-- Card 3 -->
-    <div class="flexible-options-card fade-in">
-      <div class="fo-icon fo-icon-3">
-        <i class="fa-solid fa-lightbulb"></i>
+      <div class="card">
+        Just Learn
+        <button class="btn">View</button>
       </div>
-      <div class="fo-card-title">Don’t Want to Teach? Just Learn</div>
-      <div class="fo-card-desc">Not ready to teach yet? You can still learn. Pay a small fee to connect with someone offering real 1-on-1 sessions. Your growth, your way.</div>
-      <a href="#" class="fo-card-btn" tabindex="0">Find a Mentor</a>
+    </div>
+    <p style="text-align:center; margin-top: 20px;">SwapEra is and will always be free for those who want to teach & learn. Paid options are available for added flexibility.</p>
+  </section>
+
+  <section id="about">
+    <h2>Vision & Mission</h2>
+    <p><strong>Vision:</strong> To create India’s most inclusive, no-cost learning platform built on community and exchange.</p>
+    <p><strong>Mission:</strong> Empower millions to teach and learn anything — without borders, fees, or traditional systems.</p>
+  </section>
+
+  <section>
+    <h2>Who It's For</h2>
+    <div class="grid-icons">
+      <div>Students</div>
+      <div>Freshers</div>
+      <div>Working Professionals</div>
+      <div>Hobbyists</div>
+      <div>Freelancers</div>
+      <div>Career Switchers</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why This Will Work</h2>
+    <div class="two-column">
+      <div class="column">
+        <h3>The Challenges</h3>
+        <ul>
+          <li>High course fees</li>
+          <li>Lack of practical learning</li>
+          <li>No personalization</li>
+          <li>Time inflexibility</li>
+        </ul>
+      </div>
+      <div class="column">
+        <h3>SwapEra’s Solutions</h3>
+        <ul>
+          <li>Zero-cost learning</li>
+          <li>Live 1-on-1 sessions</li>
+          <li>Custom learning journeys</li>
+          <li>Learn anytime, anywhere</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="signup">
+    <h2>Join the Beta</h2>
+    <button class="btn" onclick="openModal()">Join the Beta</button>
+  </section>
+
+  <footer>
+    <div class="logo">SwapEra</div>
+    <p>© 2025 SwapEra. All rights reserved.</p>
+  </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h3>Join the Beta</h3>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="tel" placeholder="Mobile Number" />
+      <textarea placeholder="Skills You Can Teach"></textarea>
+      <textarea placeholder="Skills You Want to Learn"></textarea>
+      <button class="btn" onclick="closeModal()">Submit</button>
     </div>
   </div>
-  <div class="flexible-options-tagline">
-    <b>SwapEra is and will always be free for those who want to teach and learn. Paid options are available for added flexibility.</b>
-  </div>
-</section>
 
-<!-- VISION & MISSION -->
-<section class="vision-section page-center">
-  <h2>🌍 Vision &amp; Mission</h2>
-  <div class="vision"><strong>Vision:</strong> To build the world’s first collaborative learning ecosystem where every individual becomes both a teacher and a learner. We envision a future where knowledge is shared freely, skills are swapped with ease, and personal growth is driven by human connection rather than currency.</div>
-  <div class="mission-title">Our Mission</div>
-  <div class="mission">SwapEra exists to empower people across India to teach what they know and learn what they love — without money as a barrier. By enabling meaningful skill exchanges, we aim to foster a culture of mutual growth, community-led learning, and lifelong curiosity.</div>
-</section>
-
-<!-- WHO CAN JOIN -->
-<section class="container-section page-center who-section">
-  <div class="section-title">Who Can Join?</div>
-  <div class="audience-cards">
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-user-graduate"></i></span>Students</div>
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-briefcase"></i></span>Job Seekers</div>
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-house-chimney"></i></span>Homemakers</div>
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-user-tie"></i></span>Working Professionals</div>
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-paintbrush"></i></span>Creators &amp; Freelancers</div>
-    <div class="aud-card"><span class="icon"><i class="fa-solid fa-person-cane"></i></span>Retired Individuals</div>
-  </div>
-</section>
-
-<!-- BETA NOTICE -->
-<div class="beta-notice page-center">
-  🚀 <b>SwapEra is currently in Beta.</b> We're manually matching users as we develop the full platform.<br>
-  <b>Coming up with the New Era of Learning!</b>
-</div>
-
-<!-- SIGNUP FORM -->
-<section class="container-section page-center signup-section" id="signup">
-  <div class="section-title">Join the Beta Waitlist</div>
-  <div class="signup-form-container">
-    <div class="signup-form-box">
-      <form class="signup-form" autocomplete="off">
-        <label for="name">Name</label>
-        <input id="name" type="text" placeholder="Your Name" required />
-
-        <label for="email">Email</label>
-        <input id="email" type="email" placeholder="you@email.com" required />
-
-        <label for="city">City</label>
-        <input id="city" type="text" placeholder="Your City" required />
-
-        <label for="teach">Skills you can teach</label>
-        <div class="dropdown-multiselect" id="teach-dropdown">
-          <div class="dropdown-header" tabindex="0">
-            <span class="selected-options" id="teach-selected">Select skills</span>
-            <span class="dropdown-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-          </div>
-          <div class="dropdown-list" style="display:none;">
-            <label><input type="checkbox" value="English Speaking"/> English Speaking</label>
-            <label><input type="checkbox" value="Digital Marketing"/> Digital Marketing</label>
-            <label><input type="checkbox" value="Yoga"/> Yoga</label>
-            <label><input type="checkbox" value="Photoshop"/> Photoshop</label>
-            <label><input type="checkbox" value="Coding Basics"/> Coding Basics</label>
-            <label><input type="checkbox" value="Cooking"/> Cooking</label>
-            <label><input type="checkbox" value="Public Speaking"/> Public Speaking</label>
-            <label><input type="checkbox" value="MS Excel"/> MS Excel</label>
-            <label><input type="checkbox" value="Content Writing"/> Content Writing</label>
-            <label><input type="checkbox" value="Graphic Design"/> Graphic Design</label>
-            <label><input type="checkbox" value="Video Editing"/> Video Editing</label>
-            <label><input type="checkbox" value="UI/UX Design"/> UI/UX Design</label>
-            <label><input type="checkbox" value="Freelancing Tips"/> Freelancing Tips</label>
-            <label><input type="checkbox" value="Resume Building"/> Resume Building</label>
-            <label><input type="checkbox" value="Productivity Techniques"/> Productivity Techniques</label>
-          </div>
-        </div>
-
-        <label for="learn">Skills you want to learn</label>
-        <div class="dropdown-multiselect" id="learn-dropdown">
-          <div class="dropdown-header" tabindex="0">
-            <span class="selected-options" id="learn-selected">Select skills</span>
-            <span class="dropdown-arrow"><i class="fa-solid fa-chevron-down"></i></span>
-          </div>
-          <div class="dropdown-list" style="display:none;">
-            <label><input type="checkbox" value="English Speaking"/> English Speaking</label>
-            <label><input type="checkbox" value="Digital Marketing"/> Digital Marketing</label>
-            <label><input type="checkbox" value="Yoga"/> Yoga</label>
-            <label><input type="checkbox" value="Photoshop"/> Photoshop</label>
-            <label><input type="checkbox" value="Coding Basics"/> Coding Basics</label>
-            <label><input type="checkbox" value="Cooking"/> Cooking</label>
-            <label><input type="checkbox" value="Public Speaking"/> Public Speaking</label>
-            <label><input type="checkbox" value="MS Excel"/> MS Excel</label>
-            <label><input type="checkbox" value="Content Writing"/> Content Writing</label>
-            <label><input type="checkbox" value="Graphic Design"/> Graphic Design</label>
-            <label><input type="checkbox" value="Video Editing"/> Video Editing</label>
-            <label><input type="checkbox" value="UI/UX Design"/> UI/UX Design</label>
-            <label><input type="checkbox" value="Freelancing Tips"/> Freelancing Tips</label>
-            <label><input type="checkbox" value="Resume Building"/> Resume Building</label>
-            <label><input type="checkbox" value="Productivity Techniques"/> Productivity Techniques</label>
-          </div>
-        </div>
-
-        <label for="mode">Preferred Mode</label>
-        <select id="mode" required>
-          <option value="">Select Mode</option>
-          <option>Online</option>
-          <option>In-Person</option>
-          <option>Both</option>
-        </select>
-
-        <label for="time">Time Availability</label>
-        <input id="time" type="text" placeholder="e.g. Evenings, Weekends" required />
-
-        <label for="bio">Short Bio or Interest</label>
-        <textarea id="bio" placeholder="Tell us about your interests, background, or learning goals..." required></textarea>
-
-        <button type="submit" class="btn">Join SwapEra Now</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-brand">SwapEra</span>
-    <div class="footer-links">
-      <a href="mailto:hello@swapera.in"><i class="fa-solid fa-envelope"></i> hello@swapera.in</a>
-      <a href="https://instagram.com/swapera.in" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> @swapera.in</a>
-      <a href="#how"><i class="fa-solid fa-circle-question"></i> How it works?</a>
-      <a href="#signup"><i class="fa-solid fa-users"></i> Join the Beta</a>
-    </div>
-    <div class="footer-social">
-      <a href="https://instagram.com/swapera.in" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="mailto:hello@swapera.in"><i class="fa-solid fa-envelope"></i></a>
-      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-    </div>
-    <div class="footer-extra">
-      <span><i class="fa-solid fa-graduation-cap"></i> Empowering India's knowledge revolution — one swap at a time</span>
-    </div>
-    <div class="copyright">© 2025 SwapEra &nbsp;|&nbsp; All rights reserved.</div>
-  </div>
-</footer>
-
-<script>
-  // Particle background
-  const canvas = document.getElementById('background-canvas');
-  const ctx = canvas.getContext('2d');
-  let width = window.innerWidth, height = window.innerHeight, particles = [];
-  function resizeCanvas() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width; canvas.height = height;
-    createParticles();
-  }
-  window.addEventListener('resize', resizeCanvas);
-  function randomColor() {
-    const colors = [
-      "rgba(76,201,240,0.33)",
-      "rgba(42,82,152,0.22)",
-      "rgba(255,224,102,0.20)",
-      "rgba(57,198,231,0.19)",
-      "rgba(255,255,255,0.07)"
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-  function createParticles() {
-    particles = [];
-    let count = Math.floor((width * height) / 9000);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: 10 + Math.random() * 16,
-        color: randomColor(),
-        dx: (Math.random() - 0.5) * 0.26,
-        dy: (Math.random() - 0.5) * 0.26,
-        alpha: 0.22 + Math.random() * 0.23,
-      });
+  <script>
+    function openModal() {
+      document.getElementById("modal").style.display = "flex";
     }
-  }
-  function drawParticles() {
-    ctx.clearRect(0, 0, width, height);
-    for (let p of particles) {
-      ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 35;
-      ctx.fillStyle = p.color;
-      ctx.fill();
-      ctx.restore();
-      p.x += p.dx; p.y += p.dy;
-      if (p.x < -20 || p.x > width + 20) p.dx *= -1;
-      if (p.y < -20 || p.y > height + 20) p.dy *= -1;
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
     }
-  }
-  function animate() {
-    drawParticles();
-    requestAnimationFrame(animate);
-  }
-  resizeCanvas();
-  animate();
-
-  // Multiselect Dropdown
-  function setupDropdown(id, selectedId) {
-    const dropdown = document.getElementById(id);
-    const header = dropdown.querySelector('.dropdown-header');
-    const list = dropdown.querySelector('.dropdown-list');
-    const selectedSpan = document.getElementById(selectedId);
-    const checkboxes = Array.from(list.querySelectorAll('input[type="checkbox"]'));
-    function updateSelected() {
-      const selected = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
-      selectedSpan.textContent = selected.length ? selected.join(', ') : 'Select skills';
-      selectedSpan.style.color = selected.length ? '#ffe066' : '#fff';
+    window.onclick = function (e) {
+      if (e.target === document.getElementById("modal")) closeModal();
     }
-    header.addEventListener('click', function(e) {
-      e.stopPropagation();
-      dropdown.classList.toggle('open');
-      list.style.display = dropdown.classList.contains('open') ? 'block' : 'none';
-    });
-    header.addEventListener('keydown', function(e) {
-      if (e.key === " " || e.key === "Enter" || e.key === "ArrowDown") {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-        list.style.display = dropdown.classList.contains('open') ? 'block' : 'none';
-        if (dropdown.classList.contains('open')) {
-          list.querySelector('label input').focus();
-        }
-      }
-    });
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', updateSelected);
-    });
-    document.addEventListener('click', function(e){
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-        list.style.display = "none";
-      }
-    });
-    updateSelected();
-  }
-  setupDropdown('teach-dropdown', 'teach-selected');
-  setupDropdown('learn-dropdown', 'learn-selected');
-
-  // Fade-in animation for "Flexible Learning Options" cards when scrolled into view
-  function handleFadeIn() {
-    const fadeEls = document.querySelectorAll('.flexible-options-card');
-    fadeEls.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 40) {
-        el.classList.add("visible");
-      }
-    });
-  }
-  window.addEventListener('scroll', handleFadeIn);
-  window.addEventListener('load', handleFadeIn);
-</script>
+  </script>
 </body>
+
 </html>
