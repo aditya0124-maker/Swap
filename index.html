@@ -2,959 +2,410 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SwapEra – Swap Skills, Share Growth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Poppins Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <!-- Simple Icons CDN for Social -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css">
+    <title>SwapEra - Swap Skills, Share Growth</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #FBE8A6 60%, #fffbe6 100%);
-            --bg-main: #FBE8A6;
-            --card-bg: #B4DFE5;
-            --accent: #F4976C;
-            --highlight: #D2FDFF;
-            --text-main: #303C6C;
-            --white: #fff;
-            --border-radius: 20px;
-            --glass-bg: rgba(180, 223, 229, 0.76);
-            --glass-blur: blur(14px);
-            --glass-border: 1.5px solid #D2FDFF;
-            --glass-radius: 20px;
-            --glass-shadow: 0 8px 28px 0 rgba(244,151,108,0.10), 0 2px 9px #fffbe6;
-            --transition: all 0.28s cubic-bezier(.4,0,.2,1);
-            --btn-shadow: 0 2px 16px 0 rgba(244,151,108,0.12);
-            --input-glass: rgba(255,255,255,0.78);
-            --input-border: 1.2px solid #B4DFE5;
+            --bg-dark: #0f0524;
+            --bg-slate: #1e293b;
+            --accent-gold: #fca326;
+            --accent-gold-hover: #fcc42e;
+            --text-light: #e0e0e0;
+            --text-dark: #1a1a1a;
         }
-        * { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
-            color: var(--text-main);
-            background: var(--bg-gradient), var(--bg-main);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            z-index: 0;
-            left: 0; top: 0; width: 100vw; height: 100vh;
-            background:
-                radial-gradient(circle at 20% 10%, #fffbe6 32%, transparent 70%),
-                radial-gradient(circle at 85% 12%, #D2FDFF 17%, transparent 66%),
-                radial-gradient(circle at 70% 80%, #FBE8A6 18%, transparent 82%),
-                linear-gradient(145deg, #FBE8A6 80%, #fffbe6 100%);
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        a { text-decoration: none; color: inherit; }
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.4rem 7vw;
-            background: rgba(255,255,255,0.57);
-            border-bottom: 1.5px solid #D2FDFF;
-            backdrop-filter: blur(11px);
-            border-radius: 0 0 var(--glass-radius) var(--glass-radius);
-            box-shadow: 0 4px 18px 0 rgba(180,223,229,0.14);
-            position: sticky; top: 0; z-index: 30;
-            transition: var(--transition);
-            margin-bottom: 2rem;
-        }
-        .logo {
-            font-weight: 800; font-size: 1.7rem; letter-spacing: -1px;
-            color: var(--accent); user-select: none;
-            text-shadow: 0 2px 10px #fffbe6bb;
-        }
-        .nav-links {
-            display: flex; gap: 2.3rem; align-items: center;
-        }
-        .nav-links a {
-            font-weight: 500; font-size: 1.08rem;
-            color: var(--text-main); transition: color .24s;
-            position: relative; padding: 0.3rem 0;
-            letter-spacing: 0.01em;
-            cursor: pointer;
-        }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent);
-            text-shadow: 0 0 7px #FBE8A6;
-        }
-        .nav-links a.active::after,
-        .nav-links a:hover::after {
-            content: '';
-            display: block;
-            margin: 0.1rem auto 0;
-            width: 36%;
-            height: 2px;
-            border-radius: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 4px 1px #FBE8A6;
-        }
-        .nav-links .cta-btn {
-            padding: 0.5rem 1.35rem !important;
-            font-size:1.04rem !important;
-            background: var(--accent);
-            color: #fff!important;
-            border-radius: 40px;
-            font-weight: 600;
-            border: none;
-            box-shadow: var(--btn-shadow);
-            transition: var(--transition);
-            margin-left: 1.6rem;
-            display: inline-block;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 8px #fffbe6bb;
-        }
-        .nav-links .cta-btn:hover {
-            background: #f8834a;
-            color: #fffbe6 !important;
-            box-shadow: 0 8px 24px #F4976C40;
-            transform: scale(1.07);
-            filter: brightness(1.07);
-        }
-        .nav-toggle {
-            display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 1rem;
-            z-index: 120;
-        }
-        .nav-toggle span {
-            width: 26px; height: 3px; background: var(--accent); border-radius: 2px;
-            transition: background 0.2s;
-        }
-        header, .section {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 7vw;
-        }
-        header {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2.5rem;
-            min-height: 85vh;
-            padding-top: 2.5rem;
-            z-index: 2;
-            position: relative;
-        }
-        .hero-info {
-            flex: 1 1 450px; min-width: 270px; z-index: 2;
-            display: flex; flex-direction: column; justify-content: center;
-            animation: fadeInUp 1.0s cubic-bezier(.4,0,.2,1);
-        }
-        .hero-glass {
-            background: rgba(255,255,255,0.65);
-            backdrop-filter: blur(18px);
-            border-radius: 36px;
-            border: 1.5px solid #D2FDFF;
-            box-shadow: 0 12px 54px 0 #B4DFE540, 0 0 0 1.5px #D2FDFF inset;
-            padding: 2.5rem 2.2rem 2.2rem 2.2rem;
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            transition: var(--transition);
-            animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
-        }
-        .hero-title {
-            font-size: 2.85rem;
-            font-weight: 800;
-            color: var(--text-main);
-            text-shadow: 0 2px 14px #fffbe6bb, 0 2px 10px #fff;
-            margin-bottom: 0.75rem;
-            letter-spacing: -1.5px;
-            line-height: 1.15;
-            animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
-        }
-        .hero-subtext {
-            font-size: 1.25rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 0.7rem;
-            text-shadow: 0 0 10px #D2FDFF88;
-            animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
-        }
-        .hero-desc {
-            font-size: 1.08rem;
-            color: #303C6C;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            animation: fadeInUp 1.4s cubic-bezier(.4,0,.2,1);
-            opacity: 0.9;
-        }
-        .cta-btn {
-            padding: 0.9rem 2.15rem;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 44px;
-            font-size: 1.15rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: var(--btn-shadow);
-            transition: var(--transition);
-            outline: none;
-            margin-bottom: 0.4rem;
-            letter-spacing: 0.04em;
-            filter: brightness(1.08);
-            text-shadow: 0 0 6px #fffbe6bb;
-            position: relative;
-            z-index: 1;
-        }
-        .cta-btn:hover, .cta-btn:focus {
-            background: #f8834a;
-            color: #fffbe6;
-            box-shadow: 0 8px 32px #F4976C55;
-            transform: scale(1.08);
-            filter: brightness(1.13);
-        }
-        .hero-graphic {
-            flex: 1 1 330px;
-            min-width: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            min-height: 320px;
-            z-index: 1;
-            animation: floatY 4s infinite alternate cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
-            perspective: 1000px;
-            will-change: transform;
-            filter: drop-shadow(0 10px 64px #FBE8A650);
-        }
-        .floating { animation: floatY 3.3s ease-in-out infinite alternate; will-change: transform;}
-        @keyframes floatY { 0% {transform: translateY(0);} 100% {transform: translateY(-22px) scale(1.03) perspective(1000px) rotateY(5deg);} }
-        @keyframes fadeInUp { 0% {opacity: 0; transform: translateY(70px) scale(.98);} 100% {opacity: 1; transform: none;} }
-        .section-title-row {
-            display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1rem;
-            justify-content: center;
-        }
-        .section-title-row svg {
-            width: 48px; height: 48px; flex-shrink: 0; filter: drop-shadow(0 2px 12px #B4DFE570);
-        }
-        .section h2, .section-title-row h2 {
-            color: var(--text-main);
-            font-weight: 700;
-            font-size: 1.8rem;
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 10px #fffbe6cc;
-        }
-        .section {
-            margin-top: 4rem;
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 2;
-        }
-        .glass-card, .why-card, .how-card, .flex-card, .vm-section, .who-card, .different-col {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border-radius: var(--glass-radius);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: var(--transition);
-            z-index: 1;
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-card:hover, .why-card:hover, .how-card:hover, .flex-card:hover, .different-col:hover, .who-card:hover, .vm-section:hover {
-            box-shadow: 0 0 32px 7px #B4DFE533, 0 8px 32px #F4976C33;
-            transform: translateY(-5px);
-            filter: brightness(1.07);
-        }
-        .why-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2.5rem;
-        }
-        .why-card {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 2.2rem 1.8rem;
-            cursor: default;
-            animation: fadeInUp 1.2s;
-            background: var(--card-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 28px #F4976C30;
-        }
-        .why-card .icon {
-            font-size: 2.7rem; margin-bottom: 1.05rem; color: var(--accent);
-            text-shadow: 0 0 12px #FBE8A6;
-        }
-        .why-card .card-title {
-            font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.55rem; text-align: center;
-            text-shadow: 0 0 10px #fffbe6bb;
-        }
-        .why-card .card-desc {
-            font-size: 1.01rem; color: var(--text-main); text-align: center; font-weight: 400;
-            opacity: 0.93;
-        }
-        .how-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-        .how-card {
-            display: flex; flex-direction: column; align-items: center;
-            padding: 2rem 1.2rem;
-            opacity: 0; transform: translateY(60px);
-            animation-fill-mode: forwards;
-            background: var(--card-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 28px #F4976C25;
-            text-align: center;
-        }
-        .how-card.visible { opacity: 1; transform: none; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-        .how-card .icon { font-size: 2.5rem; margin-bottom: 0.88rem; color: var(--accent);}
-        .how-card .step-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main);}
-
-        .flex-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2.5rem;
-        }
-        .flex-card {
-            padding: 2.1rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start;
-            background: var(--card-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 32px #F4976C22;
-        }
-        .flex-card .flex-title { font-size: 1.2rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
-        .flex-card .flex-desc { font-size: 1.06rem; color: var(--text-main); margin-bottom: 1.3rem; min-height: 48px; font-weight: 400; opacity: 0.93;}
-        .flex-card .flex-btn {
-            background: var(--accent);
-            color: #fff;
-            padding: 0.7rem 1.7rem;
-            border: none;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1em;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--btn-shadow);
-            margin-top: auto;
-            letter-spacing: 0.01em;
-            text-shadow: 0 0 6px #fffbe6cc;
-            filter: brightness(1.10);
-            position: relative;
-            z-index: 1;
-        }
-        .flex-card .flex-btn:hover {
-            background: #f8834a;
-            color: #fffbe6;
-            box-shadow: 0 8px 28px #F4976C44;
-            transform: scale(1.05);
-            filter: brightness(1.18);
-        }
-        .flex-subtext {
-            font-size: 1.05rem;
-            color: var(--accent);
-            margin: 2rem 0 0.5rem 0;
-            font-style: italic;
-            text-align: center;
-            display: block;
-            width: 100%;
-            font-weight: 500;
-            background: #fffbe6;
-            border-radius: 12px;
-            padding: 0.8em 0.6em;
-            box-shadow: 0 0 12px #B4DFE570;
-            text-shadow: 0 0 6px #fffbe688;
-        }
-        .vm-section {
-            margin: 2.6rem 0;
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            font-weight: 600;
-            background: var(--card-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 28px #F4976C18;
-        }
-        .vm-section .vm-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            text-shadow: 0 0 10px #fffbe6bb;
-        }
-        .vm-section .vm-quote {
-            font-size: 1.15rem; color: var(--text-main); font-style: italic; margin-bottom: 0.8rem; font-weight: 500;
-            opacity: 0.93;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .who-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-        .who-card {
-            padding: 1.5rem 0.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: var(--transition);
-            font-weight: 700;
-            color: var(--text-main);
-            font-size: 1.1rem;
-            cursor: default;
-            position: relative;
-            z-index: 2;
-            background: var(--card-bg);
-            box-shadow: 0 4px 28px #F4976C17;
-        }
-        .who-card .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-            text-shadow: 0 0 8px #fffbe6cc;
-        }
-        .who-card:hover {
-            box-shadow: 0 0 35px 5px #B4DFE540;
-            transform: scale(1.08) perspective(1000px) rotateY(5deg);
-            filter: brightness(1.11);
-        }
-        .different-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2.5rem;
-            align-items: start;
-        }
-        .different-col {
-            padding: 2rem 1.8rem;
-            background: var(--card-bg);
-            color: var(--text-main);
-            box-shadow: 0 4px 28px #F4976C13;
-        }
-        .different-col .col-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1.1rem;
-            text-shadow: 0 0 6px #fffbe6cc;
-        }
-        .different-col ul {
-            padding-left: 1.3em;
-            margin: 0;
-            list-style-position: outside;
-        }
-        .different-col ul li {
-            color: var(--text-main);
-            font-size: 1.01rem;
-            margin-bottom: 0.8em;
-            font-weight: 500;
-            opacity: 0.93;
-            line-height: 1.5;
-        }
-        .different-col ul li::marker {
-             color: var(--accent);
-             font-weight: bold;
-        }
-        .different-col ul li strong {
-            font-weight: 700;
-        }
-        
-        .modal-bg {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(251,232,166,0.42);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.3s;
-            opacity: 0;
-        }
-        .modal-bg.active { display: flex; opacity: 1; animation: fadeInModal 0.4s;}
-        @keyframes fadeInModal { 0% { opacity: 0; } 100% { opacity: 1; } }
-        .modal {
-            background: #fffbeedb;
-            border-radius: 25px;
-            border: 1.5px solid #D2FDFF;
-            box-shadow: 0 0 36px 2px #B4DFE560, 0 0 0 1.5px #FBE8A6 inset;
-            padding: 2.4rem 1.7rem 2.1rem 1.7rem;
-            width: 90%;
-            max-width: 420px;
-            position: relative;
-            animation: fadeInUp 0.5s cubic-bezier(.4,0,.2,1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            z-index: 2;
-            backdrop-filter: blur(18px);
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 18px;
-            font-size: 1.9rem;
-            color: var(--accent);
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: color var(--transition);
-            z-index: 2;
-            text-shadow: 0 0 8px #fffbe6cc;
-            line-height: 1;
-        }
-        .modal-close:hover { color: #f8834a;}
-        .modal h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1.4rem;
-            color: var(--accent);
-            text-shadow: 0 0 10px #fffbe6bb;
-        }
-        .modal form {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        .modal label {
-            font-weight: 600;
-            color: var(--accent);
-            font-size: 0.96rem;
-            margin-bottom: 0.18rem;
-            text-shadow: 0 0 7px #fffbe6aa;
-        }
-        .modal input, .modal select, .modal textarea {
-            width: 100%;
-            padding: 0.7rem 0.92rem;
-            border-radius: 9px;
-            border: var(--input-border);
-            background: var(--input-glass);
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--text-main);
-            transition: var(--transition);
-            box-shadow: 0 1.5px 8px #F4976C11;
-            outline: none;
-            backdrop-filter: blur(9px);
-        }
-        .modal input:focus, .modal select:focus, .modal textarea:focus {
-            border-color: var(--accent);
-            background: rgba(244,151,108,0.13);
-            color: var(--text-main);
-            box-shadow: 0 0 12px #F4976C33;
-        }
-        .modal .submit-btn {
-            margin-top: 0.8rem;
-            padding: 0.82rem 0;
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 40px;
-            font-size: 1.08rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 1.5px 8px #F4976C33;
-            transition: var(--transition);
-            width: 100%;
-            max-width: 270px;
-            align-self: center;
-            letter-spacing: 0.01em;
-            filter: brightness(1.10);
-        }
-        .modal .submit-btn:hover {
-            background: #f8834a;
-            color: #fffbe6;
-            box-shadow: 0 8px 24px #F4976C44;
-            transform: scale(1.05);
-            filter: brightness(1.17);
-        }
-        .modal .success-msg {
-            color: var(--accent);
-            font-size: 1.25rem;
-            font-weight: 800;
-            text-align: center;
-            margin-top: 1.3rem;
-            animation: fadeInUp 1.1s;
-            text-shadow: 0 0 10px #fffbe6cc;
-        }
-        footer {
-            margin-top: 4rem;
-            padding: 2.5rem 7vw 1.5rem 7vw;
-            background: rgba(255,255,255,0.55);
-            border-top-left-radius: 22px;
-            border-top-right-radius: 22px;
-            box-shadow: 0 -2px 20px #F4976C22;
-            text-align: center;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        .celestial-gradient {
+            background: linear-gradient(90deg, var(--accent-gold-hover), var(--accent-gold));
+        }
+        .celestial-gradient-text {
+            background: linear-gradient(90deg, var(--accent-gold-hover), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
-            border-top: 1.5px solid #D2FDFF;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .footer-row {
-            display: flex; align-items: center; justify-content: center; gap: 1.7rem; flex-wrap: wrap; margin-bottom: 0.7rem;
+        .online-dot {
+            animation: pulse 2s infinite;
         }
-        .footer-logo {
-            font-size: 1.36rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: -1px;
-            margin-right: 0.7rem;
-            text-shadow: 0 0 11px #fffbe6bb;
-        }
-        .footer-social {
-            display: flex; gap: 1.1rem;
-        }
-        .footer-social a {
-            color: var(--accent);
-            font-size: 1.55rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #D2FDFF;
-            border-radius: 50%;
-            width: 38px; height: 38px;
-            transition: var(--transition);
-            border: 1.5px solid #B4DFE5;
-            box-shadow: 0 0 8px #F4976C22;
-            backdrop-filter: blur(5px);
-        }
-        .footer-social a:hover { background: var(--accent); color: #fff; box-shadow: 0 0 18px #F4976C77; }
-        .footer-text { color: var(--text-main); font-size: 0.99rem; margin-top: 0.35rem; letter-spacing: 0.01em; opacity: 0.82;}
-        
-        @media (max-width: 950px) {
-            header {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 2.6rem;
-                min-height: auto;
-                padding-top: 4rem;
-                padding-bottom: 4rem;
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
             }
-            .hero-info, .hero-graphic { min-width: 0; }
-        }
-        @media (max-width: 768px) {
-            .different-section { grid-template-columns: 1fr; }
-            nav { padding: 1.2rem 4vw; }
-            header, .section { padding: 0 4vw; }
-             .who-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-        }
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                position: fixed;
-                top: 70px;
-                right: 4vw;
-                background: #fffbeedb;
-                box-shadow: 0 8px 32px #B4DFE570;
-                border-radius: 12px;
-                flex-direction: column;
-                gap: 1.07rem;
-                padding: 1.2rem 1.4rem;
-                z-index: 100;
-                border: 1.5px solid #D2FDFF;
-                backdrop-filter: blur(14px);
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
             }
-            .nav-links.open { display: flex; animation: fadeInUp 0.3s;}
-            .nav-toggle { display: flex; }
+        }
+        .modal-content {
+             animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes slide-up {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-[#0f0524] text-gray-200">
 
-    <nav>
-        <span class="logo">SwapEra</span>
-        <div class="nav-links" id="navLinks">
-            <a href="#why">Why SwapEra?</a>
-            <a href="#how">How It Works</a>
-            <a href="#features">Features</a>
-            <a href="#who">Who’s It For?</a>
-            <a href="#register" class="cta-btn" onclick="openModal()">Join Waitlist</a>
+    <!-- Header Section -->
+    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50 border-b border-white/10">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-4">
+                <a href="#" class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m14.5 9-5 5"/><path d="m9.5 9 5 5"/></svg>
+                    <span class="text-2xl font-bold celestial-gradient-text">SwapEra</span>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-8 text-lg">
+                    <a href="#marketplace" class="hover:text-amber-400 transition-colors duration-300">Find Skills</a>
+                    <a href="#how" class="hover:text-amber-400 transition-colors duration-300">How It Works</a>
+                    <a href="#why" class="hover:text-amber-400 transition-colors duration-300">Why Us?</a>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="#" class="px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
+                    <a href="#" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
+                </div>
+
+                <button id="mobile-menu-button" class="lg:hidden text-white">
+                    <i data-lucide="menu"></i>
+                </button>
+            </nav>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
-
-    <header id="home">
-        <div class="hero-info">
-            <div class="hero-glass">
-                <div class="hero-title">A New Era of Learning is Coming Soon.</div>
-                <div class="hero-subtext">Swap Skills. Share Growth. For Free.</div>
-                <div class="hero-desc">Welcome to India’s first hyperlocal skill-swapping community. Connect with people near you, exchange skills you have for skills you want, and grow together without spending a rupee.</div>
-                <button class="cta-btn" id="registerBtn">Join the Waitlist & Get 5 Free Swaps!</button>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900">
+            <a href="#marketplace" class="block py-3 px-4 text-lg hover:bg-slate-700">Find Skills</a>
+            <a href="#how" class="block py-3 px-4 text-lg hover:bg-slate-700">How It Works</a>
+            <a href="#why" class="block py-3 px-4 text-lg hover:bg-slate-700">Why Us?</a>
+            <div class="p-4 border-t border-slate-800 space-y-3">
+                 <a href="#" class="block w-full text-center px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
+                 <a href="#" class="block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
             </div>
-        </div>
-        <div class="hero-graphic floating">
-            <svg width="340" height="260" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="55" y="170" width="230" height="22" rx="8" fill="#F4976C"/>
-                <rect x="65" y="105" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
-                <ellipse cx="100" cy="138" rx="15" ry="18" fill="#FBE8A6"/>
-                <ellipse cx="100" cy="133" rx="7" ry="7.8" fill="#F4976C"/>
-                <rect x="205" y="95" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
-                <ellipse cx="240" cy="128" rx="15" ry="18" fill="#FBE8A6"/>
-                <ellipse cx="240" cy="123" rx="7" ry="7.8" fill="#303C6C"/>
-                <ellipse cx="90" cy="190" rx="22" ry="23" fill="#F4976C"/>
-                <ellipse cx="90" cy="171" rx="14" ry="13.5" fill="#fff"/>
-                <ellipse cx="90" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
-                <ellipse cx="250" cy="190" rx="22" ry="23" fill="#B4DFE5"/>
-                <ellipse cx="250" cy="171" rx="14" ry="13.5" fill="#fff"/>
-                <ellipse cx="250" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
-                <rect x="120" y="67" width="55" height="23" rx="10" fill="#fff" stroke="#F4976C" stroke-width="1.5"/>
-                <ellipse cx="130" cy="79" rx="3" ry="3" fill="#F4976C"/>
-                <ellipse cx="140" cy="79" rx="3" ry="3" fill="#F4976C"/>
-                <ellipse cx="150" cy="79" rx="3" ry="3" fill="#F4976C"/>
-                <rect x="170" y="42" width="55" height="23" rx="10" fill="#fff" stroke="#B4DFE5" stroke-width="1.5"/>
-                <ellipse cx="180" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-                <ellipse cx="190" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-                <ellipse cx="200" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-                <rect x="50" y="40" width="20" height="10" rx="2" fill="#FBE8A6" stroke="#F4976C" stroke-width="1"/>
-                <rect x="270" y="60" width="22" height="12" rx="2" fill="#FBE8A6" stroke="#B4DFE5" stroke-width="1"/>
-                <circle cx="70" cy="60" r="2.5" fill="#F4976C"/>
-                <circle cx="280" cy="75" r="2.5" fill="#B4DFE5"/>
-                <polygon points="220,27 223,32 229,33 225,37 226,43 220,40 214,43 215,37 211,33 217,32" fill="#D2FDFF"/>
-            </svg>
         </div>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <section class="section fade-scroll" id="why">
-            <div class="section-title-row">
-                <h2 style="text-align:center;">Why You'll Love SwapEra</h2>
-            </div>
-            <div class="why-cards">
-                <div class="why-card">
-                    <span class="icon" aria-label="Free Learning">🔁</span>
-                    <span class="card-title">Barter, Not Pay</span>
-                    <span class="card-desc">Your knowledge is your currency. Teach a skill to earn credits and learn a new one for free.</span>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
+             <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-slate-900/10 to-transparent"></div>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                    Swap a Skill, <span class="celestial-gradient-text">Gain a Future.</span> For Free.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    India's first skill-swapping community. Teach what you know, learn what you want. Your knowledge is your only currency.
+                </p>
+                <div class="flex justify-center items-center gap-4 flex-wrap">
+                    <a href="#marketplace" class="px-8 py-4 rounded-full celestial-gradient text-slate-900 text-lg font-bold shadow-lg shadow-amber-500/20 transform hover:scale-105 transition-transform duration-300">
+                        Find Your First Swap
+                    </a>
                 </div>
-                <div class="why-card">
-                    <span class="icon" aria-label="Skill-for-skill">📍</span>
-                    <span class="card-title">Hyperlocal Connections</span>
-                    <span class="card-desc">Find and connect with fellow learners and teachers in your own city for trusted, face-to-face (or online) swaps.</span>
-                </div>
-                <div class="why-card">
-                    <span class="icon" aria-label="Real Growth">💬</span>
-                    <span class="card-title">Unlimited Free Chat</span>
-                    <span class="card-desc">Once you match with someone for a swap, you can chat with them for free to coordinate and connect.</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section fade-scroll" id="how">
-            <div class="section-title-row">
-                <h2 style="text-align:center;">How It Works</h2>
-            </div>
-            <div class="how-cards" id="howCards">
-                <div class="how-card">
-                    <span class="icon" aria-label="Profile">👤</span>
-                    <span class="step-title">1. Create Your Skill Profile</span>
-                </div>
-                <div class="how-card">
-                    <span class="icon" aria-label="Skills">📝</span>
-                    <span class="step-title">2. List What You'll Teach & Learn</span>
-                </div>
-                <div class="how-card">
-                    <span class="icon" aria-label="Match">🤝</span>
-                    <span class="step-title">3. Request & Confirm Swaps</span>
-                </div>
-                <div class="how-card">
-                    <span class="icon" aria-label="Live">💬</span>
-                    <span class="step-title">4. Chat & Schedule Your Session!</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section fade-scroll" id="features">
-             <div class="section-title-row">
-                <h2 style="text-align:center;">What Makes SwapEra Different</h2>
-            </div>
-            <div class="different-section">
-                <div class="different-col">
-                    <div class="col-title">Our Unique Approach</div>
-                    <ul>
-                        <li><strong>Barter-First Model:</strong> Your skills are valuable. Use them to learn, not just to earn.</li>
-                        <li><strong>Trust & Safety:</strong> We start with manual matching in beta to ensure quality connections.</li>
-                        <li><strong>Free & Unlimited Chat:</strong> No pay-per-message. Once matched, communication is open and free.</li>
-                        <li><strong>Community Focused:</strong> Earn more swaps by referring friends. The platform grows with you.</li>
-                        <li><strong>Simple & Transparent:</strong> No complex algorithms. See profiles, request swaps, and learn.</li>
-                    </ul>
-                </div>
-                <div class="different-col">
-                    <div class="col-title">Key Features You'll Get</div>
-                    <ul>
-                        <li><strong>Skill Marketplace:</strong> A dashboard to find people who want to learn what you teach.</li>
-                        <li><strong>5 Free Swaps:</strong> Every new user gets 5 free swaps to kickstart their journey.</li>
-                        <li><strong>Swap History:</strong> Keep track of your completed sessions and feedback.</li>
-                        <li><strong>Skill Swap Profiles:</strong> See what others offer and what they're looking for at a glance.</li>
-                        <li><strong>Direct Scheduling:</strong> Coordinate directly with your match to find the perfect time to learn.</li>
-                    </ul>
+                <div class="mt-16 flex justify-center space-x-12 text-gray-300">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold celestial-gradient-text">10,000+</p>
+                        <p>Active Swappers</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold celestial-gradient-text">500+</p>
+                        <p>Skills Available</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold celestial-gradient-text">100%</p>
+                        <p>Free to Swap</p>
+                    </div>
                 </div>
             </div>
         </section>
         
-        <section class="section fade-scroll">
-            <div class="vm-section">
-                <div class="vm-title">Our Vision</div>
-                <div class="vm-quote">“To build India’s most inclusive learning community where growth has no cost.”</div>
+        <!-- Top Skill Givers Section -->
+        <section id="marketplace" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Connect with Top Skill Givers</h2>
+                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Find verified people from your city, ready to teach and learn. Your next skill is just a swap away.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    <!-- Skill Giver Card 1 -->
+                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Riya" alt="Riya" class="w-full h-56 object-cover">
+                            <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
+                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="giver-name text-xl font-bold text-white">Riya S.</h3>
+                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Gurugram</div>
+                            <div class="text-sm space-y-1 mb-3">
+                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Graphic Design</span></p>
+                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Public Speaking</span></p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <span class="text-xs ml-2 text-gray-400">(58 Swaps)</span>
+                            </div>
+                            <div class="mt-auto grid grid-cols-2 gap-3">
+                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
+                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- More cards... -->
+                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Amit" alt="Amit" class="w-full h-56 object-cover">
+                            <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
+                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="giver-name text-xl font-bold text-white">Amit K.</h3>
+                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Noida</div>
+                            <div class="text-sm space-y-1 mb-3">
+                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Python & Web Dev</span></p>
+                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Yoga</span></p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star-half" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <span class="text-xs ml-2 text-gray-400">(92 Swaps)</span>
+                            </div>
+                            <div class="mt-auto grid grid-cols-2 gap-3">
+                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
+                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Sneha" alt="Sneha" class="w-full h-56 object-cover">
+                            <span class="absolute top-3 right-3 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-full">Offline</span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="giver-name text-xl font-bold text-white">Sneha P.</h3>
+                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Mumbai</div>
+                            <div class="text-sm space-y-1 mb-3">
+                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Baking & Cooking</span></p>
+                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Digital Marketing</span></p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <span class="text-xs ml-2 text-gray-400">(121 Swaps)</span>
+                            </div>
+                            <div class="mt-auto grid grid-cols-2 gap-3">
+                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
+                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                        <div class="relative">
+                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Varun" alt="Varun" class="w-full h-56 object-cover">
+                             <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
+                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
+                                <span>Online</span>
+                            </span>
+                        </div>
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="giver-name text-xl font-bold text-white">Varun M.</h3>
+                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Delhi</div>
+                            <div class="text-sm space-y-1 mb-3">
+                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Financial Literacy</span></p>
+                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Guitar Basics</span></p>
+                            </div>
+                            <div class="flex items-center mb-4">
+                               <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star-half" class="w-4 h-4 text-yellow-400 fill-current"></i>
+                                <span class="text-xs ml-2 text-gray-400">(45 Swaps)</span>
+                            </div>
+                           <div class="mt-auto grid grid-cols-2 gap-3">
+                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
+                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="#" class="px-8 py-3 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300 text-lg">
+                        View All Skill Givers
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section class="section fade-scroll" id="who">
-            <div class="section-title-row">
-                <h2 style="text-align:center;">Who is SwapEra For?</h2>
-            </div>
-            <div class="who-grid">
-                <div class="who-card"><span class="icon">🎓</span>Students</div>
-                <div class="who-card"><span class="icon">💼</span>Freshers</div>
-                <div class="who-card"><span class="icon">👔</span>Professionals</div>
-                <div class="who-card"><span class="icon">🔄</span>Job Switchers</div>
-                <div class="who-card"><span class="icon">🎨</span>Hobbyists</div>
-                <div class="who-card"><span class="icon">🧑‍💻</span>Freelancers</div>
+        <!-- How It Works Section -->
+        <section id="how" class="py-20 bg-black/20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Start Swapping in 3 Simple Steps</h2>
+                <div class="grid md:grid-cols-3 gap-10 text-center max-w-5xl mx-auto">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">1</div>
+                        <h3 class="text-2xl font-semibold mb-2">Create Profile</h3>
+                        <p class="text-gray-400">Sign up for free and list the skills you can teach and want to learn.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">2</div>
+                        <h3 class="text-2xl font-semibold mb-2">Request a Swap</h3>
+                        <p class="text-gray-400">Find someone with a skill you want and send a swap request. Every user gets 5 free swaps!</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">3</div>
+                        <h3 class="text-2xl font-semibold mb-2">Connect & Chat</h3>
+                        <p class="text-gray-400">Once your request is accepted, chat for free to schedule your skill-sharing session.</p>
+                    </div>
+                </div>
             </div>
         </section>
         
     </main>
 
-    <div class="modal-bg" id="modalBg" aria-modal="true" role="dialog">
-        <div class="modal" id="registerModal">
-            <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
-            <h2>Join the Waitlist!</h2>
-            <form id="waitlistForm" autocomplete="off">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" required placeholder="Enter your name">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="you@email.com">
-                <label for="mobile">Mobile Number</label>
-                <input type="tel" id="mobile" name="mobile" required pattern="\d{10,15}" placeholder="e.g., 9876543210">
-                <label for="teach">A Skill You Can Teach</label>
-                <select id="teach" name="teach" required>
-                    <option value="">Select a skill</option>
-                    <option>English Speaking</option> <option>Digital Marketing</option> <option>Yoga</option> <option>Photoshop</option> <option>Coding Basics</option> <option>Cooking</option> <option>Public Speaking</option> <option>Excel</option> <option>Content Writing</option> <option>Graphic Design</option> <option>UI/UX Design</option> <option>MS Office</option> <option>Video Editing</option> <option>LinkedIn Profile Building</option> <option>Financial Literacy</option>
-                </select>
-                <label for="learn">A Skill You Want to Learn</label>
-                <select id="learn" name="learn" required>
-                    <option value="">Select a skill</option>
-                     <option>English Speaking</option> <option>Digital Marketing</option> <option>Yoga</option> <option>Photoshop</option> <option>Coding Basics</option> <option>Cooking</option> <option>Public Speaking</option> <option>Excel</option> <option>Content Writing</option> <option>Graphic Design</option> <option>UI/UX Design</option> <option>MS Office</option> <option>Video Editing</option> <option>LinkedIn Profile Building</option> <option>Financial Literacy</option>
-                </select>
-                <button class="submit-btn" type="submit">Get Early Access</button>
-            </form>
+    <!-- Footer -->
+    <footer class="bg-black/20 border-t border-white/10 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
+                <!-- About -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">SwapEra</h4>
+                    <p class="text-gray-400">The community-driven platform for skill exchange. Learn, teach, and grow without cost.</p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#marketplace" class="text-gray-400 hover:text-amber-400">Skill Marketplace</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Knowledge Hub</a></li>
+                    </ul>
+                </div>
+                <!-- Support -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Support</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <!-- Social -->
+                <div>
+                    <h4 class="text-xl font-bold mb-4 text-white">Follow Us</h4>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 mt-8 text-center text-gray-500">
+                <p>&copy; 2025 SwapEra. All Rights Reserved.</p>
+            </div>
         </div>
-    </div>
-
-    <div class="modal-bg" id="successBg">
-        <div class="modal" style="max-width:340px;">
-            <button class="modal-close" onclick="closeSuccess()" aria-label="Close">&times;</button>
-            <div class="success-msg">✅<br>You’re on the list! We'll notify you when SwapEra launches.</div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-row">
-            <span class="footer-logo">SwapEra</span>
-            <span class="footer-social">
-                <a href="#" target="_blank" aria-label="Instagram"><i class="si si-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="LinkedIn"><i class="si si-linkedin"></i></a>
-            </span>
-        </div>
-        <div class="footer-text">© 2025 SwapEra. All rights reserved.</div>
     </footer>
+
+    <!-- Swap Request Modal -->
+    <div id="swap-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content glass-card rounded-2xl w-full max-w-md text-center p-8 shadow-2xl relative">
+            <button id="close-swap-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+            <i data-lucide="refresh-cw" class="w-16 h-16 mx-auto text-amber-400 celestial-gradient-text"></i>
+            <h3 id="swap-modal-name" class="font-bold text-2xl text-white mt-4">Confirm Swap Request</h3>
+            <p class="text-gray-300 my-2">You are about to request a swap with <strong class="font-bold" id="modal-giver-name"></strong>.</p>
+            <div class="text-left bg-black/20 p-4 rounded-lg my-4 space-y-2">
+                <p><span class="font-semibold text-gray-400">You will teach:</span> <span class="font-bold text-white" id="modal-your-skill"></span></p>
+                <p><span class="font-semibold text-gray-400">You will learn:</span> <span class="font-bold text-white" id="modal-their-skill"></span></p>
+            </div>
+            <p class="text-amber-400 font-semibold text-lg">This will use 1 of your 5 free swaps.</p>
+            <button class="mt-6 w-full p-4 celestial-gradient rounded-full text-slate-900 font-bold text-lg hover:opacity-90 transition-opacity">
+                Send Request
+            </button>
+        </div>
+    </div>
+
+
     <script>
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if(link.getAttribute('href').startsWith('#')){
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                         const offset = navLinks.offsetHeight;
-                         window.scrollTo({
-                            top: targetElement.offsetTop - (navLinks.classList.contains('open') ? 0 : 80) ,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-                navLinks.classList.remove('open');
-            });
-        });
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        function fadeInOnScroll() {
-            const sections = document.querySelectorAll('.fade-scroll');
-            sections.forEach(sec => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 100 && rect.bottom >= 0) {
-                    sec.style.opacity = '1';
-                    sec.style.transform = 'translateY(0)';
-                }
-            });
-             const cards = document.querySelectorAll('.how-card');
-             cards.forEach((card, i) => {
-                 const cardTop = card.getBoundingClientRect().top;
-                 if (cardTop < window.innerHeight - 80) {
-                     setTimeout(() => card.classList.add('visible'), i * 150);
-                 }
-             });
-        }
-        document.querySelectorAll('.fade-scroll').forEach(sec => {
-            sec.style.opacity = '0';
-            sec.style.transform = 'translateY(40px)';
-            sec.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-        window.addEventListener('scroll', fadeInOnScroll);
-        window.addEventListener('DOMContentLoaded', fadeInOnScroll);
-
-        const modalBg = document.getElementById('modalBg');
-        const successBg = document.getElementById('successBg');
         
-        function openModal() {
-            modalBg.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        // Modal Logic
+        const swapModal = document.getElementById('swap-modal');
+        const closeSwapModalBtn = document.getElementById('close-swap-modal');
+        const swapButtons = document.querySelectorAll('.swap-btn');
+
+        swapButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.skill-giver-card');
+                const giverName = card.querySelector('.giver-name').innerText;
+                const theirSkill = card.querySelector('.giver-teaches').innerText;
+                const yourSkill = card.querySelector('.giver-wants').innerText;
+
+                document.getElementById('modal-giver-name').innerText = giverName;
+                document.getElementById('modal-your-skill').innerText = yourSkill;
+                document.getElementById('modal-their-skill').innerText = theirSkill;
+
+                swapModal.classList.remove('hidden');
+            });
+        });
 
         function closeModal() {
-            modalBg.classList.remove('active');
-            document.body.style.overflow = '';
+            swapModal.classList.add('hidden');
         }
 
-        function closeSuccess() {
-            successBg.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-        
-        document.getElementById('registerBtn').addEventListener('click', openModal);
-        document.querySelectorAll('.nav-links a[href="#register"], .flex-btn').forEach(btn => btn.addEventListener('click', openModal));
-        document.getElementById('closeModal').addEventListener('click', closeModal);
-        modalBg.addEventListener('click', (e) => e.target === modalBg && closeModal());
-
-        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            closeModal();
-            successBg.style.display = 'flex';
-            successBg.style.opacity = '1';
-            this.reset();
-        });
-
-        successBg.addEventListener('click', (e) => (e.target === successBg || e.target.classList.contains('modal-close')) && closeSuccess());
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") {
-                if (modalBg.classList.contains('active')) closeModal();
-                if (successBg.style.display === 'flex') closeSuccess();
+        closeSwapModalBtn.addEventListener('click', closeModal);
+        swapModal.addEventListener('click', (e) => {
+            if (e.target === swapModal) {
+                closeModal();
             }
         });
+        window.addEventListener('keydown', (e) => {
+             if (e.key === "Escape" && !swapModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        })
+
     </script>
 </body>
 </html>
