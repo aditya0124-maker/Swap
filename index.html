@@ -1,646 +1,2095 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwapEra - Swap Skills, Share Growth</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        :root {
-            --bg-dark: #0f0524;
-            --bg-slate: #1e293b;
-            --accent-gold: #fca326;
-            --accent-gold-hover: #fcc42e;
-            --text-light: #e0e0e0;
-            --text-dark: #1a1a1a;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
-        .celestial-gradient {
-            background: linear-gradient(90deg, var(--accent-gold-hover), var(--accent-gold));
-        }
-        .celestial-gradient-text {
-            background: linear-gradient(90deg, var(--accent-gold-hover), var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .online-dot {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.1);
-            }
-        }
-        .modal-content, .panel-content {
-             animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-        @keyframes slide-up {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .notification-panel {
-            animation: slide-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-        @keyframes slide-in {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
-            }
-        }
+  <meta charset="UTF-8">
 
-        /* Custom scrollbar for notifications */
-        .notification-body::-webkit-scrollbar {
-            width: 6px;
-        }
-        .notification-body::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
-        }
-        .notification-body::-webkit-scrollbar-thumb {
-            background-color: var(--accent-gold);
-            border-radius: 6px;
-        }
-    </style>
+  <title>SwapEra – Coming Soon</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Poppins Google Font -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Simple Icons CDN for Social -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css">
+
+  <style>
+
+    :root {
+
+      --bg-gradient: linear-gradient(135deg, #FBE8A6 60%, #fffbe6 100%);
+
+      --bg-main: #FBE8A6;
+
+      --card-bg: #B4DFE5;
+
+      --accent: #F4976C;
+
+      --highlight: #D2FDFF;
+
+      --text-main: #303C6C;
+
+      --white: #fff;
+
+      --border-radius: 20px;
+
+      --glass-bg: rgba(180, 223, 229, 0.76);
+
+      --glass-blur: blur(14px);
+
+      --glass-border: 1.5px solid #D2FDFF;
+
+      --glass-radius: 20px;
+
+      --glass-shadow: 0 8px 28px 0 rgba(244,151,108,0.10), 0 2px 9px #fffbe6;
+
+      --transition: all 0.28s cubic-bezier(.4,0,.2,1);
+
+      --btn-shadow: 0 2px 16px 0 rgba(244,151,108,0.12);
+
+      --input-glass: rgba(255,255,255,0.78);
+
+      --input-border: 1.2px solid #B4DFE5;
+
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+
+      font-family: 'Poppins', sans-serif;
+
+      color: var(--text-main);
+
+      background: var(--bg-gradient), var(--bg-main);
+
+      min-height: 100vh;
+
+      margin: 0;
+
+      padding: 0;
+
+      overflow-x: hidden;
+
+      position: relative;
+
+    }
+
+    body::before {
+
+      /* painterly sunlight, soft illustration effect */
+
+      content: "";
+
+      position: fixed;
+
+      z-index: 0;
+
+      left: 0; top: 0; width: 100vw; height: 100vh;
+
+      background:
+
+        radial-gradient(circle at 20% 10%, #fffbe6 32%, transparent 70%),
+
+        radial-gradient(circle at 85% 12%, #D2FDFF 17%, transparent 66%),
+
+        radial-gradient(circle at 70% 80%, #FBE8A6 18%, transparent 82%),
+
+        linear-gradient(145deg, #FBE8A6 80%, #fffbe6 100%);
+
+      opacity: 0.6;
+
+      pointer-events: none;
+
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Navbar Glassmorphic */
+
+    nav {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 1.4rem 7vw;
+
+      background: rgba(255,255,255,0.57);
+
+      border-bottom: 1.5px solid #D2FDFF;
+
+      backdrop-filter: blur(11px);
+
+      border-radius: 0 0 var(--glass-radius) var(--glass-radius);
+
+      box-shadow: 0 4px 18px 0 rgba(180,223,229,0.14);
+
+      position: sticky; top: 0; z-index: 30;
+
+      transition: var(--transition);
+
+      margin-bottom: 2rem;
+
+    }
+
+    .logo {
+
+      font-weight: 800; font-size: 1.7rem; letter-spacing: -1px;
+
+      color: var(--accent); user-select: none;
+
+      text-shadow: 0 2px 10px #fffbe6bb;
+
+    }
+
+    .nav-links {
+
+      display: flex; gap: 2.3rem; align-items: center;
+
+    }
+
+    .nav-links a {
+
+      font-weight: 500; font-size: 1.08rem;
+
+      color: var(--text-main); transition: color .24s;
+
+      position: relative; padding: 0.3rem 0;
+
+      letter-spacing: 0.01em;
+
+    }
+
+    .nav-links a:hover,
+
+    .nav-links a.active {
+
+      color: var(--accent);
+
+      text-shadow: 0 0 7px #FBE8A6;
+
+    }
+
+    .nav-links a.active::after,
+
+    .nav-links a:hover::after {
+
+      content: '';
+
+      display: block;
+
+      margin: 0.1rem auto 0;
+
+      width: 36%;
+
+      height: 2px;
+
+      border-radius: 2px;
+
+      background: var(--accent);
+
+      box-shadow: 0 0 4px 1px #FBE8A6;
+
+    }
+
+    .nav-links .cta-btn {
+
+      padding: 0.5rem 1.35rem !important;
+
+      font-size:1.04rem !important;
+
+      background: var(--accent);
+
+      color: #fff!important;
+
+      border-radius: 40px;
+
+      font-weight: 600;
+
+      border: none;
+
+      box-shadow: var(--btn-shadow);
+
+      transition: var(--transition);
+
+      margin-left: 1.6rem;
+
+      display: inline-block;
+
+      position: relative;
+
+      z-index: 1;
+
+      text-shadow: 0 0 8px #fffbe6bb;
+
+    }
+
+    .nav-links .cta-btn:hover {
+
+      background: #f8834a;
+
+      color: #fffbe6 !important;
+
+      box-shadow: 0 8px 24px #F4976C40;
+
+      transform: scale(1.07);
+
+      filter: brightness(1.07);
+
+    }
+
+    .nav-toggle {
+
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 1rem;
+
+      z-index: 120;
+
+    }
+
+    .nav-toggle span {
+
+      width: 26px; height: 3px; background: var(--accent); border-radius: 2px;
+
+      transition: background 0.2s;
+
+    }
+
+    header, .section {
+
+      max-width: 1120px;
+
+      margin: 0 auto;
+
+      padding: 0 7vw;
+
+    }
+
+    /* Hero Section */
+
+    header {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 2.5rem;
+
+      min-height: 85vh;
+
+      padding-top: 2.5rem;
+
+      z-index: 2;
+
+      position: relative;
+
+    }
+
+    .hero-info {
+
+      flex: 1 1 350px; min-width: 270px; z-index: 2;
+
+      display: flex; flex-direction: column; justify-content: center;
+
+      animation: fadeInUp 1.0s cubic-bezier(.4,0,.2,1);
+
+    }
+
+    .hero-glass {
+
+      background: rgba(255,255,255,0.65);
+
+      backdrop-filter: blur(18px);
+
+      border-radius: 36px;
+
+      border: 1.5px solid #D2FDFF;
+
+      box-shadow: 0 12px 54px 0 #B4DFE540, 0 0 0 1.5px #D2FDFF inset;
+
+      padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+
+      position: relative;
+
+      z-index: 2;
+
+      overflow: hidden;
+
+      transition: var(--transition);
+
+      animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
+
+    }
+
+    .hero-title {
+
+      font-size: 2.65rem;
+
+      font-weight: 700;
+
+      color: var(--text-main);
+
+      text-shadow: 0 2px 14px #fffbe6bb, 0 2px 10px #fff;
+
+      margin-bottom: 0.75rem;
+
+      letter-spacing: -1.5px;
+
+      line-height: 1.13;
+
+      animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+
+    }
+
+    .hero-subtext {
+
+      font-size: 1.18rem;
+
+      color: var(--accent);
+
+      font-weight: 600;
+
+      margin-bottom: 0.7rem;
+
+      text-shadow: 0 0 10px #D2FDFF88;
+
+      animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
+
+    }
+
+    .hero-desc {
+
+      font-size: 1.04rem;
+
+      color: #303C6C;
+
+      margin-bottom: 1.3rem;
+
+      line-height: 1.6;
+
+      animation: fadeInUp 1.4s cubic-bezier(.4,0,.2,1);
+
+      opacity: 0.85;
+
+    }
+
+    .cta-btn {
+
+      padding: 0.9rem 2.15rem;
+
+      background: var(--accent);
+
+      color: #fff;
+
+      border: none;
+
+      border-radius: 44px;
+
+      font-size: 1.15rem;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      box-shadow: var(--btn-shadow);
+
+      transition: var(--transition);
+
+      outline: none;
+
+      margin-bottom: 0.4rem;
+
+      letter-spacing: 0.04em;
+
+      filter: brightness(1.08);
+
+      text-shadow: 0 0 6px #fffbe6bb;
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    .cta-btn:hover, .cta-btn:focus {
+
+      background: #f8834a;
+
+      color: #fffbe6;
+
+      box-shadow: 0 8px 32px #F4976C55;
+
+      transform: scale(1.08);
+
+      filter: brightness(1.13);
+
+    }
+
+    .hero-graphic {
+
+      flex: 1 1 330px;
+
+      min-width: 240px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      position: relative;
+
+      min-height: 320px;
+
+      z-index: 1;
+
+      animation: floatY 4s infinite alternate cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
+
+      perspective: 1000px;
+
+      will-change: transform;
+
+      filter: drop-shadow(0 10px 64px #FBE8A650);
+
+    }
+
+    .floating { animation: floatY 3.3s ease-in-out infinite alternate; will-change: transform;}
+
+    @keyframes floatY { 0% {transform: translateY(0);} 100% {transform: translateY(-22px) scale(1.03) perspective(1000px) rotateY(5deg);} }
+
+    @keyframes fadeInUp { 0% {opacity: 0; transform: translateY(70px) scale(.98);} 100% {opacity: 1; transform: none;} }
+
+    /* Section Titles */
+
+    .section-title-row {
+
+      display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1rem;
+
+      justify-content: center;
+
+    }
+
+    .section-title-row svg {
+
+      width: 48px; height: 48px; flex-shrink: 0; filter: drop-shadow(0 2px 12px #B4DFE570);
+
+    }
+
+    .section h2, .section-title-row h2 {
+
+      color: var(--text-main);
+
+      font-weight: 600;
+
+      letter-spacing: 0.01em;
+
+      text-shadow: 0 0 8px #fffbe6cc;
+
+    }
+
+    /* Glass Card Section */
+
+    .section {
+
+      margin-top: 2.6rem;
+
+      margin-bottom: 2.6rem;
+
+      position: relative;
+
+      z-index: 2;
+
+    }
+
+    .glass-card, .why-card, .how-card, .flex-card, .vm-section, .who-card, .different-col {
+
+      background: var(--glass-bg);
+
+      backdrop-filter: var(--glass-blur);
+
+      border-radius: var(--glass-radius);
+
+      border: var(--glass-border);
+
+      box-shadow: var(--glass-shadow);
+
+      transition: var(--transition);
+
+      z-index: 1;
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+    .glass-card:hover, .why-card:hover, .how-card:hover, .flex-card:hover, .different-col:hover, .who-card:hover, .vm-section:hover {
+
+      box-shadow: 0 0 32px 7px #B4DFE533, 0 8px 32px #F4976C33;
+
+      filter: brightness(1.07);
+
+    }
+
+    /* Why Glass Cards */
+
+    .why-cards {
+
+      display: flex; gap: 2.1rem; justify-content: center;
+
+      margin: 2.2rem 0 0.7rem; flex-wrap: wrap;
+
+    }
+
+    .why-card {
+
+      display: flex; flex-direction: column; align-items: center;
+
+      padding: 2.2rem 1.8rem; min-width: 220px; max-width: 320px; flex: 1 1 210px;
+
+      cursor: default;
+
+      animation: fadeInUp 1.2s;
+
+      background: var(--card-bg);
+
+      color: var(--text-main);
+
+      box-shadow: 0 4px 28px #F4976C30;
+
+    }
+
+    .why-card .icon {
+
+      font-size: 2.7rem; margin-bottom: 1.05rem; color: var(--accent);
+
+      text-shadow: 0 0 12px #FBE8A6;
+
+    }
+
+    .why-card .card-title {
+
+      font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.55rem; text-align: center;
+
+      text-shadow: 0 0 10px #fffbe6bb;
+
+    }
+
+    .why-card .card-desc {
+
+      font-size: 1.01rem; color: var(--text-main); text-align: center; font-weight: 400;
+
+      opacity: 0.93;
+
+    }
+
+    /* How it works Glass Cards */
+
+    .how-cards {
+
+      display: flex; gap: 2rem; flex-wrap: wrap; margin: 2.3rem 0 1.4rem; justify-content: space-between;
+
+    }
+
+    .how-card {
+
+      display: flex; flex-direction: column; align-items: center;
+
+      padding: 1.8rem 1.2rem; min-width: 170px; max-width: 230px; flex: 1 1 180px;
+
+      opacity: 0; transform: translateX(60px); transition: var(--transition);
+
+      animation: fadeInUp 1.3s;
+
+      background: var(--card-bg);
+
+      color: var(--text-main);
+
+      box-shadow: 0 4px 28px #F4976C25;
+
+    }
+
+    .how-card.visible { opacity: 1; transform: none;}
+
+    .how-card .icon { font-size: 2.5rem; margin-bottom: 0.88rem; color: var(--accent);}
+
+    .how-card .step-title { font-size: 1.06rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center; color: var(--text-main);}
+
+    /* Floating Glass Cards */
+
+    .flex-cards {
+
+      display: flex; gap: 2rem; margin: 2.4rem 0 0.5rem; flex-wrap: wrap; justify-content: space-between;
+
+    }
+
+    .flex-card {
+
+      flex: 1 1 230px; min-width: 220px; max-width: 330px;
+
+      padding: 2.1rem 1.3rem; display: flex; flex-direction: column; align-items: flex-start;
+
+      animation: floatY 4s infinite alternate-reverse cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
+
+      background: var(--card-bg);
+
+      color: var(--text-main);
+
+      box-shadow: 0 4px 32px #F4976C22;
+
+    }
+
+    .flex-card .flex-title { font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; }
+
+    .flex-card .flex-desc { font-size: 1.06rem; color: var(--text-main); margin-bottom: 1.3rem; min-height: 48px; font-weight: 400; opacity: 0.93;}
+
+    .flex-card .flex-btn {
+
+      background: var(--accent);
+
+      color: #fff;
+
+      padding: 0.7rem 1.7rem;
+
+      border: none;
+
+      border-radius: 30px;
+
+      font-weight: 700;
+
+      font-size: 1em;
+
+      cursor: pointer;
+
+      transition: var(--transition);
+
+      box-shadow: var(--btn-shadow);
+
+      margin-bottom: 0.15rem;
+
+      align-self: flex-start;
+
+      letter-spacing: 0.01em;
+
+      text-shadow: 0 0 6px #fffbe6cc;
+
+      filter: brightness(1.10);
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    .flex-card .flex-btn:hover {
+
+      background: #f8834a;
+
+      color: #fffbe6;
+
+      box-shadow: 0 8px 28px #F4976C44;
+
+      transform: scale(1.05);
+
+      filter: brightness(1.18);
+
+    }
+
+    .flex-cards .flex-card:nth-child(1) { animation-delay: 0.25s;}
+
+    .flex-cards .flex-card:nth-child(2) { animation-delay: 0.38s;}
+
+    .flex-cards .flex-card:nth-child(3) { animation-delay: 0.52s;}
+
+    .flex-subtext {
+
+      font-size: 1.01rem;
+
+      color: var(--accent);
+
+      margin: 1.4rem 0 0.5rem 0;
+
+      font-style: italic;
+
+      text-align: center;
+
+      display: block;
+
+      width: 100%;
+
+      font-weight: 500;
+
+      background: #fffbe6;
+
+      border-radius: 12px;
+
+      padding: 0.6em 0 0.6em 0;
+
+      box-shadow: 0 0 12px #B4DFE570;
+
+      text-shadow: 0 0 6px #fffbe688;
+
+    }
+
+    /* Vision & Mission Glass */
+
+    .vm-section {
+
+      margin: 2.6rem 0;
+
+      padding: 2.1rem 1.2rem;
+
+      text-align: center;
+
+      font-weight: 600;
+
+      background: var(--card-bg);
+
+      color: var(--text-main);
+
+      box-shadow: 0 4px 28px #F4976C18;
+
+    }
+
+    .vm-section .vm-title {
+
+      font-size: 1.14rem;
+
+      font-weight: 600;
+
+      color: var(--accent);
+
+      margin-bottom: 1.1rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.09em;
+
+      text-shadow: 0 0 10px #fffbe6bb;
+
+    }
+
+    .vm-section .vm-quote {
+
+      font-size: 1.07rem; color: var(--text-main); font-style: italic; margin-bottom: 0.8rem; font-weight: 400;
+
+      opacity: 0.93;
+
+    }
+
+    /* Who Glass */
+
+    .who-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+
+      gap: 1.7rem;
+
+      max-width: 700px;
+
+      margin: 2.3rem auto 0 auto;
+
+      justify-items: center;
+
+    }
+
+    .who-card {
+
+      padding: 1.35rem 0.5rem;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      min-width: 90px;
+
+      max-width: 170px;
+
+      transition: var(--transition);
+
+      font-weight: 700;
+
+      color: var(--text-main);
+
+      font-size: 1.07rem;
+
+      cursor: default;
+
+      position: relative;
+
+      z-index: 2;
+
+      animation: fadeInUp 1.6s;
+
+      background: var(--card-bg);
+
+      box-shadow: 0 4px 28px #F4976C17;
+
+    }
+
+    .who-card .icon {
+
+      font-size: 2rem;
+
+      margin-bottom: 0.5rem;
+
+      color: var(--accent);
+
+      text-shadow: 0 0 8px #fffbe6cc;
+
+    }
+
+    .who-card:hover {
+
+      box-shadow: 0 0 35px 5px #B4DFE540;
+
+      transform: scale(1.08) perspective(1000px) rotateY(5deg);
+
+      filter: brightness(1.11);
+
+    }
+
+    /* What Makes Different Glass */
+
+    .different-section {
+
+      display: flex;
+
+      gap: 2.5rem;
+
+      margin: 2.7rem 0 1.4rem;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+    }
+
+    .different-col {
+
+      flex: 1 1 340px; min-width: 240px; max-width: 430px;
+
+      padding: 2rem 1.5rem 1.6rem 1.5rem; margin-bottom: 1.2rem;
+
+      animation: fadeInUp 1.7s cubic-bezier(.4,0,.2,1);
+
+      background: var(--card-bg);
+
+      color: var(--text-main);
+
+      box-shadow: 0 4px 28px #F4976C13;
+
+    }
+
+    .different-col .col-title {
+
+      font-size: 1.09rem;
+
+      font-weight: 600;
+
+      color: var(--accent);
+
+      margin-bottom: 1.1rem;
+
+      text-align: left;
+
+      text-shadow: 0 0 6px #fffbe6cc;
+
+    }
+
+    .different-col ul {
+
+      padding-left: 1.3em;
+
+      margin: 0;
+
+    }
+
+    .different-col ul li {
+
+      color: var(--text-main);
+
+      font-size: 1.01rem;
+
+      margin-bottom: 0.7em;
+
+      list-style: disc inside;
+
+      font-weight: 400;
+
+      opacity: 0.93;
+
+    }
+
+    .different-col ul li strong {
+
+      color: var(--accent);
+
+      font-weight: 700;
+
+    }
+
+    /* Modal Glass */
+
+    .modal-bg {
+
+      display: none;
+
+      position: fixed;
+
+      top: 0; left: 0; right: 0; bottom: 0;
+
+      background: rgba(251,232,166,0.42);
+
+      justify-content: center;
+
+      align-items: center;
+
+      z-index: 9999;
+
+      transition: var(--transition);
+
+    }
+
+    .modal-bg.active { display: flex; animation: fadeInModal 0.5s;}
+
+    @keyframes fadeInModal { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+    .modal {
+
+      background: #fffbeedb;
+
+      border-radius: 25px;
+
+      border: 1.5px solid #D2FDFF;
+
+      box-shadow: 0 0 36px 2px #B4DFE560, 0 0 0 1.5px #FBE8A6 inset;
+
+      padding: 2.4rem 1.7rem 2.1rem 1.7rem;
+
+      width: 100%;
+
+      max-width: 400px;
+
+      position: relative;
+
+      animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      overflow: hidden;
+
+      z-index: 2;
+
+      backdrop-filter: blur(18px);
+
+      transition: var(--transition);
+
+    }
+
+    .modal-close {
+
+      position: absolute;
+
+      top: 15px; right: 18px;
+
+      font-size: 1.7rem;
+
+      color: var(--accent);
+
+      background: none;
+
+      border: none;
+
+      cursor: pointer;
+
+      transition: color var(--transition);
+
+      z-index: 2;
+
+      text-shadow: 0 0 8px #fffbe6cc;
+
+    }
+
+    .modal-close:hover { color: #f8834a;}
+
+    .modal h2 {
+
+      font-size: 1.18rem;
+
+      font-weight: 600;
+
+      text-align: center;
+
+      margin-bottom: 1.4rem;
+
+      color: var(--accent);
+
+      text-shadow: 0 0 10px #fffbe6bb;
+
+    }
+
+    .modal form {
+
+      width: 100%;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.7rem;
+
+    }
+
+    .modal label {
+
+      font-weight: 600;
+
+      color: var(--accent);
+
+      font-size: 0.96rem;
+
+      margin-bottom: 0.18rem;
+
+      text-shadow: 0 0 7px #fffbe6aa;
+
+    }
+
+    .modal input, .modal select, .modal textarea {
+
+      width: 100%;
+
+      padding: 0.6rem 0.92rem;
+
+      border-radius: 7px;
+
+      border: var(--input-border);
+
+      background: var(--input-glass);
+
+      font-family: inherit;
+
+      font-size: 1rem;
+
+      color: var(--text-main);
+
+      margin-bottom: 0.02rem;
+
+      transition: var(--transition);
+
+      box-shadow: 0 1.5px 8px #F4976C11;
+
+      outline: none;
+
+      backdrop-filter: blur(9px);
+
+    }
+
+    .modal input:focus, .modal select:focus, .modal textarea:focus {
+
+      border-color: var(--accent);
+
+      background: rgba(244,151,108,0.13);
+
+      color: var(--text-main);
+
+      box-shadow: 0 0 12px #F4976C33;
+
+    }
+
+    .modal .submit-btn {
+
+      margin-top: 0.6rem;
+
+      padding: 0.82rem 0;
+
+      background: var(--accent);
+
+      color: #fff;
+
+      border: none;
+
+      border-radius: 40px;
+
+      font-size: 1.08rem;
+
+      font-weight: 600;
+
+      cursor: pointer;
+
+      box-shadow: 0 1.5px 8px #F4976C33;
+
+      transition: var(--transition);
+
+      align-self: center;
+
+      width: 100%;
+
+      max-width: 270px;
+
+      display: block;
+
+      letter-spacing: 0.01em;
+
+      filter: brightness(1.10);
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    .modal .submit-btn:hover {
+
+      background: #f8834a;
+
+      color: #fffbe6;
+
+      box-shadow: 0 8px 24px #F4976C44;
+
+      transform: scale(1.05);
+
+      filter: brightness(1.17);
+
+    }
+
+    .modal .success-msg {
+
+      color: var(--accent);
+
+      font-size: 1.16rem;
+
+      font-weight: 800;
+
+      text-align: center;
+
+      margin-top: 1.3rem;
+
+      animation: fadeInUp 1.1s;
+
+      text-shadow: 0 0 10px #fffbe6cc;
+
+    }
+
+    /* Footer Glass */
+
+    footer {
+
+      margin-top: 2.7rem;
+
+      padding: 2.1rem 7vw 1.1rem 7vw;
+
+      background: rgba(255,255,255,0.55);
+
+      border-top-left-radius: 22px;
+
+      border-top-right-radius: 22px;
+
+      box-shadow: 0 -2px 20px #F4976C22;
+
+      text-align: center;
+
+      backdrop-filter: blur(12px);
+
+      border-top: 1.5px solid #D2FDFF;
+
+    }
+
+    .footer-row {
+
+      display: flex; align-items: center; justify-content: center; gap: 1.7rem; flex-wrap: wrap; margin-bottom: 0.7rem;
+
+    }
+
+    .footer-logo {
+
+      font-size: 1.36rem;
+
+      font-weight: 700;
+
+      color: var(--accent);
+
+      letter-spacing: -1px;
+
+      margin-right: 0.7rem;
+
+      text-shadow: 0 0 11px #fffbe6bb;
+
+    }
+
+    .footer-social {
+
+      display: flex; gap: 1.1rem;
+
+    }
+
+    .footer-social a {
+
+      color: var(--accent);
+
+      font-size: 1.55rem;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #D2FDFF;
+
+      border-radius: 50%;
+
+      width: 38px; height: 38px;
+
+      transition: var(--transition);
+
+      border: 1.5px solid #B4DFE5;
+
+      box-shadow: 0 0 8px #F4976C22;
+
+      backdrop-filter: blur(5px);
+
+    }
+
+    .footer-social a:hover { background: var(--accent); color: #fff; box-shadow: 0 0 18px #F4976C77; }
+
+    .footer-text { color: var(--text-main); font-size: 0.99rem; margin-top: 0.35rem; letter-spacing: 0.01em; opacity: 0.82;}
+
+    /* Responsive */
+
+    @media (max-width: 950px) {
+
+      header {
+
+        flex-direction: column-reverse;
+
+        text-align: center;
+
+        gap: 2.6rem;
+
+        min-height: 60vh;
+
+      }
+
+      .hero-info, .hero-graphic { min-width: 0; }
+
+      .flex-cards, .how-cards, .why-cards, .different-section {
+
+        flex-direction: column; gap: 1.5rem;
+
+      }
+
+      .why-cards, .how-cards, .flex-cards { align-items: stretch; }
+
+      .different-section { gap: 1.2rem; }
+
+    }
+
+    @media (max-width: 700px) {
+
+      nav { padding: 1.2rem 4vw; }
+
+      header, .section { padding: 0 4vw; }
+
+      .flex-cards, .how-cards, .why-cards { gap: 1rem; }
+
+      .who-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 1.1rem;}
+
+    }
+
+    @media (max-width: 520px) {
+
+      nav { padding: 0.8rem 3vw; }
+
+      .logo { font-size: 1.1rem;}
+
+      header { min-height: 50vh; }
+
+      .hero-title { font-size: 1.51rem;}
+
+      .hero-subtext { font-size: 1rem;}
+
+      .why-cards, .how-cards, .flex-cards { gap: 0.77rem;}
+
+      .who-grid { grid-template-columns: 1fr; }
+
+    }
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+
+        display: none;
+
+        position: absolute;
+
+        top: 62px;
+
+        right: 3vw;
+
+        background: #fffbeedb;
+
+        box-shadow: 0 8px 32px #B4DFE570;
+
+        border-radius: 12px;
+
+        flex-direction: column;
+
+        gap: 1.07rem;
+
+        padding: 1.2rem 1.4rem;
+
+        z-index: 100;
+
+        border: 1.5px solid #D2FDFF;
+
+        backdrop-filter: blur(14px);
+
+      }
+
+      .nav-links.open { display: flex; animation: fadeInUp 0.3s;}
+
+      .nav-toggle { display: flex; }
+
+    }
+
+  </style>
+
 </head>
-<body class="bg-[#0f0524] text-gray-200">
 
-    <!-- Header Section -->
-    <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50 border-b border-white/10">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-4">
-                <a href="#" class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m14.5 9-5 5"/><path d="m9.5 9 5 5"/></svg>
-                    <span class="text-2xl font-bold celestial-gradient-text">SwapEra</span>
-                </a>
-                
-                <div class="hidden lg:flex items-center space-x-8 text-lg">
-                    <a href="#marketplace" class="hover:text-amber-400 transition-colors duration-300">Find Skills</a>
-                    <a href="#how" class="hover:text-amber-400 transition-colors duration-300">How It Works</a>
-                    <a href="#why" class="hover:text-amber-400 transition-colors duration-300">Why Us?</a>
-                </div>
+<body>
 
-                <div class="flex items-center space-x-4">
-                    <!-- Right side icons and buttons -->
-                     <div class="hidden lg:flex items-center space-x-4">
-                         <button id="notifications-btn" class="relative text-gray-300 hover:text-amber-400 transition-colors">
-                             <i data-lucide="bell"></i>
-                             <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">3</span>
-                         </button>
-                          <button id="settings-btn" class="text-gray-300 hover:text-amber-400 transition-colors">
-                             <i data-lucide="settings"></i>
-                         </button>
-                        <a href="#" id="login-btn" class="px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
-                        <a href="#" id="signup-btn" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
-                    </div>
-                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="lg:hidden text-white">
-                        <i data-lucide="menu"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900">
-            <a href="#marketplace" class="block py-3 px-4 text-lg hover:bg-slate-700">Find Skills</a>
-            <a href="#how" class="block py-3 px-4 text-lg hover:bg-slate-700">How It Works</a>
-            <a href="#why" class="block py-3 px-4 text-lg hover:bg-slate-700">Why Us?</a>
-            <div class="p-4 border-t border-slate-800 space-y-3">
-                 <a href="#" class="mobile-login-btn block w-full text-center px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
-                 <a href="#" class="mobile-signup-btn block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
-            </div>
-        </div>
-    </header>
+  <!-- Navbar -->
 
-    <main>
-        <!-- Hero Section -->
-        <section class="py-20 md:py-32 relative overflow-hidden">
-            <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
-             <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-slate-900/10 to-transparent"></div>
-            <div class="container mx-auto px-4 text-center relative z-10">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
-                    Swap a Skill, <span class="celestial-gradient-text">Gain a Future.</span> For Free.
-                </h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                    India's first skill-swapping community. Teach what you know, learn what you want. Your knowledge is your only currency.
-                </p>
-                <div class="flex justify-center items-center gap-4 flex-wrap">
-                    <a href="#marketplace" class="px-8 py-4 rounded-full celestial-gradient text-slate-900 text-lg font-bold shadow-lg shadow-amber-500/20 transform hover:scale-105 transition-transform duration-300">
-                        Find Your First Swap
-                    </a>
-                </div>
-                <div class="mt-16 flex justify-center space-x-12 text-gray-300">
-                    <div class="text-center">
-                        <p class="text-3xl font-bold celestial-gradient-text">10,000+</p>
-                        <p>Active Swappers</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-3xl font-bold celestial-gradient-text">500+</p>
-                        <p>Skills Available</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-3xl font-bold celestial-gradient-text">100%</p>
-                        <p>Free to Swap</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Top Skill Givers Section -->
-        <section id="marketplace" class="py-20">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Connect with Top Skill Givers</h2>
-                <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">Find verified people from your city, ready to teach and learn. Your next skill is just a swap away.</p>
+  <nav>
 
-                 <!-- Search and Filter Bar -->
-                <div class="mb-12 glass-card rounded-full p-2 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-2">
-                    <div class="relative flex-grow w-full">
-                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
-                        <input type="text" placeholder="Search for a skill (e.g., 'Yoga', 'Python')" class="w-full bg-transparent text-white pl-12 pr-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500/50">
-                    </div>
-                    <div class="flex items-center gap-2 w-full md:w-auto">
-                        <select class="w-full md:w-auto bg-slate-800/50 border border-white/10 rounded-full px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-amber-500/50">
-                            <option>Gurugram</option>
-                            <option>Noida</option>
-                            <option>Delhi</option>
-                            <option>Mumbai</option>
-                        </select>
-                         <select class="w-full md:w-auto bg-slate-800/50 border border-white/10 rounded-full px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-amber-500/50">
-                            <option>Trending</option>
-                            <option>Top Rated</option>
-                            <option>Newest</option>
-                        </select>
-                    </div>
-                </div>
+    <span class="logo">SwapEra</span>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Skill Giver Cards... -->
-                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Riya" alt="Riya" class="w-full h-56 object-cover">
-                            <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
-                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
-                                <span>Online</span>
-                            </span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="giver-name text-xl font-bold text-white">Riya S.</h3>
-                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Gurugram</div>
-                            <div class="text-sm space-y-1 mb-3">
-                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Graphic Design</span></p>
-                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Public Speaking</span></p>
-                            </div>
-                            <div class="flex items-center mb-4">
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <span class="text-xs ml-2 text-gray-400">(58 Swaps)</span>
-                            </div>
-                            <div class="mt-auto grid grid-cols-2 gap-3">
-                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
-                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Amit" alt="Amit" class="w-full h-56 object-cover">
-                            <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
-                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
-                                <span>Online</span>
-                            </span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="giver-name text-xl font-bold text-white">Amit K.</h3>
-                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Noida</div>
-                            <div class="text-sm space-y-1 mb-3">
-                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Python & Web Dev</span></p>
-                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Yoga</span></p>
-                            </div>
-                            <div class="flex items-center mb-4">
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star-half" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <span class="text-xs ml-2 text-gray-400">(92 Swaps)</span>
-                            </div>
-                            <div class="mt-auto grid grid-cols-2 gap-3">
-                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
-                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Sneha" alt="Sneha" class="w-full h-56 object-cover">
-                            <span class="absolute top-3 right-3 bg-gray-500 text-white text-xs font-bold px-3 py-1 rounded-full">Offline</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="giver-name text-xl font-bold text-white">Sneha P.</h3>
-                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Mumbai</div>
-                            <div class="text-sm space-y-1 mb-3">
-                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Baking & Cooking</span></p>
-                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Digital Marketing</span></p>
-                            </div>
-                            <div class="flex items-center mb-4">
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <span class="text-xs ml-2 text-gray-400">(121 Swaps)</span>
-                            </div>
-                            <div class="mt-auto grid grid-cols-2 gap-3">
-                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
-                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
-                        <div class="relative">
-                            <img src="https://placehold.co/400x400/0f0524/fde68a?text=Varun" alt="Varun" class="w-full h-56 object-cover">
-                             <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
-                                <span class="w-2 h-2 bg-white rounded-full online-dot"></span>
-                                <span>Online</span>
-                            </span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-grow">
-                            <h3 class="giver-name text-xl font-bold text-white">Varun M.</h3>
-                            <div class="flex items-center text-sm mb-2 text-amber-400"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>Delhi</div>
-                            <div class="text-sm space-y-1 mb-3">
-                                <p><strong class="font-medium text-gray-300">Teaches:</strong> <span class="giver-teaches">Financial Literacy</span></p>
-                                <p><strong class="font-medium text-gray-300">Wants:</strong> <span class="giver-wants">Guitar Basics</span></p>
-                            </div>
-                            <div class="flex items-center mb-4">
-                               <i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-current"></i><i data-lucide="star-half" class="w-4 h-4 text-yellow-400 fill-current"></i>
-                                <span class="text-xs ml-2 text-gray-400">(45 Swaps)</span>
-                            </div>
-                           <div class="mt-auto grid grid-cols-2 gap-3">
-                                <button class="swap-btn w-full flex items-center justify-center p-3 rounded-lg celestial-gradient text-slate-900 font-semibold hover:opacity-90"><i data-lucide="refresh-cw" class="w-4 h-4 mr-2"></i>Request Swap</button>
-                                <button class="w-full flex items-center justify-center p-3 rounded-lg bg-slate-700/50 text-gray-400 cursor-not-allowed" title="Chat unlocks after a successful swap match"><i data-lucide="message-circle" class="w-4 h-4 mr-2"></i>Chat</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="nav-links" id="navLinks">
 
-                <div class="text-center mt-12">
-                    <a href="#" class="px-8 py-3 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300 text-lg">
-                        View All Skill Givers
-                    </a>
-                </div>
-            </div>
-        </section>
+      <a href="#why" class="">Why SwapEra?</a>
 
-        <!-- How It Works Section -->
-        <section id="how" class="py-20 bg-black/20">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Start Swapping in 3 Simple Steps</h2>
-                <div class="grid md:grid-cols-3 gap-10 text-center max-w-5xl mx-auto">
-                    <!-- Step 1 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">1</div>
-                        <h3 class="text-2xl font-semibold mb-2">Create Profile</h3>
-                        <p class="text-gray-400">Sign up for free and list the skills you can teach and want to learn.</p>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">2</div>
-                        <h3 class="text-2xl font-semibold mb-2">Request a Swap</h3>
-                        <p class="text-gray-400">Find someone with a skill you want and send a swap request. Every user gets 5 free swaps!</p>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">3</div>
-                        <h3 class="text-2xl font-semibold mb-2">Connect & Chat</h3>
-                        <p class="text-gray-400">Once your request is accepted, chat for free to schedule your skill-sharing session.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Why Choose SwapEra Section -->
-        <section id="why" class="py-20">
-             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Choose SwapEra?</h2>
-                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                     <div class="glass-card p-6 rounded-2xl">
-                        <i data-lucide="users" class="w-10 h-10 celestial-gradient-text mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Community-Powered Growth</h3>
-                        <p class="text-gray-400">We're not a company of teachers; we are a community of learners. Everyone is both a student and a mentor, creating a supportive, non-judgmental environment.</p>
-                     </div>
-                      <div class="glass-card p-6 rounded-2xl">
-                        <i data-lucide="shield-check" class="w-10 h-10 celestial-gradient-text mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Trust & Safety First</h3>
-                        <p class="text-gray-400">With profile verification and community-based ratings, you can connect with trusted individuals from your own city, ensuring a safe and reliable learning experience.</p>
-                     </div>
-                      <div class="glass-card p-6 rounded-2xl">
-                        <i data-lucide="dollar-sign" class="w-10 h-10 celestial-gradient-text mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Beyond Monetary Value</h3>
-                        <p class="text-gray-400">SwapEra operates on the principle that knowledge is priceless. We empower you to leverage your skills as a currency, making learning accessible to all, regardless of financial status.</p>
-                     </div>
-                 </div>
-            </div>
-        </section>
+      <a href="#how" class="">How It Works</a>
 
-        <!-- Premium Teaser Section -->
-        <section id="premium" class="py-20 bg-black/20">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Unlock Your Full Potential</h2>
-                 <p class="celestial-gradient-text font-semibold text-lg mb-6">SwapEra Premium is Coming Soon!</p>
-                 <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-white">
-                     <div class="text-center">
-                        <i data-lucide="infinity" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
-                        <h4 class="text-xl font-bold">Unlimited Swaps</h4>
-                        <p class="text-gray-400 mt-1">Never stop learning. Swap as many skills as you want, whenever you want.</p>
-                     </div>
-                      <div class="text-center">
-                        <i data-lucide="award" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
-                        <h4 class="text-xl font-bold">Verified Badge</h4>
-                        <p class="text-gray-400 mt-1">Stand out in the community with a verified badge on your profile for extra trust.</p>
-                     </div>
-                      <div class="text-center">
-                        <i data-lucide="trending-up" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
-                        <h4 class="text-xl font-bold">Top Profile Listing</h4>
-                        <p class="text-gray-400 mt-1">Get featured at the top of search results and connect with more swappers.</p>
-                     </div>
-                 </div>
-                 <button class="mt-12 px-8 py-4 rounded-full text-white border-2 border-amber-400 text-lg font-bold hover:bg-amber-400/10 transition-colors duration-300">
-                     Join Waitlist for Premium
-                 </button>
-            </div>
-        </section>
+      <a href="#flexible" class="">Learning Options</a>
 
-    </main>
+      <a href="#who" class="">Who’s It For?</a>
 
-    <!-- Footer -->
-    <footer class="bg-black/20 border-t border-white/10 pt-16 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
-                <!-- About -->
-                <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">SwapEra</h4>
-                    <p class="text-gray-400">The community-driven platform for skill exchange. Learn, teach, and grow without cost.</p>
-                </div>
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">Explore</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#marketplace" class="text-gray-400 hover:text-amber-400">Skill Marketplace</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Success Stories</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Knowledge Hub</a></li>
-                    </ul>
-                </div>
-                <!-- Support -->
-                <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">Support</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-amber-400">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Contact Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-amber-400">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <!-- Social -->
-                <div>
-                    <h4 class="text-xl font-bold mb-4 text-white">Follow Us</h4>
-                    <div class="flex space-x-4 justify-center md:justify-start">
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="facebook" class="w-6 h-6"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="twitter" class="w-6 h-6"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-amber-400"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-white/10 pt-8 mt-8 text-center text-gray-500">
-                <p>&copy; 2025 SwapEra. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+      <a href="#register" class="cta-btn">Register</a>
 
-    <!-- MODALS & PANELS -->
+    </div>
 
-    <!-- Auth Modal -->
-    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
-        <div class="modal-content glass-card rounded-2xl w-full max-w-md shadow-2xl relative">
-            <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <div id="auth-container" class="p-8">
-                <!-- Login form will be injected here by JS -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Notifications Panel -->
-     <div id="notifications-panel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#1a103c] shadow-2xl z-50 hidden">
-        <div class="panel-content h-full flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b border-white/10">
-                <h3 class="text-xl font-bold">Notifications</h3>
-                <button id="close-notifications-panel" class="text-gray-400 hover:text-white">&times;</button>
-            </div>
-            <div class="notification-body flex-grow overflow-y-auto">
-                <!-- Notification Items -->
-                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
-                    <div class="w-10 h-10 flex-shrink-0 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center"><i data-lucide="check-circle-2"></i></div>
-                    <div>
-                        <p class="font-semibold">Match Confirmed!</p>
-                        <p class="text-sm text-gray-400">You and <strong>Amit K.</strong> have matched for a skill swap. You can now chat to schedule your session.</p>
-                        <p class="text-xs text-gray-500 mt-1">5 minutes ago</p>
-                    </div>
-                </div>
-                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
-                    <div class="w-10 h-10 flex-shrink-0 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center"><i data-lucide="refresh-cw"></i></div>
-                    <div>
-                        <p class="font-semibold">New Swap Request</p>
-                        <p class="text-sm text-gray-400"><strong>Priya V.</strong> wants to learn Public Speaking from you.</p>
-                        <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
-                    </div>
-                </div>
-                <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
-                    <div class="w-10 h-10 flex-shrink-0 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center"><i data-lucide="message-square"></i></div>
-                    <div>
-                        <p class="font-semibold">New Message</p>
-                        <p class="text-sm text-gray-400">from <strong>Amit K.</strong>: "Hey! Are you free this weekend..."</p>
-                        <p class="text-xs text-gray-500 mt-1">1 day ago</p>
-                    </div>
-                </div>
-                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
-                    <div class="w-10 h-10 flex-shrink-0 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center"><i data-lucide="star"></i></div>
-                    <div>
-                        <p class="font-semibold">Feedback Reminder</p>
-                        <p class="text-sm text-gray-400">Don't forget to leave feedback for your swap with <strong>Riya S.</strong></p>
-                        <p class="text-xs text-gray-500 mt-1">3 days ago</p>
-                    </div>
-                </div>
-            </div>
-            <div class="p-4 border-t border-white/10 text-center">
-                <a href="#" class="text-amber-400 font-semibold text-sm hover:underline">Mark all as read</a>
-            </div>
-        </div>
-     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
 
-    <!-- Settings Modal -->
-    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
-        <div class="modal-content glass-card rounded-2xl w-full max-w-sm shadow-2xl relative p-8">
-             <button id="close-settings-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-             <h3 class="text-2xl font-bold text-center mb-6">Settings & Help</h3>
-             <div class="space-y-3">
-                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="user-cog" class="w-5 h-5 mr-4 text-amber-400"></i>Edit Profile</a>
-                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="shield" class="w-5 h-5 mr-4 text-amber-400"></i>Account & Security</a>
-                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="help-circle" class="w-5 h-5 mr-4 text-amber-400"></i>FAQs & Support</a>
-                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 transition-colors"><i data-lucide="log-out" class="w-5 h-5 mr-4"></i>Logout</a>
-             </div>
-        </div>
-    </div>
+      <span></span><span></span><span></span>
 
+    </button>
 
-    <!-- Swap Request Modal -->
-    <div id="swap-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
-        <div class="modal-content glass-card rounded-2xl w-full max-w-md text-center p-8 shadow-2xl relative">
-            <button id="close-swap-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
-            <i data-lucide="refresh-cw" class="w-16 h-16 mx-auto text-amber-400 celestial-gradient-text"></i>
-            <h3 id="swap-modal-name" class="font-bold text-2xl text-white mt-4">Confirm Swap Request</h3>
-            <p class="text-gray-300 my-2">You are about to request a swap with <strong class="font-bold" id="modal-giver-name"></strong>.</p>
-            <div class="text-left bg-black/20 p-4 rounded-lg my-4 space-y-2">
-                <p><span class="font-semibold text-gray-400">You will teach:</span> <span class="font-bold text-white" id="modal-your-skill"></span></p>
-                <p><span class="font-semibold text-gray-400">You will learn:</span> <span class="font-bold text-white" id="modal-their-skill"></span></p>
-            </div>
-            <p class="text-amber-400 font-semibold text-lg">This will use 1 of your 5 free swaps.</p>
-            <button class="mt-6 w-full p-4 celestial-gradient rounded-full text-slate-900 font-bold text-lg hover:opacity-90 transition-opacity">
-                Send Request
-            </button>
-        </div>
-    </div>
+  </nav>
 
+  <!-- Hero -->
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize Lucide Icons
-            lucide.createIcons();
+  <header id="home">
 
-            // --- ALL MODAL/PANEL HANDLING ---
-            const modals = {
-                auth: document.getElementById('auth-modal'),
-                notifications: document.getElementById('notifications-panel'),
-                settings: document.getElementById('settings-modal'),
-                swap: document.getElementById('swap-modal'),
-            };
+    <div class="hero-info">
 
-            const openModal = (modalId) => {
-                if (modals[modalId]) modals[modalId].classList.remove('hidden');
-            };
-            const closeModal = (modalId) => {
-                if (modals[modalId]) modals[modalId].classList.add('hidden');
-            };
-            
-            // Generic close buttons
-            document.querySelectorAll('[id^="close-"]').forEach(btn => {
-                const modalId = btn.id.split('-')[1];
-                if (modals[modalId]) {
-                    btn.addEventListener('click', () => closeModal(modalId));
-                }
-            });
+      <div class="hero-glass">
 
-            // Open buttons
-            document.getElementById('notifications-btn').addEventListener('click', () => openModal('notifications'));
-            document.getElementById('settings-btn').addEventListener('click', () => openModal('settings'));
-            
-            // Swap modal logic
-            document.querySelectorAll('.swap-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    const card = button.closest('.skill-giver-card');
-                    document.getElementById('modal-giver-name').innerText = card.querySelector('.giver-name').innerText;
-                    document.getElementById('modal-your-skill').innerText = card.querySelector('.giver-wants').innerText;
-                    document.getElementById('modal-their-skill').innerText = card.querySelector('.giver-teaches').innerText;
-                    openModal('swap');
-                });
-            });
+        <div class="hero-title">SwapEra is Coming Soon</div>
 
-            // --- AUTH MODAL LOGIC ---
-            const authContainer = document.getElementById('auth-container');
-            const loginBtn = document.getElementById('login-btn');
-            const signupBtn = document.getElementById('signup-btn');
-            const mobileLoginBtn = document.querySelector('.mobile-login-btn');
-            const mobileSignupBtn = document.querySelector('.mobile-signup-btn');
-            
-            const skillOptions = ['English Speaking', 'Digital Marketing', 'Yoga', 'Photoshop', 'Coding Basics', 'Cooking', 'Public Speaking', 'Excel', 'Content Writing', 'Graphic Design', 'UI/UX Design', 'MS Office', 'Video Editing', 'LinkedIn Profile Building', 'Financial Literacy'];
-            const skillDropdown = (id) => `
-                <select id="${id}" name="${id}" required class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
-                    <option value="">Select a skill</option>
-                    ${skillOptions.map(s => `<option value="${s}">${s}</option>`).join('')}
-                </select>`;
+        <div class="hero-subtext">Learn Anything. Teach Anything. For Free.</div>
 
-            const loginHTML = `
-                <h3 class="text-3xl font-bold text-center mb-6 celestial-gradient-text">Welcome Back</h3>
-                <form class="space-y-4">
-                    <div>
-                        <label class="font-semibold">Email</label>
-                        <input type="email" placeholder="you@email.com" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
-                    </div>
-                    <div>
-                        <label class="font-semibold">Password</label>
-                        <input type="password" placeholder="••••••••" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
-                    </div>
-                    <button type="submit" class="w-full p-3 rounded-full celestial-gradient font-bold text-lg text-slate-900">Log In</button>
-                    <p class="text-center text-sm pt-2">Don't have an account? <a href="#" class="font-bold text-amber-400 hover:underline" id="show-signup">Sign Up</a></p>
-                </form>
-            `;
-            
-            const signupHTML = `
-                 <h3 class="text-3xl font-bold text-center mb-6 celestial-gradient-text">Join SwapEra</h3>
-                <form class="space-y-4">
-                    <div><label class="font-semibold">Full Name</label><input type="text" placeholder="Your Name" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
-                    <div><label class="font-semibold">Email</label><input type="email" placeholder="you@email.com" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
-                     <div><label class="font-semibold">Mobile Number</label><input type="tel" placeholder="9876543210" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
-                    <div><label class="font-semibold">A Skill You Can Teach</label>${skillDropdown('teach-skill')}</div>
-                    <div><label class="font-semibold">A Skill You Want to Learn</label>${skillDropdown('learn-skill')}</div>
-                    <button type="submit" class="w-full p-3 rounded-full celestial-gradient font-bold text-lg text-slate-900">Create Account</button>
-                    <p class="text-center text-sm pt-2">Already have an account? <a href="#" class="font-bold text-amber-400 hover:underline" id="show-login">Log In</a></p>
-                </form>
-            `;
+        <div class="hero-desc">India’s first peer-to-peer learning exchange where growth is mutual and cost-free.</div>
 
-            const showLogin = () => {
-                authContainer.innerHTML = loginHTML;
-                document.getElementById('show-signup').addEventListener('click', (e) => { e.preventDefault(); showSignup(); });
-            };
-            const showSignup = () => {
-                authContainer.innerHTML = signupHTML;
-                document.getElementById('show-login').addEventListener('click', (e) => { e.preventDefault(); showLogin(); });
-            };
+        <button class="cta-btn" id="registerBtn">Register Yourself to the Era</button>
 
-            loginBtn.addEventListener('click', (e) => { e.preventDefault(); showLogin(); openModal('auth'); });
-            signupBtn.addEventListener('click', (e) => { e.preventDefault(); showSignup(); openModal('auth'); });
-            mobileLoginBtn.addEventListener('click', (e) => { e.preventDefault(); showLogin(); openModal('auth'); });
-            mobileSignupBtn.addEventListener('click', (e) => { e.preventDefault(); showSignup(); openModal('auth'); });
+      </div>
 
-            // Mobile menu toggle
-            document.getElementById('mobile-menu-button').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
-            });
-        });
-    </script>
+    </div>
+
+    <div class="hero-graphic floating">
+
+      <!-- Cartoon-style SVG illustration: people learning/teaching online -->
+
+      <svg width="310" height="245" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+        <rect x="55" y="170" width="230" height="22" rx="8" fill="#F4976C"/>
+
+        <rect x="65" y="105" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
+
+        <ellipse cx="100" cy="138" rx="15" ry="18" fill="#FBE8A6"/>
+
+        <ellipse cx="100" cy="133" rx="7" ry="7.8" fill="#F4976C"/>
+
+        <rect x="205" y="95" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
+
+        <ellipse cx="240" cy="128" rx="15" ry="18" fill="#FBE8A6"/>
+
+        <ellipse cx="240" cy="123" rx="7" ry="7.8" fill="#303C6C"/>
+
+        <ellipse cx="90" cy="190" rx="22" ry="23" fill="#F4976C"/>
+
+        <ellipse cx="90" cy="171" rx="14" ry="13.5" fill="#fff"/>
+
+        <ellipse cx="90" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
+
+        <ellipse cx="250" cy="190" rx="22" ry="23" fill="#B4DFE5"/>
+
+        <ellipse cx="250" cy="171" rx="14" ry="13.5" fill="#fff"/>
+
+        <ellipse cx="250" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
+
+        <rect x="120" y="67" width="55" height="23" rx="10" fill="#fff" stroke="#F4976C" stroke-width="1.5"/>
+
+        <ellipse cx="130" cy="79" rx="3" ry="3" fill="#F4976C"/>
+
+        <ellipse cx="140" cy="79" rx="3" ry="3" fill="#F4976C"/>
+
+        <ellipse cx="150" cy="79" rx="3" ry="3" fill="#F4976C"/>
+
+        <rect x="170" y="42" width="55" height="23" rx="10" fill="#fff" stroke="#B4DFE5" stroke-width="1.5"/>
+
+        <ellipse cx="180" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+
+        <ellipse cx="190" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+
+        <ellipse cx="200" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+
+        <rect x="50" y="40" width="20" height="10" rx="2" fill="#FBE8A6" stroke="#F4976C" stroke-width="1"/>
+
+        <rect x="270" y="60" width="22" height="12" rx="2" fill="#FBE8A6" stroke="#B4DFE5" stroke-width="1"/>
+
+        <circle cx="70" cy="60" r="2.5" fill="#F4976C"/>
+
+        <circle cx="280" cy="75" r="2.5" fill="#B4DFE5"/>
+
+        <polygon points="220,27 223,32 229,33 225,37 226,43 220,40 214,43 215,37 211,33 217,32" fill="#D2FDFF"/>
+
+      </svg>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- Why SwapEra? -->
+
+    <section class="section fade-scroll" id="why">
+
+      <div class="section-title-row">
+
+        <svg viewBox="0 0 56 56"><ellipse cx="28" cy="28" rx="26" ry="20" fill="#B4DFE5"/><ellipse cx="20" cy="26" rx="7" ry="8" fill="#FBE8A6"/><ellipse cx="36" cy="30" rx="7" ry="8" fill="#FBE8A6"/><ellipse cx="28" cy="34" rx="6" ry="7" fill="#F4976C"/></svg>
+
+        <h2 style="font-size:1.4rem;margin:0;text-align:left;">Why SwapEra?</h2>
+
+      </div>
+
+      <div class="why-cards">
+
+        <div class="why-card">
+
+          <span class="icon" aria-label="Free Learning">💡</span>
+
+          <span class="card-title">100% Free Learning</span>
+
+          <span class="card-desc">No fees. No hidden costs. Just pure learning and growth.</span>
+
+        </div>
+
+        <div class="why-card">
+
+          <span class="icon" aria-label="Skill-for-skill">🔁</span>
+
+          <span class="card-title">Skill-for-Skill Swapping</span>
+
+          <span class="card-desc">Exchange what you know for what you want to learn. Everyone wins!</span>
+
+        </div>
+
+        <div class="why-card">
+
+          <span class="icon" aria-label="Real Growth">👥</span>
+
+          <span class="card-title">Real People, Real Growth</span>
+
+          <span class="card-desc">Connect with real learners & teachers — not just videos.</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- How it works -->
+
+    <section class="section fade-scroll" id="how">
+
+      <div class="section-title-row">
+
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="15" fill="#B4DFE5"/><ellipse cx="17" cy="22" rx="6" ry="7" fill="#FBE8A6"/><ellipse cx="31" cy="26" rx="6" ry="7" fill="#FBE8A6"/></svg>
+
+        <h2 style="font-size:1.33rem;margin:0;text-align:left;">How It Works</h2>
+
+      </div>
+
+      <div class="how-cards" id="howCards">
+
+        <div class="how-card">
+
+          <span class="icon" aria-label="Profile">👤</span>
+
+          <span class="step-title">Create a Profile</span>
+
+        </div>
+
+        <div class="how-card">
+
+          <span class="icon" aria-label="Skills">📝</span>
+
+          <span class="step-title">Add Skills You Can Teach & Learn</span>
+
+        </div>
+
+        <div class="how-card">
+
+          <span class="icon" aria-label="Match">🤝</span>
+
+          <span class="step-title">Match with People</span>
+
+        </div>
+
+        <div class="how-card">
+
+          <span class="icon" aria-label="Live">🎥</span>
+
+          <span class="step-title">Start a Live Session (Chat / Call)</span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Flexible Learning Options -->
+
+    <section class="section fade-scroll" id="flexible">
+
+      <div class="section-title-row">
+
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#B4DFE5"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#FBE8A6"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#F4976C"/></svg>
+
+        <h2 style="font-size:1.30rem;margin:0;text-align:left;">Flexible Learning Options</h2>
+
+      </div>
+
+      <div class="flex-cards">
+
+        <div class="flex-card">
+
+          <div class="flex-title">Swap Skills Freely <span style="font-size:0.92em; background:#fbe8a6; color:#F4976C; border-radius:9px; padding:0.1em 0.7em; margin-left:0.4em; font-weight:600;">Most Popular</span></div>
+
+          <div class="flex-desc">Teach what you know and learn what you want — for free.</div>
+
+          <button class="flex-btn" onclick="openModal()">Start Swapping</button>
+
+        </div>
+
+        <div class="flex-card">
+
+          <div class="flex-title">Learn from Verified Trainers <span style="font-size:0.89em; background:#D2FDFF; color:#303C6C; border-radius:8px; padding:0.08em 0.6em; margin-left:0.4em; font-weight:600;">Optional</span></div>
+
+          <div class="flex-desc">Want structured sessions? Book trainers for paid sessions in UI/UX, Excel, Yoga & more.</div>
+
+          <button class="flex-btn" onclick="openModal()">Explore Trainers</button>
+
+        </div>
+
+        <div class="flex-card">
+
+          <div class="flex-title">Don’t Want to Teach? Just Learn</div>
+
+          <div class="flex-desc">Not ready to teach? Learn from others via 1-on-1 paid sessions.</div>
+
+          <button class="flex-btn" onclick="openModal()">Find a Mentor</button>
+
+        </div>
+
+      </div>
+
+      <span class="flex-subtext">
+
+        “SwapEra is and will always be free for those who want to teach & learn. Paid options are just for added flexibility.”
+
+      </span>
+
+    </section>
+
+    <!-- Vision & Mission -->
+
+    <section class="section fade-scroll">
+
+      <div class="vm-section">
+
+        <div class="vm-title">Vision</div>
+
+        <div class="vm-quote">“To build India’s most inclusive learning community where growth has no cost.”</div>
+
+        <div class="vm-title" style="margin-top:1.3rem;">Mission</div>
+
+        <div class="vm-quote">“To empower anyone, anywhere to teach or learn a skill through exchange, not payment.”</div>
+
+      </div>
+
+    </section>
+
+    <!-- Who is it for -->
+
+    <section class="section fade-scroll" id="who">
+
+      <div class="section-title-row">
+
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="13" fill="#B4DFE5"/><ellipse cx="15" cy="19" rx="7" ry="7" fill="#FBE8A6"/><ellipse cx="33" cy="28" rx="7" ry="7" fill="#FBE8A6"/></svg>
+
+        <h2 style="font-size:1.23rem;margin:0;text-align:left;">Who is SwapEra For?</h2>
+
+      </div>
+
+      <div class="who-grid">
+
+        <div class="who-card"><span class="icon">🎓</span>Students</div>
+
+        <div class="who-card"><span class="icon">💼</span>Freshers</div>
+
+        <div class="who-card"><span class="icon">👔</span>Working Professionals</div>
+
+        <div class="who-card"><span class="icon">🔄</span>Job Switchers</div>
+
+        <div class="who-card"><span class="icon">🎨</span>Hobbyists</div>
+
+        <div class="who-card"><span class="icon">🧑‍💻</span>Freelancers</div>
+
+      </div>
+
+    </section>
+
+    <!-- What Makes SwapEra Different -->
+
+    <section class="section fade-scroll">
+
+      <div class="section-title-row">
+
+        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#B4DFE5"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#FBE8A6"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#F4976C"/></svg>
+
+        <h2 style="font-size:1.23rem;margin:0;text-align:left;">What Makes SwapEra Different</h2>
+
+      </div>
+
+      <div class="different-section">
+
+        <div class="different-col">
+
+          <div class="col-title">Our Approach</div>
+
+          <ul>
+
+            <li><strong>Manual matching</strong> in beta for better quality connections</li>
+
+            <li><strong>Barter + Paid = Flexible</strong> (swap for free or pay for mentors/trainers)</li>
+
+            <li>Profile-based, skill-tagged connections</li>
+
+            <li>City-by-city launch for local trust</li>
+
+            <li><strong>Always free</strong> for peer swapping</li>
+
+            <li>Simple, mobile-friendly design</li>
+
+            <li>Real people, not bots</li>
+
+          </ul>
+
+        </div>
+
+        <div class="different-col">
+
+          <div class="col-title">Why It Works</div>
+
+          <ul>
+
+            <li>Solves the teacher-learner gap with <strong>mutual swaps</strong></li>
+
+            <li>Flexible model supports both <strong>free and paid learning</strong></li>
+
+            <li>Focus on <strong>trust & safety</strong> with real profiles</li>
+
+            <li>Early users get priority matching</li>
+
+            <li>Retains users via <strong>community and real value</strong></li>
+
+            <li>No ads, no spam, just <strong>growth together</strong></li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Registration Modal (hidden) -->
+
+    <div class="modal-bg" id="modalBg" aria-modal="true" role="dialog">
+
+      <div class="modal" id="registerModal">
+
+        <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+
+        <h2>Register Yourself to the Era</h2>
+
+        <form id="waitlistForm" autocomplete="off">
+
+          <label for="fullname">Full Name</label>
+
+          <input type="text" id="fullname" name="fullname" required placeholder="Enter your name">
+
+          <label for="email">Email</label>
+
+          <input type="email" id="email" name="email" required placeholder="you@email.com">
+
+          <label for="mobile">Mobile Number</label>
+
+          <input type="tel" id="mobile" name="mobile" required pattern="\d{10,15}" placeholder="e.g., 9876543210">
+
+          <label for="teach">What can you teach?</label>
+
+          <select id="teach" name="teach" required>
+
+            <option value="">Select a skill</option>
+
+            <option>English Speaking</option>
+
+            <option>Digital Marketing</option>
+
+            <option>Yoga</option>
+
+            <option>Photoshop</option>
+
+            <option>Coding Basics</option>
+
+            <option>Cooking</option>
+
+            <option>Public Speaking</option>
+
+            <option>Excel</option>
+
+            <option>Content Writing</option>
+
+            <option>Graphic Design</option>
+
+            <option>UI/UX Design</option>
+
+            <option>MS Office</option>
+
+            <option>Video Editing</option>
+
+            <option>LinkedIn Profile Building</option>
+
+            <option>Financial Literacy</option>
+
+          </select>
+
+          <label for="learn">What do you want to learn?</label>
+
+          <select id="learn" name="learn" required>
+
+            <option value="">Select a skill</option>
+
+            <option>English Speaking</option>
+
+            <option>Digital Marketing</option>
+
+            <option>Yoga</option>
+
+            <option>Photoshop</option>
+
+            <option>Coding Basics</option>
+
+            <option>Cooking</option>
+
+            <option>Public Speaking</option>
+
+            <option>Excel</option>
+
+            <option>Content Writing</option>
+
+            <option>Graphic Design</option>
+
+            <option>UI/UX Design</option>
+
+            <option>MS Office</option>
+
+            <option>Video Editing</option>
+
+            <option>LinkedIn Profile Building</option>
+
+            <option>Financial Literacy</option>
+
+          </select>
+
+          <label for="notes">Extra Notes</label>
+
+          <textarea id="notes" name="notes" placeholder="Tell us more! (optional)" rows="2"></textarea>
+
+          <button class="submit-btn" type="submit">Join Waitlist</button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- Success Message Modal (after form) -->
+
+    <div class="modal-bg" id="successBg">
+
+      <div class="modal" style="max-width:340px;">
+
+        <button class="modal-close" onclick="closeSuccess()" aria-label="Close">&times;</button>
+
+        <div class="success-msg">You’ve been added to the SwapEra waitlist!</div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+
+    <div class="footer-row">
+
+      <span class="footer-logo">SwapEra</span>
+
+      <span class="footer-social">
+
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="si si-instagram"></i></a>
+
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="si si-linkedin"></i></a>
+
+      </span>
+
+    </div>
+
+    <div class="footer-text">© 2025 SwapEra. All rights reserved.</div>
+
+  </footer>
+
+  <script>
+
+    // Hamburger menu
+
+    const navToggle = document.getElementById('navToggle');
+
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+
+      navLinks.classList.toggle('open');
+
+    });
+
+    Array.from(navLinks.querySelectorAll('a')).forEach(link => {
+
+      link.addEventListener('click', () => { navLinks.classList.remove('open'); });
+
+    });
+
+    // Smooth scroll & active link
+
+    const navAnchorLinks = navLinks.querySelectorAll('a[href^="#"]');
+
+    navAnchorLinks.forEach(link => {
+
+      link.addEventListener('click', function(e) {
+
+        const targetId = this.getAttribute('href').slice(1);
+
+        const target = document.getElementById(targetId);
+
+        if (target) {
+
+          e.preventDefault();
+
+          window.scrollTo({
+
+            top: target.getBoundingClientRect().top + window.pageYOffset - 56,
+
+            behavior: "smooth"
+
+          });
+
+        }
+
+      });
+
+    });
+
+    // Fade-in on scroll for sections
+
+    function fadeInSections() {
+
+      document.querySelectorAll('.fade-scroll').forEach(sec => {
+
+        const secTop = sec.getBoundingClientRect().top;
+
+        if (secTop < window.innerHeight - 90) {
+
+          sec.classList.add('visible');
+
+        }
+
+      });
+
+    }
+
+    window.addEventListener('DOMContentLoaded', fadeInSections);
+
+    window.addEventListener('scroll', fadeInSections);
+
+    // How It Works slide-in cards
+
+    function slideInHowCards() {
+
+      const cards = document.querySelectorAll('.how-card');
+
+      cards.forEach((card, i) => {
+
+        const cardTop = card.getBoundingClientRect().top;
+
+        if (cardTop < window.innerHeight - 80) {
+
+          setTimeout(() => card.classList.add('visible'), i * 120);
+
+        }
+
+      });
+
+    }
+
+    window.addEventListener('DOMContentLoaded', slideInHowCards);
+
+    window.addEventListener('scroll', slideInHowCards);
+
+    // Modal logic
+
+    function openModal() {
+
+      document.getElementById('modalBg').classList.add('active');
+
+      document.body.style.overflow = 'hidden';
+
+    }
+
+    function closeModal() {
+
+      document.getElementById('modalBg').classList.remove('active');
+
+      document.body.style.overflow = '';
+
+    }
+
+    document.getElementById('registerBtn').addEventListener('click', openModal);
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+
+    document.getElementById('modalBg').addEventListener('click', function(e) {
+
+      if (e.target === this) closeModal();
+
+    });
+
+    // Registration Form Submission
+
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+
+      e.preventDefault();
+
+      closeModal();
+
+      document.getElementById('successBg').style.display = 'flex';
+
+      document.getElementById('successBg').style.animation = 'fadeInModal 0.4s';
+
+      setTimeout(() => {
+
+        document.getElementById('successBg').querySelector('.success-msg').focus();
+
+      }, 200);
+
+      this.reset();
+
+    });
+
+    // Close success modal
+
+    function closeSuccess() {
+
+      document.getElementById('successBg').style.display = 'none';
+
+      document.body.style.overflow = '';
+
+    }
+
+    document.getElementById('successBg').addEventListener('click', function(e) {
+
+      if (e.target === this) closeSuccess();
+
+    });
+
+    // Allow all CTA buttons to open modal
+
+    document.querySelectorAll('.flex-btn').forEach(btn => {
+
+      btn.addEventListener('click', openModal);
+
+    });
+
+    // Keyboard accessibility for modals
+
+    window.addEventListener('keydown', function(e) {
+
+      if (e.key === "Escape") { closeModal(); closeSuccess(); }
+
+    });
+
+  </script>
+
 </body>
+
 </html>
