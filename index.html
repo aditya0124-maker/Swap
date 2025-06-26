@@ -51,7 +51,7 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .modal-content, .panel-content {
+        .modal-content {
              animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         @keyframes slide-up {
@@ -87,14 +87,14 @@
                 </a>
                 
                 <div class="hidden lg:flex items-center space-x-8 text-lg">
-                    <a href="#why" class="hover:text-amber-400 transition-colors duration-300">Why SwapEra?</a>
-                    <a href="#how" class="hover:text-amber-400 transition-colors duration-300">How It Works</a>
-                    <a href="#different" class="hover:text-amber-400 transition-colors duration-300">What's Different</a>
+                    <a href="#why" class="nav-link hover:text-amber-400 transition-colors duration-300">Why SwapEra?</a>
+                    <a href="#how" class="nav-link hover:text-amber-400 transition-colors duration-300">How It Works</a>
+                    <a href="#different" class="nav-link hover:text-amber-400 transition-colors duration-300">What's Different</a>
                 </div>
 
                 <div class="flex items-center space-x-4">
                      <div class="hidden lg:flex items-center space-x-4">
-                        <a href="#" id="register-btn-nav" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Register Yourself</a>
+                        <button id="register-btn-nav" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Register Yourself</button>
                     </div>
                     <button id="mobile-menu-button" class="lg:hidden text-white">
                         <i data-lucide="menu"></i>
@@ -108,7 +108,7 @@
             <a href="#how" class="nav-link-mobile block py-3 px-4 text-lg hover:bg-slate-700">How It Works</a>
             <a href="#different" class="nav-link-mobile block py-3 px-4 text-lg hover:bg-slate-700">What's Different</a>
             <div class="p-4 border-t border-slate-800">
-                 <a href="#" id="register-btn-mobile" class="block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Register Yourself</a>
+                 <button id="register-btn-mobile" class="w-full text-center px-5 py-3 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Register Yourself</button>
             </div>
         </div>
     </header>
@@ -142,17 +142,17 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why SwapEra?</h2>
                  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                      <div class="glass-card p-8 rounded-2xl text-center">
-                        <i data-lucide="zap" class="w-12 h-12 celestial-gradient-text mx-auto mb-4"></i>
+                        <span class="text-5xl mb-4 block">💡</span>
                         <h3 class="text-2xl font-bold mb-2">100% Free Learning</h3>
                         <p class="text-gray-400">No fees. No hidden costs. Just pure learning and growth.</p>
                      </div>
                       <div class="glass-card p-8 rounded-2xl text-center">
-                        <i data-lucide="repeat" class="w-12 h-12 celestial-gradient-text mx-auto mb-4"></i>
+                        <span class="text-5xl mb-4 block">🔁</span>
                         <h3 class="text-2xl font-bold mb-2">Skill-for-Skill Swapping</h3>
                         <p class="text-gray-400">Exchange what you know for what you want to learn. Everyone wins!</p>
                      </div>
                       <div class="glass-card p-8 rounded-2xl text-center">
-                        <i data-lucide="users" class="w-12 h-12 celestial-gradient-text mx-auto mb-4"></i>
+                        <span class="text-5xl mb-4 block">👥</span>
                         <h3 class="text-2xl font-bold mb-2">Real People, Real Growth</h3>
                         <p class="text-gray-400">Connect with real learners & teachers — not just videos.</p>
                      </div>
@@ -166,20 +166,20 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 text-center max-w-6xl mx-auto">
                     <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-amber-400 text-4xl font-bold mb-4">👤</div>
-                        <h3 class="text-xl font-semibold mb-2">Create a Profile</h3>
+                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-4xl mb-4">👤</div>
+                        <h3 class="text-xl font-semibold">Create a Profile</h3>
                     </div>
                      <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-amber-400 text-4xl font-bold mb-4">📝</div>
-                        <h3 class="text-xl font-semibold mb-2">Add Skills You Can Teach & Learn</h3>
+                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-4xl mb-4">📝</div>
+                        <h3 class="text-xl font-semibold">Add Skills You Can Teach & Learn</h3>
                     </div>
                     <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-amber-400 text-4xl font-bold mb-4">🤝</div>
-                        <h3 class="text-xl font-semibold mb-2">Match with People</h3>
+                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-4xl mb-4">🤝</div>
+                        <h3 class="text-xl font-semibold">Match with People</h3>
                     </div>
                      <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-amber-400 text-4xl font-bold mb-4">🎥</div>
-                        <h3 class="text-xl font-semibold mb-2">Start a Live Session (Chat/Call)</h3>
+                        <div class="w-24 h-24 rounded-full border-2 border-amber-400/50 flex items-center justify-center text-4xl mb-4">🎥</div>
+                        <h3 class="text-xl font-semibold">Start a Live Session (Chat/Call)</h3>
                     </div>
                 </div>
             </div>
@@ -273,7 +273,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
@@ -293,7 +292,7 @@
     <!-- MODALS & PANELS -->
 
     <!-- Registration Modal -->
-    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-[100] hidden">
         <div class="modal-content glass-card rounded-2xl w-full max-w-md shadow-2xl relative">
             <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
             <div id="auth-container" class="p-8">
@@ -353,16 +352,30 @@
             const defaultOption = '<option value="">Select a skill</option>';
             const optionsHTML = skillOptions.map(s => `<option value="${s}">${s}</option>`).join('');
             
-            teachSelect.innerHTML = defaultOption + optionsHTML;
-            learnSelect.innerHTML = defaultOption + optionsHTML;
+            if(teachSelect) teachSelect.innerHTML = defaultOption + optionsHTML;
+            if(learnSelect) learnSelect.innerHTML = defaultOption + optionsHTML;
 
-            // Mobile menu toggle
-            document.getElementById('mobile-menu-button').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
+            // --- MOBILE MENU ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksMobile = document.querySelectorAll('.nav-link-mobile, #register-btn-mobile');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-             document.querySelectorAll('.nav-link-mobile').forEach(link => {
+            navLinksMobile.forEach(link => {
                 link.addEventListener('click', () => {
-                     document.getElementById('mobile-menu').classList.add('hidden');
+                     mobileMenu.classList.add('hidden');
+                });
+            });
+
+             // --- SMOOTH SCROLL FOR NAV LINKS ---
+            document.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
         });
