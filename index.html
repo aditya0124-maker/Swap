@@ -56,7 +56,7 @@
                 transform: scale(1.1);
             }
         }
-        .modal-content {
+        .modal-content, .panel-content {
              animation: slide-up 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         @keyframes slide-up {
@@ -68,6 +68,29 @@
                 transform: translateY(0);
                 opacity: 1;
             }
+        }
+        .notification-panel {
+            animation: slide-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        @keyframes slide-in {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Custom scrollbar for notifications */
+        .notification-body::-webkit-scrollbar {
+            width: 6px;
+        }
+        .notification-body::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+        .notification-body::-webkit-scrollbar-thumb {
+            background-color: var(--accent-gold);
+            border-radius: 6px;
         }
     </style>
 </head>
@@ -88,14 +111,24 @@
                     <a href="#why" class="hover:text-amber-400 transition-colors duration-300">Why Us?</a>
                 </div>
 
-                <div class="hidden lg:flex items-center space-x-4">
-                    <a href="#" class="px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
-                    <a href="#" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
+                <div class="flex items-center space-x-4">
+                    <!-- Right side icons and buttons -->
+                     <div class="hidden lg:flex items-center space-x-4">
+                         <button id="notifications-btn" class="relative text-gray-300 hover:text-amber-400 transition-colors">
+                             <i data-lucide="bell"></i>
+                             <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                         </button>
+                          <button id="settings-btn" class="text-gray-300 hover:text-amber-400 transition-colors">
+                             <i data-lucide="settings"></i>
+                         </button>
+                        <a href="#" id="login-btn" class="px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
+                        <a href="#" id="signup-btn" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
+                    </div>
+                     <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="lg:hidden text-white">
+                        <i data-lucide="menu"></i>
+                    </button>
                 </div>
-
-                <button id="mobile-menu-button" class="lg:hidden text-white">
-                    <i data-lucide="menu"></i>
-                </button>
             </nav>
         </div>
          <!-- Mobile Menu -->
@@ -104,13 +137,12 @@
             <a href="#how" class="block py-3 px-4 text-lg hover:bg-slate-700">How It Works</a>
             <a href="#why" class="block py-3 px-4 text-lg hover:bg-slate-700">Why Us?</a>
             <div class="p-4 border-t border-slate-800 space-y-3">
-                 <a href="#" class="block w-full text-center px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
-                 <a href="#" class="block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
+                 <a href="#" class="mobile-login-btn block w-full text-center px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
+                 <a href="#" class="mobile-signup-btn block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
         <!-- Hero Section -->
         <section class="py-20 md:py-32 relative overflow-hidden">
@@ -148,12 +180,32 @@
         <!-- Top Skill Givers Section -->
         <section id="marketplace" class="py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-2">Connect with Top Skill Givers</h2>
-                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">Find verified people from your city, ready to teach and learn. Your next skill is just a swap away.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Connect with Top Skill Givers</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">Find verified people from your city, ready to teach and learn. Your next skill is just a swap away.</p>
+
+                 <!-- Search and Filter Bar -->
+                <div class="mb-12 glass-card rounded-full p-2 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-2">
+                    <div class="relative flex-grow w-full">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                        <input type="text" placeholder="Search for a skill (e.g., 'Yoga', 'Python')" class="w-full bg-transparent text-white pl-12 pr-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500/50">
+                    </div>
+                    <div class="flex items-center gap-2 w-full md:w-auto">
+                        <select class="w-full md:w-auto bg-slate-800/50 border border-white/10 rounded-full px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-amber-500/50">
+                            <option>Gurugram</option>
+                            <option>Noida</option>
+                            <option>Delhi</option>
+                            <option>Mumbai</option>
+                        </select>
+                         <select class="w-full md:w-auto bg-slate-800/50 border border-white/10 rounded-full px-4 py-3 appearance-none focus:outline-none focus:ring-2 focus:ring-amber-500/50">
+                            <option>Trending</option>
+                            <option>Top Rated</option>
+                            <option>Newest</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    
-                    <!-- Skill Giver Card 1 -->
+                    <!-- Skill Giver Cards... -->
                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
                         <div class="relative">
                             <img src="https://placehold.co/400x400/0f0524/fde68a?text=Riya" alt="Riya" class="w-full h-56 object-cover">
@@ -183,9 +235,7 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- More cards... -->
-                    <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
                         <div class="relative">
                             <img src="https://placehold.co/400x400/0f0524/fde68a?text=Amit" alt="Amit" class="w-full h-56 object-cover">
                             <span class="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center space-x-1.5">
@@ -294,6 +344,58 @@
             </div>
         </section>
         
+        <!-- Why Choose SwapEra Section -->
+        <section id="why" class="py-20">
+             <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Choose SwapEra?</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                     <div class="glass-card p-6 rounded-2xl">
+                        <i data-lucide="users" class="w-10 h-10 celestial-gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Community-Powered Growth</h3>
+                        <p class="text-gray-400">We're not a company of teachers; we are a community of learners. Everyone is both a student and a mentor, creating a supportive, non-judgmental environment.</p>
+                     </div>
+                      <div class="glass-card p-6 rounded-2xl">
+                        <i data-lucide="shield-check" class="w-10 h-10 celestial-gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Trust & Safety First</h3>
+                        <p class="text-gray-400">With profile verification and community-based ratings, you can connect with trusted individuals from your own city, ensuring a safe and reliable learning experience.</p>
+                     </div>
+                      <div class="glass-card p-6 rounded-2xl">
+                        <i data-lucide="dollar-sign" class="w-10 h-10 celestial-gradient-text mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Beyond Monetary Value</h3>
+                        <p class="text-gray-400">SwapEra operates on the principle that knowledge is priceless. We empower you to leverage your skills as a currency, making learning accessible to all, regardless of financial status.</p>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Premium Teaser Section -->
+        <section id="premium" class="py-20 bg-black/20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Unlock Your Full Potential</h2>
+                 <p class="celestial-gradient-text font-semibold text-lg mb-6">SwapEra Premium is Coming Soon!</p>
+                 <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 text-white">
+                     <div class="text-center">
+                        <i data-lucide="infinity" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
+                        <h4 class="text-xl font-bold">Unlimited Swaps</h4>
+                        <p class="text-gray-400 mt-1">Never stop learning. Swap as many skills as you want, whenever you want.</p>
+                     </div>
+                      <div class="text-center">
+                        <i data-lucide="award" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
+                        <h4 class="text-xl font-bold">Verified Badge</h4>
+                        <p class="text-gray-400 mt-1">Stand out in the community with a verified badge on your profile for extra trust.</p>
+                     </div>
+                      <div class="text-center">
+                        <i data-lucide="trending-up" class="w-12 h-12 mx-auto mb-3 text-amber-400"></i>
+                        <h4 class="text-xl font-bold">Top Profile Listing</h4>
+                        <p class="text-gray-400 mt-1">Get featured at the top of search results and connect with more swappers.</p>
+                     </div>
+                 </div>
+                 <button class="mt-12 px-8 py-4 rounded-full text-white border-2 border-amber-400 text-lg font-bold hover:bg-amber-400/10 transition-colors duration-300">
+                     Join Waitlist for Premium
+                 </button>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -340,6 +442,81 @@
         </div>
     </footer>
 
+    <!-- MODALS & PANELS -->
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content glass-card rounded-2xl w-full max-w-md shadow-2xl relative">
+            <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+            <div id="auth-container" class="p-8">
+                <!-- Login form will be injected here by JS -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notifications Panel -->
+     <div id="notifications-panel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#1a103c] shadow-2xl z-50 hidden">
+        <div class="panel-content h-full flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-white/10">
+                <h3 class="text-xl font-bold">Notifications</h3>
+                <button id="close-notifications-panel" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="notification-body flex-grow overflow-y-auto">
+                <!-- Notification Items -->
+                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
+                    <div class="w-10 h-10 flex-shrink-0 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center"><i data-lucide="check-circle-2"></i></div>
+                    <div>
+                        <p class="font-semibold">Match Confirmed!</p>
+                        <p class="text-sm text-gray-400">You and <strong>Amit K.</strong> have matched for a skill swap. You can now chat to schedule your session.</p>
+                        <p class="text-xs text-gray-500 mt-1">5 minutes ago</p>
+                    </div>
+                </div>
+                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
+                    <div class="w-10 h-10 flex-shrink-0 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center"><i data-lucide="refresh-cw"></i></div>
+                    <div>
+                        <p class="font-semibold">New Swap Request</p>
+                        <p class="text-sm text-gray-400"><strong>Priya V.</strong> wants to learn Public Speaking from you.</p>
+                        <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
+                    <div class="w-10 h-10 flex-shrink-0 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center"><i data-lucide="message-square"></i></div>
+                    <div>
+                        <p class="font-semibold">New Message</p>
+                        <p class="text-sm text-gray-400">from <strong>Amit K.</strong>: "Hey! Are you free this weekend..."</p>
+                        <p class="text-xs text-gray-500 mt-1">1 day ago</p>
+                    </div>
+                </div>
+                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
+                    <div class="w-10 h-10 flex-shrink-0 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center"><i data-lucide="star"></i></div>
+                    <div>
+                        <p class="font-semibold">Feedback Reminder</p>
+                        <p class="text-sm text-gray-400">Don't forget to leave feedback for your swap with <strong>Riya S.</strong></p>
+                        <p class="text-xs text-gray-500 mt-1">3 days ago</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-white/10 text-center">
+                <a href="#" class="text-amber-400 font-semibold text-sm hover:underline">Mark all as read</a>
+            </div>
+        </div>
+     </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content glass-card rounded-2xl w-full max-w-sm shadow-2xl relative p-8">
+             <button id="close-settings-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+             <h3 class="text-2xl font-bold text-center mb-6">Settings & Help</h3>
+             <div class="space-y-3">
+                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="user-cog" class="w-5 h-5 mr-4 text-amber-400"></i>Edit Profile</a>
+                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="shield" class="w-5 h-5 mr-4 text-amber-400"></i>Account & Security</a>
+                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"><i data-lucide="help-circle" class="w-5 h-5 mr-4 text-amber-400"></i>FAQs & Support</a>
+                 <a href="#" class="flex items-center w-full p-4 rounded-lg bg-white/5 hover:bg-red-500/20 text-red-400 transition-colors"><i data-lucide="log-out" class="w-5 h-5 mr-4"></i>Logout</a>
+             </div>
+        </div>
+    </div>
+
+
     <!-- Swap Request Modal -->
     <div id="swap-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content glass-card rounded-2xl w-full max-w-md text-center p-8 shadow-2xl relative">
@@ -360,52 +537,110 @@
 
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Lucide Icons
+            lucide.createIcons();
 
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Modal Logic
-        const swapModal = document.getElementById('swap-modal');
-        const closeSwapModalBtn = document.getElementById('close-swap-modal');
-        const swapButtons = document.querySelectorAll('.swap-btn');
+            // --- ALL MODAL/PANEL HANDLING ---
+            const modals = {
+                auth: document.getElementById('auth-modal'),
+                notifications: document.getElementById('notifications-panel'),
+                settings: document.getElementById('settings-modal'),
+                swap: document.getElementById('swap-modal'),
+            };
 
-        swapButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.skill-giver-card');
-                const giverName = card.querySelector('.giver-name').innerText;
-                const theirSkill = card.querySelector('.giver-teaches').innerText;
-                const yourSkill = card.querySelector('.giver-wants').innerText;
+            const openModal = (modalId) => {
+                if (modals[modalId]) modals[modalId].classList.remove('hidden');
+            };
+            const closeModal = (modalId) => {
+                if (modals[modalId]) modals[modalId].classList.add('hidden');
+            };
+            
+            // Generic close buttons
+            document.querySelectorAll('[id^="close-"]').forEach(btn => {
+                const modalId = btn.id.split('-')[1];
+                if (modals[modalId]) {
+                    btn.addEventListener('click', () => closeModal(modalId));
+                }
+            });
 
-                document.getElementById('modal-giver-name').innerText = giverName;
-                document.getElementById('modal-your-skill').innerText = yourSkill;
-                document.getElementById('modal-their-skill').innerText = theirSkill;
+            // Open buttons
+            document.getElementById('notifications-btn').addEventListener('click', () => openModal('notifications'));
+            document.getElementById('settings-btn').addEventListener('click', () => openModal('settings'));
+            
+            // Swap modal logic
+            document.querySelectorAll('.swap-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const card = button.closest('.skill-giver-card');
+                    document.getElementById('modal-giver-name').innerText = card.querySelector('.giver-name').innerText;
+                    document.getElementById('modal-your-skill').innerText = card.querySelector('.giver-wants').innerText;
+                    document.getElementById('modal-their-skill').innerText = card.querySelector('.giver-teaches').innerText;
+                    openModal('swap');
+                });
+            });
 
-                swapModal.classList.remove('hidden');
+            // --- AUTH MODAL LOGIC ---
+            const authContainer = document.getElementById('auth-container');
+            const loginBtn = document.getElementById('login-btn');
+            const signupBtn = document.getElementById('signup-btn');
+            const mobileLoginBtn = document.querySelector('.mobile-login-btn');
+            const mobileSignupBtn = document.querySelector('.mobile-signup-btn');
+            
+            const skillOptions = ['English Speaking', 'Digital Marketing', 'Yoga', 'Photoshop', 'Coding Basics', 'Cooking', 'Public Speaking', 'Excel', 'Content Writing', 'Graphic Design', 'UI/UX Design', 'MS Office', 'Video Editing', 'LinkedIn Profile Building', 'Financial Literacy'];
+            const skillDropdown = (id) => `
+                <select id="${id}" name="${id}" required class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
+                    <option value="">Select a skill</option>
+                    ${skillOptions.map(s => `<option value="${s}">${s}</option>`).join('')}
+                </select>`;
+
+            const loginHTML = `
+                <h3 class="text-3xl font-bold text-center mb-6 celestial-gradient-text">Welcome Back</h3>
+                <form class="space-y-4">
+                    <div>
+                        <label class="font-semibold">Email</label>
+                        <input type="email" placeholder="you@email.com" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
+                    </div>
+                    <div>
+                        <label class="font-semibold">Password</label>
+                        <input type="password" placeholder="••••••••" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none">
+                    </div>
+                    <button type="submit" class="w-full p-3 rounded-full celestial-gradient font-bold text-lg text-slate-900">Log In</button>
+                    <p class="text-center text-sm pt-2">Don't have an account? <a href="#" class="font-bold text-amber-400 hover:underline" id="show-signup">Sign Up</a></p>
+                </form>
+            `;
+            
+            const signupHTML = `
+                 <h3 class="text-3xl font-bold text-center mb-6 celestial-gradient-text">Join SwapEra</h3>
+                <form class="space-y-4">
+                    <div><label class="font-semibold">Full Name</label><input type="text" placeholder="Your Name" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
+                    <div><label class="font-semibold">Email</label><input type="email" placeholder="you@email.com" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
+                     <div><label class="font-semibold">Mobile Number</label><input type="tel" placeholder="9876543210" class="w-full p-3 mt-1 bg-slate-800/50 border border-white/20 rounded-lg focus:ring-2 focus:ring-amber-500/50 outline-none"></div>
+                    <div><label class="font-semibold">A Skill You Can Teach</label>${skillDropdown('teach-skill')}</div>
+                    <div><label class="font-semibold">A Skill You Want to Learn</label>${skillDropdown('learn-skill')}</div>
+                    <button type="submit" class="w-full p-3 rounded-full celestial-gradient font-bold text-lg text-slate-900">Create Account</button>
+                    <p class="text-center text-sm pt-2">Already have an account? <a href="#" class="font-bold text-amber-400 hover:underline" id="show-login">Log In</a></p>
+                </form>
+            `;
+
+            const showLogin = () => {
+                authContainer.innerHTML = loginHTML;
+                document.getElementById('show-signup').addEventListener('click', (e) => { e.preventDefault(); showSignup(); });
+            };
+            const showSignup = () => {
+                authContainer.innerHTML = signupHTML;
+                document.getElementById('show-login').addEventListener('click', (e) => { e.preventDefault(); showLogin(); });
+            };
+
+            loginBtn.addEventListener('click', (e) => { e.preventDefault(); showLogin(); openModal('auth'); });
+            signupBtn.addEventListener('click', (e) => { e.preventDefault(); showSignup(); openModal('auth'); });
+            mobileLoginBtn.addEventListener('click', (e) => { e.preventDefault(); showLogin(); openModal('auth'); });
+            mobileSignupBtn.addEventListener('click', (e) => { e.preventDefault(); showSignup(); openModal('auth'); });
+
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-button').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
             });
         });
-
-        function closeModal() {
-            swapModal.classList.add('hidden');
-        }
-
-        closeSwapModalBtn.addEventListener('click', closeModal);
-        swapModal.addEventListener('click', (e) => {
-            if (e.target === swapModal) {
-                closeModal();
-            }
-        });
-        window.addEventListener('keydown', (e) => {
-             if (e.key === "Escape" && !swapModal.classList.contains('hidden')) {
-                closeModal();
-            }
-        })
-
     </script>
 </body>
 </html>
