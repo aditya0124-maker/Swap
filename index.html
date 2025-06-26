@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwapEra - Swap Skills, Share Growth</title>
+    <title>SwapEra (Coming Soon) - Swap Skills, Share Growth</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -92,50 +89,50 @@
             background-color: var(--accent-gold);
             border-radius: 6px;
         }
+        .highlight-badge {
+            background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+        }
     </style>
 </head>
 <body class="bg-[#0f0524] text-gray-200">
 
-    <!-- Header Section -->
     <header class="bg-black/30 backdrop-blur-sm sticky top-0 z-50 border-b border-white/10">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
                 <a href="#" class="flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="m14.5 9-5 5"/><path d="m9.5 9 5 5"/></svg>
                     <span class="text-2xl font-bold celestial-gradient-text">SwapEra</span>
+                    <span class="bg-amber-400/20 text-amber-300 text-xs font-bold px-2.5 py-1 rounded-full">Coming Soon</span>
                 </a>
                 
                 <div class="hidden lg:flex items-center space-x-8 text-lg">
-                    <a href="#marketplace" class="hover:text-amber-400 transition-colors duration-300">Find Skills</a>
                     <a href="#how" class="hover:text-amber-400 transition-colors duration-300">How It Works</a>
-                    <a href="#why" class="hover:text-amber-400 transition-colors duration-300">Why Us?</a>
+                    <a href="#options" class="hover:text-amber-400 transition-colors duration-300">Options</a>
+                    <a href="#marketplace" class="hover:text-amber-400 transition-colors duration-300">Find Skills</a>
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <!-- Right side icons and buttons -->
-                     <div class="hidden lg:flex items-center space-x-4">
+                    <div class="hidden lg:flex items-center space-x-4">
                          <button id="notifications-btn" class="relative text-gray-300 hover:text-amber-400 transition-colors">
                              <i data-lucide="bell"></i>
                              <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">3</span>
                          </button>
-                          <button id="settings-btn" class="text-gray-300 hover:text-amber-400 transition-colors">
+                         <button id="settings-btn" class="text-gray-300 hover:text-amber-400 transition-colors">
                              <i data-lucide="settings"></i>
                          </button>
                         <a href="#" id="login-btn" class="px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
                         <a href="#" id="signup-btn" class="px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
-                    </div>
-                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-button" class="lg:hidden text-white">
+                     </div>
+                     <button id="mobile-menu-button" class="lg:hidden text-white">
                         <i data-lucide="menu"></i>
                     </button>
                 </div>
             </nav>
         </div>
-         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900">
-            <a href="#marketplace" class="block py-3 px-4 text-lg hover:bg-slate-700">Find Skills</a>
+         <div id="mobile-menu" class="hidden lg:hidden bg-slate-900">
             <a href="#how" class="block py-3 px-4 text-lg hover:bg-slate-700">How It Works</a>
-            <a href="#why" class="block py-3 px-4 text-lg hover:bg-slate-700">Why Us?</a>
+            <a href="#options" class="block py-3 px-4 text-lg hover:bg-slate-700">Options</a>
+            <a href="#marketplace" class="block py-3 px-4 text-lg hover:bg-slate-700">Find Skills</a>
             <div class="p-4 border-t border-slate-800 space-y-3">
                  <a href="#" class="mobile-login-btn block w-full text-center px-5 py-2 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">Log In</a>
                  <a href="#" class="mobile-signup-btn block w-full text-center px-5 py-2 rounded-full text-slate-900 celestial-gradient font-semibold hover:opacity-90 transition-opacity duration-300">Sign Up</a>
@@ -144,7 +141,6 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="py-20 md:py-32 relative overflow-hidden">
             <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/stardust.png');"></div>
              <div class="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-slate-900/10 to-transparent"></div>
@@ -176,15 +172,119 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Top Skill Givers Section -->
+
+        <section id="for-who" class="py-20 bg-black/20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Who is SwapEra For?</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 max-w-6xl mx-auto text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="graduation-cap" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Students</h3>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="briefcase" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Freshers</h3>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="user-tie" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Professionals</h3>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="repeat" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Job Switchers</h3>
+                    </div>
+                     <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="palette" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Hobbyists</h3>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-2xl glass-card flex items-center justify-center mb-4"><i data-lucide="code-2" class="w-12 h-12 celestial-gradient-text"></i></div>
+                        <h3 class="text-xl font-semibold">Freelancers</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get Started in 4 Simple Steps</h2>
+                <div class="relative max-w-5xl mx-auto">
+                    <div class="absolute left-1/2 -translate-x-1/2 top-12 w-0.5 h-3/4 bg-white/10 hidden md:block"></div>
+                    <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0 w-20 h-20 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold shadow-lg shadow-amber-500/20"><i data-lucide="user-plus"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Create a Profile</h3>
+                                <p class="text-gray-400">Sign up and build your profile to showcase who you are.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 md:flex-row-reverse md:text-right">
+                            <div class="flex-shrink-0 w-20 h-20 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold shadow-lg shadow-amber-500/20"><i data-lucide="file-plus"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Add Skills</h3>
+                                <p class="text-gray-400">List the skills you can teach and the ones you want to learn.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="flex-shrink-0 w-20 h-20 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold shadow-lg shadow-amber-500/20"><i data-lucide="users"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Match with People</h3>
+                                <p class="text-gray-400">Our system helps you find the right people to swap skills with.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 md:flex-row-reverse md:text-right">
+                            <div class="flex-shrink-0 w-20 h-20 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold shadow-lg shadow-amber-500/20"><i data-lucide="video"></i></div>
+                            <div>
+                                <h3 class="text-2xl font-semibold mb-2">Start a Live Session/Chat</h3>
+                                <p class="text-gray-400">Connect via chat or live video to start sharing knowledge.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="options" class="py-20 bg-black/20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Flexible Learning Options</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="glass-card p-8 rounded-2xl border-2 border-amber-400 relative flex flex-col">
+                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+                            <span class="highlight-badge text-white text-sm font-bold px-4 py-1.5 rounded-full">Most Popular</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mt-4">Swap Skills Freely</h3>
+                        <p class="text-gray-300 my-4 flex-grow">Teach what you know and learn what you want — for free.</p>
+                        <a href="#marketplace" class="mt-auto text-center px-8 py-3 rounded-full celestial-gradient text-slate-900 font-bold shadow-lg shadow-amber-500/20 transform hover:scale-105 transition-transform duration-300">
+                            Start Swapping
+                        </a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex flex-col">
+                         <h3 class="text-2xl font-bold text-white mt-4">Learn from Verified Trainers</h3>
+                        <p class="text-gray-300 my-4 flex-grow">Want structured sessions? Book trainers for paid sessions in UI/UX, Excel, Yoga & more.</p>
+                        <a href="#" class="mt-auto text-center px-8 py-3 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">
+                            Explore Trainers
+                        </a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex flex-col">
+                         <h3 class="text-2xl font-bold text-white mt-4">Don’t Want to Teach? Just Learn</h3>
+                        <p class="text-gray-300 my-4 flex-grow">Not ready to teach? Learn from others via 1-on-1 paid sessions.</p>
+                        <a href="#" class="mt-auto text-center px-8 py-3 rounded-full text-white border border-amber-400 hover:bg-amber-400/10 transition-all duration-300">
+                            Find a Mentor
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center mt-12 max-w-3xl mx-auto">
+                    <p class="text-amber-300/80 italic text-lg">“SwapEra is and will always be free for those who want to teach & learn. Paid options are just for added flexibility.”</p>
+                </div>
+            </div>
+        </section>
+
         <section id="marketplace" class="py-20">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Connect with Top Skill Givers</h2>
                 <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">Find verified people from your city, ready to teach and learn. Your next skill is just a swap away.</p>
 
-                 <!-- Search and Filter Bar -->
-                <div class="mb-12 glass-card rounded-full p-2 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-2">
+                 <div class="mb-12 glass-card rounded-full p-2 max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-2">
                     <div class="relative flex-grow w-full">
                         <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
                         <input type="text" placeholder="Search for a skill (e.g., 'Yoga', 'Python')" class="w-full bg-transparent text-white pl-12 pr-4 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500/50">
@@ -205,7 +305,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Skill Giver Cards... -->
                     <div class="skill-giver-card glass-card rounded-2xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
                         <div class="relative">
                             <img src="https://placehold.co/400x400/0f0524/fde68a?text=Riya" alt="Riya" class="w-full h-56 object-cover">
@@ -317,35 +416,50 @@
             </div>
         </section>
 
-        <!-- How It Works Section -->
-        <section id="how" class="py-20 bg-black/20">
+        <section id="approach" class="py-20 bg-black/20">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Start Swapping in 3 Simple Steps</h2>
-                <div class="grid md:grid-cols-3 gap-10 text-center max-w-5xl mx-auto">
-                    <!-- Step 1 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">1</div>
-                        <h3 class="text-2xl font-semibold mb-2">Create Profile</h3>
-                        <p class="text-gray-400">Sign up for free and list the skills you can teach and want to learn.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Built For You, Differently</h2>
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-6 celestial-gradient-text">Our Approach</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span><strong class="text-white">Manual matching</strong> in beta for quality.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span><strong class="text-white">Barter + Paid</strong> = Flexible.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span><strong class="text-white">City-by-city launch</strong> for local trust.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span><strong class="text-white">Always free</strong> for peer swapping.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>Simple, <strong class="text-white">mobile-friendly design.</strong></span></li>
+                        </ul>
                     </div>
-                    <!-- Step 2 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">2</div>
-                        <h3 class="text-2xl font-semibold mb-2">Request a Swap</h3>
-                        <p class="text-gray-400">Find someone with a skill you want and send a swap request. Every user gets 5 free swaps!</p>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="flex flex-col items-center">
-                        <div class="w-24 h-24 rounded-full celestial-gradient flex items-center justify-center text-slate-900 text-4xl font-bold mb-4 shadow-lg shadow-amber-500/20">3</div>
-                        <h3 class="text-2xl font-semibold mb-2">Connect & Chat</h3>
-                        <p class="text-gray-400">Once your request is accepted, chat for free to schedule your skill-sharing session.</p>
+                    <div class="glass-card p-8 rounded-2xl">
+                         <h3 class="text-2xl font-bold mb-6 celestial-gradient-text">Why It Works</h3>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>Solves the teacher-learner gap with <strong class="text-white">mutual swaps.</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>Focus on <strong class="text-white">trust & safety</strong> with real profiles.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>Early users get <strong class="text-white">priority matching.</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>Retains users via <strong class="text-white">community & real value.</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-6 h-6 mr-3 text-green-400 mt-1 flex-shrink-0"></i><span>No ads, no spam, just <strong class="text-white">growth together.</strong></span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section id="vision" class="py-20">
+             <div class="container mx-auto px-4 max-w-4xl">
+                 <div class="grid md:grid-cols-2 gap-12 text-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4">Our Vision</h3>
+                        <p class="text-2xl text-gray-300 italic">“To build India’s most inclusive learning community where growth has no cost.”</p>
+                    </div>
+                     <div>
+                        <h3 class="text-3xl font-bold mb-4">Our Mission</h3>
+                        <p class="text-2xl text-gray-300 italic">“To empower anyone, anywhere to teach or learn a skill through exchange, not payment.”</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
         
-        <!-- Why Choose SwapEra Section -->
-        <section id="why" class="py-20">
+        <section id="why" class="py-20 bg-black/20">
              <div class="container mx-auto px-4">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Choose SwapEra?</h2>
                  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -368,8 +482,7 @@
             </div>
         </section>
 
-        <!-- Premium Teaser Section -->
-        <section id="premium" class="py-20 bg-black/20">
+        <section id="premium" class="py-20">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Unlock Your Full Potential</h2>
                  <p class="celestial-gradient-text font-semibold text-lg mb-6">SwapEra Premium is Coming Soon!</p>
@@ -391,23 +504,20 @@
                      </div>
                  </div>
                  <button class="mt-12 px-8 py-4 rounded-full text-white border-2 border-amber-400 text-lg font-bold hover:bg-amber-400/10 transition-colors duration-300">
-                     Join Waitlist for Premium
+                    Join Waitlist for Premium
                  </button>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-black/20 border-t border-white/10 pt-16 pb-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-center md:text-left">
-                <!-- About -->
                 <div>
                     <h4 class="text-xl font-bold mb-4 text-white">SwapEra</h4>
                     <p class="text-gray-400">The community-driven platform for skill exchange. Learn, teach, and grow without cost.</p>
                 </div>
-                <!-- Quick Links -->
                 <div>
                     <h4 class="text-xl font-bold mb-4 text-white">Explore</h4>
                     <ul class="space-y-2">
@@ -416,7 +526,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-amber-400">Knowledge Hub</a></li>
                     </ul>
                 </div>
-                <!-- Support -->
                 <div>
                     <h4 class="text-xl font-bold mb-4 text-white">Support</h4>
                     <ul class="space-y-2">
@@ -425,7 +534,6 @@
                         <li><a href="#" class="text-gray-400 hover:text-amber-400">Privacy Policy</a></li>
                     </ul>
                 </div>
-                <!-- Social -->
                 <div>
                     <h4 class="text-xl font-bold mb-4 text-white">Follow Us</h4>
                     <div class="flex space-x-4 justify-center md:justify-start">
@@ -442,28 +550,22 @@
         </div>
     </footer>
 
-    <!-- MODALS & PANELS -->
-
-    <!-- Auth Modal -->
     <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content glass-card rounded-2xl w-full max-w-md shadow-2xl relative">
             <button id="close-auth-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
             <div id="auth-container" class="p-8">
-                <!-- Login form will be injected here by JS -->
-            </div>
+                </div>
         </div>
     </div>
     
-    <!-- Notifications Panel -->
-     <div id="notifications-panel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#1a103c] shadow-2xl z-50 hidden">
+    <div id="notifications-panel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-[#1a103c] shadow-2xl z-50 hidden">
         <div class="panel-content h-full flex flex-col">
             <div class="flex justify-between items-center p-4 border-b border-white/10">
                 <h3 class="text-xl font-bold">Notifications</h3>
                 <button id="close-notifications-panel" class="text-gray-400 hover:text-white">&times;</button>
             </div>
             <div class="notification-body flex-grow overflow-y-auto">
-                <!-- Notification Items -->
-                 <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
+                <div class="p-4 border-b border-white/10 flex items-start gap-4 hover:bg-white/5 transition-colors">
                     <div class="w-10 h-10 flex-shrink-0 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center"><i data-lucide="check-circle-2"></i></div>
                     <div>
                         <p class="font-semibold">Match Confirmed!</p>
@@ -500,9 +602,8 @@
                 <a href="#" class="text-amber-400 font-semibold text-sm hover:underline">Mark all as read</a>
             </div>
         </div>
-     </div>
+      </div>
 
-    <!-- Settings Modal -->
     <div id="settings-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content glass-card rounded-2xl w-full max-w-sm shadow-2xl relative p-8">
              <button id="close-settings-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
@@ -517,7 +618,6 @@
     </div>
 
 
-    <!-- Swap Request Modal -->
     <div id="swap-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content glass-card rounded-2xl w-full max-w-md text-center p-8 shadow-2xl relative">
             <button id="close-swap-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
