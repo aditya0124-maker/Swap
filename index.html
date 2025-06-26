@@ -1,1048 +1,960 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>SwapEra – Coming Soon</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Poppins Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <!-- Simple Icons CDN for Social -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css">
-  <style>
-    :root {
-      --bg-gradient: linear-gradient(135deg, #FBE8A6 60%, #fffbe6 100%);
-      --bg-main: #FBE8A6;
-      --card-bg: #B4DFE5;
-      --accent: #F4976C;
-      --highlight: #D2FDFF;
-      --text-main: #303C6C;
-      --white: #fff;
-      --border-radius: 20px;
-      --glass-bg: rgba(180, 223, 229, 0.76);
-      --glass-blur: blur(14px);
-      --glass-border: 1.5px solid #D2FDFF;
-      --glass-radius: 20px;
-      --glass-shadow: 0 8px 28px 0 rgba(244,151,108,0.10), 0 2px 9px #fffbe6;
-      --transition: all 0.28s cubic-bezier(.4,0,.2,1);
-      --btn-shadow: 0 2px 16px 0 rgba(244,151,108,0.12);
-      --input-glass: rgba(255,255,255,0.78);
-      --input-border: 1.2px solid #B4DFE5;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--text-main);
-      background: var(--bg-gradient), var(--bg-main);
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      position: relative;
-    }
-    body::before {
-      /* painterly sunlight, soft illustration effect */
-      content: "";
-      position: fixed;
-      z-index: 0;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      background:
-        radial-gradient(circle at 20% 10%, #fffbe6 32%, transparent 70%),
-        radial-gradient(circle at 85% 12%, #D2FDFF 17%, transparent 66%),
-        radial-gradient(circle at 70% 80%, #FBE8A6 18%, transparent 82%),
-        linear-gradient(145deg, #FBE8A6 80%, #fffbe6 100%);
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    a { text-decoration: none; color: inherit; }
-    /* Navbar Glassmorphic */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.4rem 7vw;
-      background: rgba(255,255,255,0.57);
-      border-bottom: 1.5px solid #D2FDFF;
-      backdrop-filter: blur(11px);
-      border-radius: 0 0 var(--glass-radius) var(--glass-radius);
-      box-shadow: 0 4px 18px 0 rgba(180,223,229,0.14);
-      position: sticky; top: 0; z-index: 30;
-      transition: var(--transition);
-      margin-bottom: 2rem;
-    }
-    .logo {
-      font-weight: 800; font-size: 1.7rem; letter-spacing: -1px;
-      color: var(--accent); user-select: none;
-      text-shadow: 0 2px 10px #fffbe6bb;
-    }
-    .nav-links {
-      display: flex; gap: 2.3rem; align-items: center;
-    }
-    .nav-links a {
-      font-weight: 500; font-size: 1.08rem;
-      color: var(--text-main); transition: color .24s;
-      position: relative; padding: 0.3rem 0;
-      letter-spacing: 0.01em;
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent);
-      text-shadow: 0 0 7px #FBE8A6;
-    }
-    .nav-links a.active::after,
-    .nav-links a:hover::after {
-      content: '';
-      display: block;
-      margin: 0.1rem auto 0;
-      width: 36%;
-      height: 2px;
-      border-radius: 2px;
-      background: var(--accent);
-      box-shadow: 0 0 4px 1px #FBE8A6;
-    }
-    .nav-links .cta-btn {
-      padding: 0.5rem 1.35rem !important;
-      font-size:1.04rem !important;
-      background: var(--accent);
-      color: #fff!important;
-      border-radius: 40px;
-      font-weight: 600;
-      border: none;
-      box-shadow: var(--btn-shadow);
-      transition: var(--transition);
-      margin-left: 1.6rem;
-      display: inline-block;
-      position: relative;
-      z-index: 1;
-      text-shadow: 0 0 8px #fffbe6bb;
-    }
-    .nav-links .cta-btn:hover {
-      background: #f8834a;
-      color: #fffbe6 !important;
-      box-shadow: 0 8px 24px #F4976C40;
-      transform: scale(1.07);
-      filter: brightness(1.07);
-    }
-    .nav-toggle {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 1rem;
-      z-index: 120;
-    }
-    .nav-toggle span {
-      width: 26px; height: 3px; background: var(--accent); border-radius: 2px;
-      transition: background 0.2s;
-    }
-    header, .section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 7vw;
-    }
-    /* Hero Section */
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2.5rem;
-      min-height: 85vh;
-      padding-top: 2.5rem;
-      z-index: 2;
-      position: relative;
-    }
-    .hero-info {
-      flex: 1 1 350px; min-width: 270px; z-index: 2;
-      display: flex; flex-direction: column; justify-content: center;
-      animation: fadeInUp 1.0s cubic-bezier(.4,0,.2,1);
-    }
-    .hero-glass {
-      background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(18px);
-      border-radius: 36px;
-      border: 1.5px solid #D2FDFF;
-      box-shadow: 0 12px 54px 0 #B4DFE540, 0 0 0 1.5px #D2FDFF inset;
-      padding: 2.5rem 2.2rem 2.2rem 2.2rem;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      transition: var(--transition);
-      animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
-    }
-    .hero-title {
-      font-size: 2.65rem;
-      font-weight: 700;
-      color: var(--text-main);
-      text-shadow: 0 2px 14px #fffbe6bb, 0 2px 10px #fff;
-      margin-bottom: 0.75rem;
-      letter-spacing: -1.5px;
-      line-height: 1.13;
-      animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
-    }
-    .hero-subtext {
-      font-size: 1.18rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.7rem;
-      text-shadow: 0 0 10px #D2FDFF88;
-      animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
-    }
-    .hero-desc {
-      font-size: 1.04rem;
-      color: #303C6C;
-      margin-bottom: 1.3rem;
-      line-height: 1.6;
-      animation: fadeInUp 1.4s cubic-bezier(.4,0,.2,1);
-      opacity: 0.85;
-    }
-    .cta-btn {
-      padding: 0.9rem 2.15rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 44px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: var(--btn-shadow);
-      transition: var(--transition);
-      outline: none;
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.04em;
-      filter: brightness(1.08);
-      text-shadow: 0 0 6px #fffbe6bb;
-      position: relative;
-      z-index: 1;
-    }
-    .cta-btn:hover, .cta-btn:focus {
-      background: #f8834a;
-      color: #fffbe6;
-      box-shadow: 0 8px 32px #F4976C55;
-      transform: scale(1.08);
-      filter: brightness(1.13);
-    }
-    .hero-graphic {
-      flex: 1 1 330px;
-      min-width: 240px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      min-height: 320px;
-      z-index: 1;
-      animation: floatY 4s infinite alternate cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
-      perspective: 1000px;
-      will-change: transform;
-      filter: drop-shadow(0 10px 64px #FBE8A650);
-    }
-    .floating { animation: floatY 3.3s ease-in-out infinite alternate; will-change: transform;}
-    @keyframes floatY { 0% {transform: translateY(0);} 100% {transform: translateY(-22px) scale(1.03) perspective(1000px) rotateY(5deg);} }
-    @keyframes fadeInUp { 0% {opacity: 0; transform: translateY(70px) scale(.98);} 100% {opacity: 1; transform: none;} }
-    /* Section Titles */
-    .section-title-row {
-      display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1rem;
-      justify-content: center;
-    }
-    .section-title-row svg {
-      width: 48px; height: 48px; flex-shrink: 0; filter: drop-shadow(0 2px 12px #B4DFE570);
-    }
-    .section h2, .section-title-row h2 {
-      color: var(--text-main);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      text-shadow: 0 0 8px #fffbe6cc;
-    }
-    /* Glass Card Section */
-    .section {
-      margin-top: 2.6rem;
-      margin-bottom: 2.6rem;
-      position: relative;
-      z-index: 2;
-    }
-    .glass-card, .why-card, .how-card, .flex-card, .vm-section, .who-card, .different-col {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      border-radius: var(--glass-radius);
-      border: var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      transition: var(--transition);
-      z-index: 1;
-      position: relative;
-      overflow: hidden;
-    }
-    .glass-card:hover, .why-card:hover, .how-card:hover, .flex-card:hover, .different-col:hover, .who-card:hover, .vm-section:hover {
-      box-shadow: 0 0 32px 7px #B4DFE533, 0 8px 32px #F4976C33;
-      filter: brightness(1.07);
-    }
-    /* Why Glass Cards */
-    .why-cards {
-      display: flex; gap: 2.1rem; justify-content: center;
-      margin: 2.2rem 0 0.7rem; flex-wrap: wrap;
-    }
-    .why-card {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 2.2rem 1.8rem; min-width: 220px; max-width: 320px; flex: 1 1 210px;
-      cursor: default;
-      animation: fadeInUp 1.2s;
-      background: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 28px #F4976C30;
-    }
-    .why-card .icon {
-      font-size: 2.7rem; margin-bottom: 1.05rem; color: var(--accent);
-      text-shadow: 0 0 12px #FBE8A6;
-    }
-    .why-card .card-title {
-      font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.55rem; text-align: center;
-      text-shadow: 0 0 10px #fffbe6bb;
-    }
-    .why-card .card-desc {
-      font-size: 1.01rem; color: var(--text-main); text-align: center; font-weight: 400;
-      opacity: 0.93;
-    }
-    /* How it works Glass Cards */
-    .how-cards {
-      display: flex; gap: 2rem; flex-wrap: wrap; margin: 2.3rem 0 1.4rem; justify-content: space-between;
-    }
-    .how-card {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 1.8rem 1.2rem; min-width: 170px; max-width: 230px; flex: 1 1 180px;
-      opacity: 0; transform: translateX(60px); transition: var(--transition);
-      animation: fadeInUp 1.3s;
-      background: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 28px #F4976C25;
-    }
-    .how-card.visible { opacity: 1; transform: none;}
-    .how-card .icon { font-size: 2.5rem; margin-bottom: 0.88rem; color: var(--accent);}
-    .how-card .step-title { font-size: 1.06rem; font-weight: 600; margin-bottom: 0.5rem; text-align: center; color: var(--text-main);}
-    /* Floating Glass Cards */
-    .flex-cards {
-      display: flex; gap: 2rem; margin: 2.4rem 0 0.5rem; flex-wrap: wrap; justify-content: space-between;
-    }
-    .flex-card {
-      flex: 1 1 230px; min-width: 220px; max-width: 330px;
-      padding: 2.1rem 1.3rem; display: flex; flex-direction: column; align-items: flex-start;
-      animation: floatY 4s infinite alternate-reverse cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
-      background: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 32px #F4976C22;
-    }
-    .flex-card .flex-title { font-size: 1.15rem; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; }
-    .flex-card .flex-desc { font-size: 1.06rem; color: var(--text-main); margin-bottom: 1.3rem; min-height: 48px; font-weight: 400; opacity: 0.93;}
-    .flex-card .flex-btn {
-      background: var(--accent);
-      color: #fff;
-      padding: 0.7rem 1.7rem;
-      border: none;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1em;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--btn-shadow);
-      margin-bottom: 0.15rem;
-      align-self: flex-start;
-      letter-spacing: 0.01em;
-      text-shadow: 0 0 6px #fffbe6cc;
-      filter: brightness(1.10);
-      position: relative;
-      z-index: 1;
-    }
-    .flex-card .flex-btn:hover {
-      background: #f8834a;
-      color: #fffbe6;
-      box-shadow: 0 8px 28px #F4976C44;
-      transform: scale(1.05);
-      filter: brightness(1.18);
-    }
-    .flex-cards .flex-card:nth-child(1) { animation-delay: 0.25s;}
-    .flex-cards .flex-card:nth-child(2) { animation-delay: 0.38s;}
-    .flex-cards .flex-card:nth-child(3) { animation-delay: 0.52s;}
-    .flex-subtext {
-      font-size: 1.01rem;
-      color: var(--accent);
-      margin: 1.4rem 0 0.5rem 0;
-      font-style: italic;
-      text-align: center;
-      display: block;
-      width: 100%;
-      font-weight: 500;
-      background: #fffbe6;
-      border-radius: 12px;
-      padding: 0.6em 0 0.6em 0;
-      box-shadow: 0 0 12px #B4DFE570;
-      text-shadow: 0 0 6px #fffbe688;
-    }
-    /* Vision & Mission Glass */
-    .vm-section {
-      margin: 2.6rem 0;
-      padding: 2.1rem 1.2rem;
-      text-align: center;
-      font-weight: 600;
-      background: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 28px #F4976C18;
-    }
-    .vm-section .vm-title {
-      font-size: 1.14rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      text-shadow: 0 0 10px #fffbe6bb;
-    }
-    .vm-section .vm-quote {
-      font-size: 1.07rem; color: var(--text-main); font-style: italic; margin-bottom: 0.8rem; font-weight: 400;
-      opacity: 0.93;
-    }
-    /* Who Glass */
-    .who-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(120px, 1fr));
-      gap: 1.7rem;
-      max-width: 700px;
-      margin: 2.3rem auto 0 auto;
-      justify-items: center;
-    }
-    .who-card {
-      padding: 1.35rem 0.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 90px;
-      max-width: 170px;
-      transition: var(--transition);
-      font-weight: 700;
-      color: var(--text-main);
-      font-size: 1.07rem;
-      cursor: default;
-      position: relative;
-      z-index: 2;
-      animation: fadeInUp 1.6s;
-      background: var(--card-bg);
-      box-shadow: 0 4px 28px #F4976C17;
-    }
-    .who-card .icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-      text-shadow: 0 0 8px #fffbe6cc;
-    }
-    .who-card:hover {
-      box-shadow: 0 0 35px 5px #B4DFE540;
-      transform: scale(1.08) perspective(1000px) rotateY(5deg);
-      filter: brightness(1.11);
-    }
-    /* What Makes Different Glass */
-    .different-section {
-      display: flex;
-      gap: 2.5rem;
-      margin: 2.7rem 0 1.4rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .different-col {
-      flex: 1 1 340px; min-width: 240px; max-width: 430px;
-      padding: 2rem 1.5rem 1.6rem 1.5rem; margin-bottom: 1.2rem;
-      animation: fadeInUp 1.7s cubic-bezier(.4,0,.2,1);
-      background: var(--card-bg);
-      color: var(--text-main);
-      box-shadow: 0 4px 28px #F4976C13;
-    }
-    .different-col .col-title {
-      font-size: 1.09rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1.1rem;
-      text-align: left;
-      text-shadow: 0 0 6px #fffbe6cc;
-    }
-    .different-col ul {
-      padding-left: 1.3em;
-      margin: 0;
-    }
-    .different-col ul li {
-      color: var(--text-main);
-      font-size: 1.01rem;
-      margin-bottom: 0.7em;
-      list-style: disc inside;
-      font-weight: 400;
-      opacity: 0.93;
-    }
-    .different-col ul li strong {
-      color: var(--accent);
-      font-weight: 700;
-    }
-    /* Modal Glass */
-    .modal-bg {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(251,232,166,0.42);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: var(--transition);
-    }
-    .modal-bg.active { display: flex; animation: fadeInModal 0.5s;}
-    @keyframes fadeInModal { 0% { opacity: 0; } 100% { opacity: 1; } }
-    .modal {
-      background: #fffbeedb;
-      border-radius: 25px;
-      border: 1.5px solid #D2FDFF;
-      box-shadow: 0 0 36px 2px #B4DFE560, 0 0 0 1.5px #FBE8A6 inset;
-      padding: 2.4rem 1.7rem 2.1rem 1.7rem;
-      width: 100%;
-      max-width: 400px;
-      position: relative;
-      animation: fadeInUp 0.7s cubic-bezier(.4,0,.2,1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-      z-index: 2;
-      backdrop-filter: blur(18px);
-      transition: var(--transition);
-    }
-    .modal-close {
-      position: absolute;
-      top: 15px; right: 18px;
-      font-size: 1.7rem;
-      color: var(--accent);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color var(--transition);
-      z-index: 2;
-      text-shadow: 0 0 8px #fffbe6cc;
-    }
-    .modal-close:hover { color: #f8834a;}
-    .modal h2 {
-      font-size: 1.18rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 1.4rem;
-      color: var(--accent);
-      text-shadow: 0 0 10px #fffbe6bb;
-    }
-    .modal form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .modal label {
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 0.96rem;
-      margin-bottom: 0.18rem;
-      text-shadow: 0 0 7px #fffbe6aa;
-    }
-    .modal input, .modal select, .modal textarea {
-      width: 100%;
-      padding: 0.6rem 0.92rem;
-      border-radius: 7px;
-      border: var(--input-border);
-      background: var(--input-glass);
-      font-family: inherit;
-      font-size: 1rem;
-      color: var(--text-main);
-      margin-bottom: 0.02rem;
-      transition: var(--transition);
-      box-shadow: 0 1.5px 8px #F4976C11;
-      outline: none;
-      backdrop-filter: blur(9px);
-    }
-    .modal input:focus, .modal select:focus, .modal textarea:focus {
-      border-color: var(--accent);
-      background: rgba(244,151,108,0.13);
-      color: var(--text-main);
-      box-shadow: 0 0 12px #F4976C33;
-    }
-    .modal .submit-btn {
-      margin-top: 0.6rem;
-      padding: 0.82rem 0;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 40px;
-      font-size: 1.08rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 1.5px 8px #F4976C33;
-      transition: var(--transition);
-      align-self: center;
-      width: 100%;
-      max-width: 270px;
-      display: block;
-      letter-spacing: 0.01em;
-      filter: brightness(1.10);
-      position: relative;
-      z-index: 1;
-    }
-    .modal .submit-btn:hover {
-      background: #f8834a;
-      color: #fffbe6;
-      box-shadow: 0 8px 24px #F4976C44;
-      transform: scale(1.05);
-      filter: brightness(1.17);
-    }
-    .modal .success-msg {
-      color: var(--accent);
-      font-size: 1.16rem;
-      font-weight: 800;
-      text-align: center;
-      margin-top: 1.3rem;
-      animation: fadeInUp 1.1s;
-      text-shadow: 0 0 10px #fffbe6cc;
-    }
-    /* Footer Glass */
-    footer {
-      margin-top: 2.7rem;
-      padding: 2.1rem 7vw 1.1rem 7vw;
-      background: rgba(255,255,255,0.55);
-      border-top-left-radius: 22px;
-      border-top-right-radius: 22px;
-      box-shadow: 0 -2px 20px #F4976C22;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      border-top: 1.5px solid #D2FDFF;
-    }
-    .footer-row {
-      display: flex; align-items: center; justify-content: center; gap: 1.7rem; flex-wrap: wrap; margin-bottom: 0.7rem;
-    }
-    .footer-logo {
-      font-size: 1.36rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: -1px;
-      margin-right: 0.7rem;
-      text-shadow: 0 0 11px #fffbe6bb;
-    }
-    .footer-social {
-      display: flex; gap: 1.1rem;
-    }
-    .footer-social a {
-      color: var(--accent);
-      font-size: 1.55rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #D2FDFF;
-      border-radius: 50%;
-      width: 38px; height: 38px;
-      transition: var(--transition);
-      border: 1.5px solid #B4DFE5;
-      box-shadow: 0 0 8px #F4976C22;
-      backdrop-filter: blur(5px);
-    }
-    .footer-social a:hover { background: var(--accent); color: #fff; box-shadow: 0 0 18px #F4976C77; }
-    .footer-text { color: var(--text-main); font-size: 0.99rem; margin-top: 0.35rem; letter-spacing: 0.01em; opacity: 0.82;}
-    /* Responsive */
-    @media (max-width: 950px) {
-      header {
-        flex-direction: column-reverse;
-        text-align: center;
-        gap: 2.6rem;
-        min-height: 60vh;
-      }
-      .hero-info, .hero-graphic { min-width: 0; }
-      .flex-cards, .how-cards, .why-cards, .different-section {
-        flex-direction: column; gap: 1.5rem;
-      }
-      .why-cards, .how-cards, .flex-cards { align-items: stretch; }
-      .different-section { gap: 1.2rem; }
-    }
-    @media (max-width: 700px) {
-      nav { padding: 1.2rem 4vw; }
-      header, .section { padding: 0 4vw; }
-      .flex-cards, .how-cards, .why-cards { gap: 1rem; }
-      .who-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 1.1rem;}
-    }
-    @media (max-width: 520px) {
-      nav { padding: 0.8rem 3vw; }
-      .logo { font-size: 1.1rem;}
-      header { min-height: 50vh; }
-      .hero-title { font-size: 1.51rem;}
-      .hero-subtext { font-size: 1rem;}
-      .why-cards, .how-cards, .flex-cards { gap: 0.77rem;}
-      .who-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 900px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 62px;
-        right: 3vw;
-        background: #fffbeedb;
-        box-shadow: 0 8px 32px #B4DFE570;
-        border-radius: 12px;
-        flex-direction: column;
-        gap: 1.07rem;
-        padding: 1.2rem 1.4rem;
-        z-index: 100;
-        border: 1.5px solid #D2FDFF;
-        backdrop-filter: blur(14px);
-      }
-      .nav-links.open { display: flex; animation: fadeInUp 0.3s;}
-      .nav-toggle { display: flex; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>SwapEra – Swap Skills, Share Growth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Poppins Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Simple Icons CDN for Social -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v9/font/simple-icons.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #FBE8A6 60%, #fffbe6 100%);
+            --bg-main: #FBE8A6;
+            --card-bg: #B4DFE5;
+            --accent: #F4976C;
+            --highlight: #D2FDFF;
+            --text-main: #303C6C;
+            --white: #fff;
+            --border-radius: 20px;
+            --glass-bg: rgba(180, 223, 229, 0.76);
+            --glass-blur: blur(14px);
+            --glass-border: 1.5px solid #D2FDFF;
+            --glass-radius: 20px;
+            --glass-shadow: 0 8px 28px 0 rgba(244,151,108,0.10), 0 2px 9px #fffbe6;
+            --transition: all 0.28s cubic-bezier(.4,0,.2,1);
+            --btn-shadow: 0 2px 16px 0 rgba(244,151,108,0.12);
+            --input-glass: rgba(255,255,255,0.78);
+            --input-border: 1.2px solid #B4DFE5;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background: var(--bg-gradient), var(--bg-main);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            z-index: 0;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background:
+                radial-gradient(circle at 20% 10%, #fffbe6 32%, transparent 70%),
+                radial-gradient(circle at 85% 12%, #D2FDFF 17%, transparent 66%),
+                radial-gradient(circle at 70% 80%, #FBE8A6 18%, transparent 82%),
+                linear-gradient(145deg, #FBE8A6 80%, #fffbe6 100%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        a { text-decoration: none; color: inherit; }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 7vw;
+            background: rgba(255,255,255,0.57);
+            border-bottom: 1.5px solid #D2FDFF;
+            backdrop-filter: blur(11px);
+            border-radius: 0 0 var(--glass-radius) var(--glass-radius);
+            box-shadow: 0 4px 18px 0 rgba(180,223,229,0.14);
+            position: sticky; top: 0; z-index: 30;
+            transition: var(--transition);
+            margin-bottom: 2rem;
+        }
+        .logo {
+            font-weight: 800; font-size: 1.7rem; letter-spacing: -1px;
+            color: var(--accent); user-select: none;
+            text-shadow: 0 2px 10px #fffbe6bb;
+        }
+        .nav-links {
+            display: flex; gap: 2.3rem; align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500; font-size: 1.08rem;
+            color: var(--text-main); transition: color .24s;
+            position: relative; padding: 0.3rem 0;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+            text-shadow: 0 0 7px #FBE8A6;
+        }
+        .nav-links a.active::after,
+        .nav-links a:hover::after {
+            content: '';
+            display: block;
+            margin: 0.1rem auto 0;
+            width: 36%;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--accent);
+            box-shadow: 0 0 4px 1px #FBE8A6;
+        }
+        .nav-links .cta-btn {
+            padding: 0.5rem 1.35rem !important;
+            font-size:1.04rem !important;
+            background: var(--accent);
+            color: #fff!important;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            box-shadow: var(--btn-shadow);
+            transition: var(--transition);
+            margin-left: 1.6rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 8px #fffbe6bb;
+        }
+        .nav-links .cta-btn:hover {
+            background: #f8834a;
+            color: #fffbe6 !important;
+            box-shadow: 0 8px 24px #F4976C40;
+            transform: scale(1.07);
+            filter: brightness(1.07);
+        }
+        .nav-toggle {
+            display: none; flex-direction: column; gap: 5px; cursor: pointer; margin-left: 1rem;
+            z-index: 120;
+        }
+        .nav-toggle span {
+            width: 26px; height: 3px; background: var(--accent); border-radius: 2px;
+            transition: background 0.2s;
+        }
+        header, .section {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 7vw;
+        }
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2.5rem;
+            min-height: 85vh;
+            padding-top: 2.5rem;
+            z-index: 2;
+            position: relative;
+        }
+        .hero-info {
+            flex: 1 1 450px; min-width: 270px; z-index: 2;
+            display: flex; flex-direction: column; justify-content: center;
+            animation: fadeInUp 1.0s cubic-bezier(.4,0,.2,1);
+        }
+        .hero-glass {
+            background: rgba(255,255,255,0.65);
+            backdrop-filter: blur(18px);
+            border-radius: 36px;
+            border: 1.5px solid #D2FDFF;
+            box-shadow: 0 12px 54px 0 #B4DFE540, 0 0 0 1.5px #D2FDFF inset;
+            padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeInUp 1.1s cubic-bezier(.4,0,.2,1);
+        }
+        .hero-title {
+            font-size: 2.85rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-shadow: 0 2px 14px #fffbe6bb, 0 2px 10px #fff;
+            margin-bottom: 0.75rem;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            animation: fadeInUp 1.2s cubic-bezier(.4,0,.2,1);
+        }
+        .hero-subtext {
+            font-size: 1.25rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            text-shadow: 0 0 10px #D2FDFF88;
+            animation: fadeInUp 1.3s cubic-bezier(.4,0,.2,1);
+        }
+        .hero-desc {
+            font-size: 1.08rem;
+            color: #303C6C;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 1.4s cubic-bezier(.4,0,.2,1);
+            opacity: 0.9;
+        }
+        .cta-btn {
+            padding: 0.9rem 2.15rem;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 44px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--btn-shadow);
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.04em;
+            filter: brightness(1.08);
+            text-shadow: 0 0 6px #fffbe6bb;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-btn:hover, .cta-btn:focus {
+            background: #f8834a;
+            color: #fffbe6;
+            box-shadow: 0 8px 32px #F4976C55;
+            transform: scale(1.08);
+            filter: brightness(1.13);
+        }
+        .hero-graphic {
+            flex: 1 1 330px;
+            min-width: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 320px;
+            z-index: 1;
+            animation: floatY 4s infinite alternate cubic-bezier(.4,0,.2,1), fadeInUp 1.4s;
+            perspective: 1000px;
+            will-change: transform;
+            filter: drop-shadow(0 10px 64px #FBE8A650);
+        }
+        .floating { animation: floatY 3.3s ease-in-out infinite alternate; will-change: transform;}
+        @keyframes floatY { 0% {transform: translateY(0);} 100% {transform: translateY(-22px) scale(1.03) perspective(1000px) rotateY(5deg);} }
+        @keyframes fadeInUp { 0% {opacity: 0; transform: translateY(70px) scale(.98);} 100% {opacity: 1; transform: none;} }
+        .section-title-row {
+            display: flex; align-items: center; gap: 1.3rem; margin-bottom: 1rem;
+            justify-content: center;
+        }
+        .section-title-row svg {
+            width: 48px; height: 48px; flex-shrink: 0; filter: drop-shadow(0 2px 12px #B4DFE570);
+        }
+        .section h2, .section-title-row h2 {
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 10px #fffbe6cc;
+        }
+        .section {
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        .glass-card, .why-card, .how-card, .flex-card, .vm-section, .who-card, .different-col {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--glass-radius);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition);
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover, .why-card:hover, .how-card:hover, .flex-card:hover, .different-col:hover, .who-card:hover, .vm-section:hover {
+            box-shadow: 0 0 32px 7px #B4DFE533, 0 8px 32px #F4976C33;
+            transform: translateY(-5px);
+            filter: brightness(1.07);
+        }
+        .why-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.5rem;
+        }
+        .why-card {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 2.2rem 1.8rem;
+            cursor: default;
+            animation: fadeInUp 1.2s;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 28px #F4976C30;
+        }
+        .why-card .icon {
+            font-size: 2.7rem; margin-bottom: 1.05rem; color: var(--accent);
+            text-shadow: 0 0 12px #FBE8A6;
+        }
+        .why-card .card-title {
+            font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.55rem; text-align: center;
+            text-shadow: 0 0 10px #fffbe6bb;
+        }
+        .why-card .card-desc {
+            font-size: 1.01rem; color: var(--text-main); text-align: center; font-weight: 400;
+            opacity: 0.93;
+        }
+        .how-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .how-card {
+            display: flex; flex-direction: column; align-items: center;
+            padding: 2rem 1.2rem;
+            opacity: 0; transform: translateY(60px);
+            animation-fill-mode: forwards;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 28px #F4976C25;
+            text-align: center;
+        }
+        .how-card.visible { opacity: 1; transform: none; transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .how-card .icon { font-size: 2.5rem; margin-bottom: 0.88rem; color: var(--accent);}
+        .how-card .step-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main);}
+
+        .flex-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 2.5rem;
+        }
+        .flex-card {
+            padding: 2.1rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 32px #F4976C22;
+        }
+        .flex-card .flex-title { font-size: 1.2rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+        .flex-card .flex-desc { font-size: 1.06rem; color: var(--text-main); margin-bottom: 1.3rem; min-height: 48px; font-weight: 400; opacity: 0.93;}
+        .flex-card .flex-btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.7rem 1.7rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--btn-shadow);
+            margin-top: auto;
+            letter-spacing: 0.01em;
+            text-shadow: 0 0 6px #fffbe6cc;
+            filter: brightness(1.10);
+            position: relative;
+            z-index: 1;
+        }
+        .flex-card .flex-btn:hover {
+            background: #f8834a;
+            color: #fffbe6;
+            box-shadow: 0 8px 28px #F4976C44;
+            transform: scale(1.05);
+            filter: brightness(1.18);
+        }
+        .flex-subtext {
+            font-size: 1.05rem;
+            color: var(--accent);
+            margin: 2rem 0 0.5rem 0;
+            font-style: italic;
+            text-align: center;
+            display: block;
+            width: 100%;
+            font-weight: 500;
+            background: #fffbe6;
+            border-radius: 12px;
+            padding: 0.8em 0.6em;
+            box-shadow: 0 0 12px #B4DFE570;
+            text-shadow: 0 0 6px #fffbe688;
+        }
+        .vm-section {
+            margin: 2.6rem 0;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 28px #F4976C18;
+        }
+        .vm-section .vm-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            text-shadow: 0 0 10px #fffbe6bb;
+        }
+        .vm-section .vm-quote {
+            font-size: 1.15rem; color: var(--text-main); font-style: italic; margin-bottom: 0.8rem; font-weight: 500;
+            opacity: 0.93;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .who-card {
+            padding: 1.5rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: var(--transition);
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            cursor: default;
+            position: relative;
+            z-index: 2;
+            background: var(--card-bg);
+            box-shadow: 0 4px 28px #F4976C17;
+        }
+        .who-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            text-shadow: 0 0 8px #fffbe6cc;
+        }
+        .who-card:hover {
+            box-shadow: 0 0 35px 5px #B4DFE540;
+            transform: scale(1.08) perspective(1000px) rotateY(5deg);
+            filter: brightness(1.11);
+        }
+        .different-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            align-items: start;
+        }
+        .different-col {
+            padding: 2rem 1.8rem;
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 4px 28px #F4976C13;
+        }
+        .different-col .col-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1.1rem;
+            text-shadow: 0 0 6px #fffbe6cc;
+        }
+        .different-col ul {
+            padding-left: 1.3em;
+            margin: 0;
+            list-style-position: outside;
+        }
+        .different-col ul li {
+            color: var(--text-main);
+            font-size: 1.01rem;
+            margin-bottom: 0.8em;
+            font-weight: 500;
+            opacity: 0.93;
+            line-height: 1.5;
+        }
+        .different-col ul li::marker {
+             color: var(--accent);
+             font-weight: bold;
+        }
+        .different-col ul li strong {
+            font-weight: 700;
+        }
+        
+        .modal-bg {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(251,232,166,0.42);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        .modal-bg.active { display: flex; opacity: 1; animation: fadeInModal 0.4s;}
+        @keyframes fadeInModal { 0% { opacity: 0; } 100% { opacity: 1; } }
+        .modal {
+            background: #fffbeedb;
+            border-radius: 25px;
+            border: 1.5px solid #D2FDFF;
+            box-shadow: 0 0 36px 2px #B4DFE560, 0 0 0 1.5px #FBE8A6 inset;
+            padding: 2.4rem 1.7rem 2.1rem 1.7rem;
+            width: 90%;
+            max-width: 420px;
+            position: relative;
+            animation: fadeInUp 0.5s cubic-bezier(.4,0,.2,1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            z-index: 2;
+            backdrop-filter: blur(18px);
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 18px;
+            font-size: 1.9rem;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color var(--transition);
+            z-index: 2;
+            text-shadow: 0 0 8px #fffbe6cc;
+            line-height: 1;
+        }
+        .modal-close:hover { color: #f8834a;}
+        .modal h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.4rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px #fffbe6bb;
+        }
+        .modal form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .modal label {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.96rem;
+            margin-bottom: 0.18rem;
+            text-shadow: 0 0 7px #fffbe6aa;
+        }
+        .modal input, .modal select, .modal textarea {
+            width: 100%;
+            padding: 0.7rem 0.92rem;
+            border-radius: 9px;
+            border: var(--input-border);
+            background: var(--input-glass);
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text-main);
+            transition: var(--transition);
+            box-shadow: 0 1.5px 8px #F4976C11;
+            outline: none;
+            backdrop-filter: blur(9px);
+        }
+        .modal input:focus, .modal select:focus, .modal textarea:focus {
+            border-color: var(--accent);
+            background: rgba(244,151,108,0.13);
+            color: var(--text-main);
+            box-shadow: 0 0 12px #F4976C33;
+        }
+        .modal .submit-btn {
+            margin-top: 0.8rem;
+            padding: 0.82rem 0;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            font-size: 1.08rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1.5px 8px #F4976C33;
+            transition: var(--transition);
+            width: 100%;
+            max-width: 270px;
+            align-self: center;
+            letter-spacing: 0.01em;
+            filter: brightness(1.10);
+        }
+        .modal .submit-btn:hover {
+            background: #f8834a;
+            color: #fffbe6;
+            box-shadow: 0 8px 24px #F4976C44;
+            transform: scale(1.05);
+            filter: brightness(1.17);
+        }
+        .modal .success-msg {
+            color: var(--accent);
+            font-size: 1.25rem;
+            font-weight: 800;
+            text-align: center;
+            margin-top: 1.3rem;
+            animation: fadeInUp 1.1s;
+            text-shadow: 0 0 10px #fffbe6cc;
+        }
+        footer {
+            margin-top: 4rem;
+            padding: 2.5rem 7vw 1.5rem 7vw;
+            background: rgba(255,255,255,0.55);
+            border-top-left-radius: 22px;
+            border-top-right-radius: 22px;
+            box-shadow: 0 -2px 20px #F4976C22;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            border-top: 1.5px solid #D2FDFF;
+        }
+        .footer-row {
+            display: flex; align-items: center; justify-content: center; gap: 1.7rem; flex-wrap: wrap; margin-bottom: 0.7rem;
+        }
+        .footer-logo {
+            font-size: 1.36rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -1px;
+            margin-right: 0.7rem;
+            text-shadow: 0 0 11px #fffbe6bb;
+        }
+        .footer-social {
+            display: flex; gap: 1.1rem;
+        }
+        .footer-social a {
+            color: var(--accent);
+            font-size: 1.55rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #D2FDFF;
+            border-radius: 50%;
+            width: 38px; height: 38px;
+            transition: var(--transition);
+            border: 1.5px solid #B4DFE5;
+            box-shadow: 0 0 8px #F4976C22;
+            backdrop-filter: blur(5px);
+        }
+        .footer-social a:hover { background: var(--accent); color: #fff; box-shadow: 0 0 18px #F4976C77; }
+        .footer-text { color: var(--text-main); font-size: 0.99rem; margin-top: 0.35rem; letter-spacing: 0.01em; opacity: 0.82;}
+        
+        @media (max-width: 950px) {
+            header {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2.6rem;
+                min-height: auto;
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+            .hero-info, .hero-graphic { min-width: 0; }
+        }
+        @media (max-width: 768px) {
+            .different-section { grid-template-columns: 1fr; }
+            nav { padding: 1.2rem 4vw; }
+            header, .section { padding: 0 4vw; }
+             .who-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+        }
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                right: 4vw;
+                background: #fffbeedb;
+                box-shadow: 0 8px 32px #B4DFE570;
+                border-radius: 12px;
+                flex-direction: column;
+                gap: 1.07rem;
+                padding: 1.2rem 1.4rem;
+                z-index: 100;
+                border: 1.5px solid #D2FDFF;
+                backdrop-filter: blur(14px);
+            }
+            .nav-links.open { display: flex; animation: fadeInUp 0.3s;}
+            .nav-toggle { display: flex; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <span class="logo">SwapEra</span>
-    <div class="nav-links" id="navLinks">
-      <a href="#why" class="">Why SwapEra?</a>
-      <a href="#how" class="">How It Works</a>
-      <a href="#flexible" class="">Learning Options</a>
-      <a href="#who" class="">Who’s It For?</a>
-      <a href="#register" class="cta-btn">Register</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <!-- Hero -->
-  <header id="home">
-    <div class="hero-info">
-      <div class="hero-glass">
-        <div class="hero-title">SwapEra is Coming Soon</div>
-        <div class="hero-subtext">Learn Anything. Teach Anything. For Free.</div>
-        <div class="hero-desc">India’s first peer-to-peer learning exchange where growth is mutual and cost-free.</div>
-        <button class="cta-btn" id="registerBtn">Register Yourself to the Era</button>
-      </div>
-    </div>
-    <div class="hero-graphic floating">
-      <!-- Cartoon-style SVG illustration: people learning/teaching online -->
-      <svg width="310" height="245" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect x="55" y="170" width="230" height="22" rx="8" fill="#F4976C"/>
-        <rect x="65" y="105" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
-        <ellipse cx="100" cy="138" rx="15" ry="18" fill="#FBE8A6"/>
-        <ellipse cx="100" cy="133" rx="7" ry="7.8" fill="#F4976C"/>
-        <rect x="205" y="95" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
-        <ellipse cx="240" cy="128" rx="15" ry="18" fill="#FBE8A6"/>
-        <ellipse cx="240" cy="123" rx="7" ry="7.8" fill="#303C6C"/>
-        <ellipse cx="90" cy="190" rx="22" ry="23" fill="#F4976C"/>
-        <ellipse cx="90" cy="171" rx="14" ry="13.5" fill="#fff"/>
-        <ellipse cx="90" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
-        <ellipse cx="250" cy="190" rx="22" ry="23" fill="#B4DFE5"/>
-        <ellipse cx="250" cy="171" rx="14" ry="13.5" fill="#fff"/>
-        <ellipse cx="250" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
-        <rect x="120" y="67" width="55" height="23" rx="10" fill="#fff" stroke="#F4976C" stroke-width="1.5"/>
-        <ellipse cx="130" cy="79" rx="3" ry="3" fill="#F4976C"/>
-        <ellipse cx="140" cy="79" rx="3" ry="3" fill="#F4976C"/>
-        <ellipse cx="150" cy="79" rx="3" ry="3" fill="#F4976C"/>
-        <rect x="170" y="42" width="55" height="23" rx="10" fill="#fff" stroke="#B4DFE5" stroke-width="1.5"/>
-        <ellipse cx="180" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-        <ellipse cx="190" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-        <ellipse cx="200" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
-        <rect x="50" y="40" width="20" height="10" rx="2" fill="#FBE8A6" stroke="#F4976C" stroke-width="1"/>
-        <rect x="270" y="60" width="22" height="12" rx="2" fill="#FBE8A6" stroke="#B4DFE5" stroke-width="1"/>
-        <circle cx="70" cy="60" r="2.5" fill="#F4976C"/>
-        <circle cx="280" cy="75" r="2.5" fill="#B4DFE5"/>
-        <polygon points="220,27 223,32 229,33 225,37 226,43 220,40 214,43 215,37 211,33 217,32" fill="#D2FDFF"/>
-      </svg>
-    </div>
-  </header>
-  <main>
-    <!-- Why SwapEra? -->
-    <section class="section fade-scroll" id="why">
-      <div class="section-title-row">
-        <svg viewBox="0 0 56 56"><ellipse cx="28" cy="28" rx="26" ry="20" fill="#B4DFE5"/><ellipse cx="20" cy="26" rx="7" ry="8" fill="#FBE8A6"/><ellipse cx="36" cy="30" rx="7" ry="8" fill="#FBE8A6"/><ellipse cx="28" cy="34" rx="6" ry="7" fill="#F4976C"/></svg>
-        <h2 style="font-size:1.4rem;margin:0;text-align:left;">Why SwapEra?</h2>
-      </div>
-      <div class="why-cards">
-        <div class="why-card">
-          <span class="icon" aria-label="Free Learning">💡</span>
-          <span class="card-title">100% Free Learning</span>
-          <span class="card-desc">No fees. No hidden costs. Just pure learning and growth.</span>
+
+    <nav>
+        <span class="logo">SwapEra</span>
+        <div class="nav-links" id="navLinks">
+            <a href="#why">Why SwapEra?</a>
+            <a href="#how">How It Works</a>
+            <a href="#features">Features</a>
+            <a href="#who">Who’s It For?</a>
+            <a href="#register" class="cta-btn" onclick="openModal()">Join Waitlist</a>
         </div>
-        <div class="why-card">
-          <span class="icon" aria-label="Skill-for-skill">🔁</span>
-          <span class="card-title">Skill-for-Skill Swapping</span>
-          <span class="card-desc">Exchange what you know for what you want to learn. Everyone wins!</span>
+        <button class="nav-toggle" id="navToggle" aria-label="Open Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <header id="home">
+        <div class="hero-info">
+            <div class="hero-glass">
+                <div class="hero-title">A New Era of Learning is Coming Soon.</div>
+                <div class="hero-subtext">Swap Skills. Share Growth. For Free.</div>
+                <div class="hero-desc">Welcome to India’s first hyperlocal skill-swapping community. Connect with people near you, exchange skills you have for skills you want, and grow together without spending a rupee.</div>
+                <button class="cta-btn" id="registerBtn">Join the Waitlist & Get 5 Free Swaps!</button>
+            </div>
         </div>
-        <div class="why-card">
-          <span class="icon" aria-label="Real Growth">👥</span>
-          <span class="card-title">Real People, Real Growth</span>
-          <span class="card-desc">Connect with real learners & teachers — not just videos.</span>
+        <div class="hero-graphic floating">
+            <svg width="340" height="260" viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="55" y="170" width="230" height="22" rx="8" fill="#F4976C"/>
+                <rect x="65" y="105" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
+                <ellipse cx="100" cy="138" rx="15" ry="18" fill="#FBE8A6"/>
+                <ellipse cx="100" cy="133" rx="7" ry="7.8" fill="#F4976C"/>
+                <rect x="205" y="95" width="70" height="53" rx="7" fill="#B4DFE5" stroke="#F4976C" stroke-width="3"/>
+                <ellipse cx="240" cy="128" rx="15" ry="18" fill="#FBE8A6"/>
+                <ellipse cx="240" cy="123" rx="7" ry="7.8" fill="#303C6C"/>
+                <ellipse cx="90" cy="190" rx="22" ry="23" fill="#F4976C"/>
+                <ellipse cx="90" cy="171" rx="14" ry="13.5" fill="#fff"/>
+                <ellipse cx="90" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
+                <ellipse cx="250" cy="190" rx="22" ry="23" fill="#B4DFE5"/>
+                <ellipse cx="250" cy="171" rx="14" ry="13.5" fill="#fff"/>
+                <ellipse cx="250" cy="170" rx="7" ry="7.5" fill="#F4976C"/>
+                <rect x="120" y="67" width="55" height="23" rx="10" fill="#fff" stroke="#F4976C" stroke-width="1.5"/>
+                <ellipse cx="130" cy="79" rx="3" ry="3" fill="#F4976C"/>
+                <ellipse cx="140" cy="79" rx="3" ry="3" fill="#F4976C"/>
+                <ellipse cx="150" cy="79" rx="3" ry="3" fill="#F4976C"/>
+                <rect x="170" y="42" width="55" height="23" rx="10" fill="#fff" stroke="#B4DFE5" stroke-width="1.5"/>
+                <ellipse cx="180" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+                <ellipse cx="190" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+                <ellipse cx="200" cy="54" rx="3" ry="3" fill="#B4DFE5"/>
+                <rect x="50" y="40" width="20" height="10" rx="2" fill="#FBE8A6" stroke="#F4976C" stroke-width="1"/>
+                <rect x="270" y="60" width="22" height="12" rx="2" fill="#FBE8A6" stroke="#B4DFE5" stroke-width="1"/>
+                <circle cx="70" cy="60" r="2.5" fill="#F4976C"/>
+                <circle cx="280" cy="75" r="2.5" fill="#B4DFE5"/>
+                <polygon points="220,27 223,32 229,33 225,37 226,43 220,40 214,43 215,37 211,33 217,32" fill="#D2FDFF"/>
+            </svg>
         </div>
-      </div>
-    </section>
-    <!-- How it works -->
-    <section class="section fade-scroll" id="how">
-      <div class="section-title-row">
-        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="15" fill="#B4DFE5"/><ellipse cx="17" cy="22" rx="6" ry="7" fill="#FBE8A6"/><ellipse cx="31" cy="26" rx="6" ry="7" fill="#FBE8A6"/></svg>
-        <h2 style="font-size:1.33rem;margin:0;text-align:left;">How It Works</h2>
-      </div>
-      <div class="how-cards" id="howCards">
-        <div class="how-card">
-          <span class="icon" aria-label="Profile">👤</span>
-          <span class="step-title">Create a Profile</span>
-        </div>
-        <div class="how-card">
-          <span class="icon" aria-label="Skills">📝</span>
-          <span class="step-title">Add Skills You Can Teach & Learn</span>
-        </div>
-        <div class="how-card">
-          <span class="icon" aria-label="Match">🤝</span>
-          <span class="step-title">Match with People</span>
-        </div>
-        <div class="how-card">
-          <span class="icon" aria-label="Live">🎥</span>
-          <span class="step-title">Start a Live Session (Chat / Call)</span>
-        </div>
-      </div>
-    </section>
-    <!-- Flexible Learning Options -->
-    <section class="section fade-scroll" id="flexible">
-      <div class="section-title-row">
-        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#B4DFE5"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#FBE8A6"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#F4976C"/></svg>
-        <h2 style="font-size:1.30rem;margin:0;text-align:left;">Flexible Learning Options</h2>
-      </div>
-      <div class="flex-cards">
-        <div class="flex-card">
-          <div class="flex-title">Swap Skills Freely <span style="font-size:0.92em; background:#fbe8a6; color:#F4976C; border-radius:9px; padding:0.1em 0.7em; margin-left:0.4em; font-weight:600;">Most Popular</span></div>
-          <div class="flex-desc">Teach what you know and learn what you want — for free.</div>
-          <button class="flex-btn" onclick="openModal()">Start Swapping</button>
-        </div>
-        <div class="flex-card">
-          <div class="flex-title">Learn from Verified Trainers <span style="font-size:0.89em; background:#D2FDFF; color:#303C6C; border-radius:8px; padding:0.08em 0.6em; margin-left:0.4em; font-weight:600;">Optional</span></div>
-          <div class="flex-desc">Want structured sessions? Book trainers for paid sessions in UI/UX, Excel, Yoga & more.</div>
-          <button class="flex-btn" onclick="openModal()">Explore Trainers</button>
-        </div>
-        <div class="flex-card">
-          <div class="flex-title">Don’t Want to Teach? Just Learn</div>
-          <div class="flex-desc">Not ready to teach? Learn from others via 1-on-1 paid sessions.</div>
-          <button class="flex-btn" onclick="openModal()">Find a Mentor</button>
-        </div>
-      </div>
-      <span class="flex-subtext">
-        “SwapEra is and will always be free for those who want to teach & learn. Paid options are just for added flexibility.”
-      </span>
-    </section>
-    <!-- Vision & Mission -->
-    <section class="section fade-scroll">
-      <div class="vm-section">
-        <div class="vm-title">Vision</div>
-        <div class="vm-quote">“To build India’s most inclusive learning community where growth has no cost.”</div>
-        <div class="vm-title" style="margin-top:1.3rem;">Mission</div>
-        <div class="vm-quote">“To empower anyone, anywhere to teach or learn a skill through exchange, not payment.”</div>
-      </div>
-    </section>
-    <!-- Who is it for -->
-    <section class="section fade-scroll" id="who">
-      <div class="section-title-row">
-        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="13" fill="#B4DFE5"/><ellipse cx="15" cy="19" rx="7" ry="7" fill="#FBE8A6"/><ellipse cx="33" cy="28" rx="7" ry="7" fill="#FBE8A6"/></svg>
-        <h2 style="font-size:1.23rem;margin:0;text-align:left;">Who is SwapEra For?</h2>
-      </div>
-      <div class="who-grid">
-        <div class="who-card"><span class="icon">🎓</span>Students</div>
-        <div class="who-card"><span class="icon">💼</span>Freshers</div>
-        <div class="who-card"><span class="icon">👔</span>Working Professionals</div>
-        <div class="who-card"><span class="icon">🔄</span>Job Switchers</div>
-        <div class="who-card"><span class="icon">🎨</span>Hobbyists</div>
-        <div class="who-card"><span class="icon">🧑‍💻</span>Freelancers</div>
-      </div>
-    </section>
-    <!-- What Makes SwapEra Different -->
-    <section class="section fade-scroll">
-      <div class="section-title-row">
-        <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="22" ry="14" fill="#B4DFE5"/><ellipse cx="28" cy="17" rx="5" ry="5.5" fill="#FBE8A6"/><ellipse cx="18" cy="29" rx="7" ry="6" fill="#F4976C"/></svg>
-        <h2 style="font-size:1.23rem;margin:0;text-align:left;">What Makes SwapEra Different</h2>
-      </div>
-      <div class="different-section">
-        <div class="different-col">
-          <div class="col-title">Our Approach</div>
-          <ul>
-            <li><strong>Manual matching</strong> in beta for better quality connections</li>
-            <li><strong>Barter + Paid = Flexible</strong> (swap for free or pay for mentors/trainers)</li>
-            <li>Profile-based, skill-tagged connections</li>
-            <li>City-by-city launch for local trust</li>
-            <li><strong>Always free</strong> for peer swapping</li>
-            <li>Simple, mobile-friendly design</li>
-            <li>Real people, not bots</li>
-          </ul>
-        </div>
-        <div class="different-col">
-          <div class="col-title">Why It Works</div>
-          <ul>
-            <li>Solves the teacher-learner gap with <strong>mutual swaps</strong></li>
-            <li>Flexible model supports both <strong>free and paid learning</strong></li>
-            <li>Focus on <strong>trust & safety</strong> with real profiles</li>
-            <li>Early users get priority matching</li>
-            <li>Retains users via <strong>community and real value</strong></li>
-            <li>No ads, no spam, just <strong>growth together</strong></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- Registration Modal (hidden) -->
+    </header>
+
+    <main>
+        <section class="section fade-scroll" id="why">
+            <div class="section-title-row">
+                <h2 style="text-align:center;">Why You'll Love SwapEra</h2>
+            </div>
+            <div class="why-cards">
+                <div class="why-card">
+                    <span class="icon" aria-label="Free Learning">🔁</span>
+                    <span class="card-title">Barter, Not Pay</span>
+                    <span class="card-desc">Your knowledge is your currency. Teach a skill to earn credits and learn a new one for free.</span>
+                </div>
+                <div class="why-card">
+                    <span class="icon" aria-label="Skill-for-skill">📍</span>
+                    <span class="card-title">Hyperlocal Connections</span>
+                    <span class="card-desc">Find and connect with fellow learners and teachers in your own city for trusted, face-to-face (or online) swaps.</span>
+                </div>
+                <div class="why-card">
+                    <span class="icon" aria-label="Real Growth">💬</span>
+                    <span class="card-title">Unlimited Free Chat</span>
+                    <span class="card-desc">Once you match with someone for a swap, you can chat with them for free to coordinate and connect.</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-scroll" id="how">
+            <div class="section-title-row">
+                <h2 style="text-align:center;">How It Works</h2>
+            </div>
+            <div class="how-cards" id="howCards">
+                <div class="how-card">
+                    <span class="icon" aria-label="Profile">👤</span>
+                    <span class="step-title">1. Create Your Skill Profile</span>
+                </div>
+                <div class="how-card">
+                    <span class="icon" aria-label="Skills">📝</span>
+                    <span class="step-title">2. List What You'll Teach & Learn</span>
+                </div>
+                <div class="how-card">
+                    <span class="icon" aria-label="Match">🤝</span>
+                    <span class="step-title">3. Request & Confirm Swaps</span>
+                </div>
+                <div class="how-card">
+                    <span class="icon" aria-label="Live">💬</span>
+                    <span class="step-title">4. Chat & Schedule Your Session!</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-scroll" id="features">
+             <div class="section-title-row">
+                <h2 style="text-align:center;">What Makes SwapEra Different</h2>
+            </div>
+            <div class="different-section">
+                <div class="different-col">
+                    <div class="col-title">Our Unique Approach</div>
+                    <ul>
+                        <li><strong>Barter-First Model:</strong> Your skills are valuable. Use them to learn, not just to earn.</li>
+                        <li><strong>Trust & Safety:</strong> We start with manual matching in beta to ensure quality connections.</li>
+                        <li><strong>Free & Unlimited Chat:</strong> No pay-per-message. Once matched, communication is open and free.</li>
+                        <li><strong>Community Focused:</strong> Earn more swaps by referring friends. The platform grows with you.</li>
+                        <li><strong>Simple & Transparent:</strong> No complex algorithms. See profiles, request swaps, and learn.</li>
+                    </ul>
+                </div>
+                <div class="different-col">
+                    <div class="col-title">Key Features You'll Get</div>
+                    <ul>
+                        <li><strong>Skill Marketplace:</strong> A dashboard to find people who want to learn what you teach.</li>
+                        <li><strong>5 Free Swaps:</strong> Every new user gets 5 free swaps to kickstart their journey.</li>
+                        <li><strong>Swap History:</strong> Keep track of your completed sessions and feedback.</li>
+                        <li><strong>Skill Swap Profiles:</strong> See what others offer and what they're looking for at a glance.</li>
+                        <li><strong>Direct Scheduling:</strong> Coordinate directly with your match to find the perfect time to learn.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section fade-scroll">
+            <div class="vm-section">
+                <div class="vm-title">Our Vision</div>
+                <div class="vm-quote">“To build India’s most inclusive learning community where growth has no cost.”</div>
+            </div>
+        </section>
+
+        <section class="section fade-scroll" id="who">
+            <div class="section-title-row">
+                <h2 style="text-align:center;">Who is SwapEra For?</h2>
+            </div>
+            <div class="who-grid">
+                <div class="who-card"><span class="icon">🎓</span>Students</div>
+                <div class="who-card"><span class="icon">💼</span>Freshers</div>
+                <div class="who-card"><span class="icon">👔</span>Professionals</div>
+                <div class="who-card"><span class="icon">🔄</span>Job Switchers</div>
+                <div class="who-card"><span class="icon">🎨</span>Hobbyists</div>
+                <div class="who-card"><span class="icon">🧑‍💻</span>Freelancers</div>
+            </div>
+        </section>
+        
+    </main>
+
     <div class="modal-bg" id="modalBg" aria-modal="true" role="dialog">
-      <div class="modal" id="registerModal">
-        <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
-        <h2>Register Yourself to the Era</h2>
-        <form id="waitlistForm" autocomplete="off">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" required placeholder="Enter your name">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="you@email.com">
-          <label for="mobile">Mobile Number</label>
-          <input type="tel" id="mobile" name="mobile" required pattern="\d{10,15}" placeholder="e.g., 9876543210">
-          <label for="teach">What can you teach?</label>
-          <select id="teach" name="teach" required>
-            <option value="">Select a skill</option>
-            <option>English Speaking</option>
-            <option>Digital Marketing</option>
-            <option>Yoga</option>
-            <option>Photoshop</option>
-            <option>Coding Basics</option>
-            <option>Cooking</option>
-            <option>Public Speaking</option>
-            <option>Excel</option>
-            <option>Content Writing</option>
-            <option>Graphic Design</option>
-            <option>UI/UX Design</option>
-            <option>MS Office</option>
-            <option>Video Editing</option>
-            <option>LinkedIn Profile Building</option>
-            <option>Financial Literacy</option>
-          </select>
-          <label for="learn">What do you want to learn?</label>
-          <select id="learn" name="learn" required>
-            <option value="">Select a skill</option>
-            <option>English Speaking</option>
-            <option>Digital Marketing</option>
-            <option>Yoga</option>
-            <option>Photoshop</option>
-            <option>Coding Basics</option>
-            <option>Cooking</option>
-            <option>Public Speaking</option>
-            <option>Excel</option>
-            <option>Content Writing</option>
-            <option>Graphic Design</option>
-            <option>UI/UX Design</option>
-            <option>MS Office</option>
-            <option>Video Editing</option>
-            <option>LinkedIn Profile Building</option>
-            <option>Financial Literacy</option>
-          </select>
-          <label for="notes">Extra Notes</label>
-          <textarea id="notes" name="notes" placeholder="Tell us more! (optional)" rows="2"></textarea>
-          <button class="submit-btn" type="submit">Join Waitlist</button>
-        </form>
-      </div>
+        <div class="modal" id="registerModal">
+            <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+            <h2>Join the Waitlist!</h2>
+            <form id="waitlistForm" autocomplete="off">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required placeholder="Enter your name">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="you@email.com">
+                <label for="mobile">Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" required pattern="\d{10,15}" placeholder="e.g., 9876543210">
+                <label for="teach">A Skill You Can Teach</label>
+                <select id="teach" name="teach" required>
+                    <option value="">Select a skill</option>
+                    <option>English Speaking</option> <option>Digital Marketing</option> <option>Yoga</option> <option>Photoshop</option> <option>Coding Basics</option> <option>Cooking</option> <option>Public Speaking</option> <option>Excel</option> <option>Content Writing</option> <option>Graphic Design</option> <option>UI/UX Design</option> <option>MS Office</option> <option>Video Editing</option> <option>LinkedIn Profile Building</option> <option>Financial Literacy</option>
+                </select>
+                <label for="learn">A Skill You Want to Learn</label>
+                <select id="learn" name="learn" required>
+                    <option value="">Select a skill</option>
+                     <option>English Speaking</option> <option>Digital Marketing</option> <option>Yoga</option> <option>Photoshop</option> <option>Coding Basics</option> <option>Cooking</option> <option>Public Speaking</option> <option>Excel</option> <option>Content Writing</option> <option>Graphic Design</option> <option>UI/UX Design</option> <option>MS Office</option> <option>Video Editing</option> <option>LinkedIn Profile Building</option> <option>Financial Literacy</option>
+                </select>
+                <button class="submit-btn" type="submit">Get Early Access</button>
+            </form>
+        </div>
     </div>
-    <!-- Success Message Modal (after form) -->
+
     <div class="modal-bg" id="successBg">
-      <div class="modal" style="max-width:340px;">
-        <button class="modal-close" onclick="closeSuccess()" aria-label="Close">&times;</button>
-        <div class="success-msg">You’ve been added to the SwapEra waitlist!</div>
-      </div>
+        <div class="modal" style="max-width:340px;">
+            <button class="modal-close" onclick="closeSuccess()" aria-label="Close">&times;</button>
+            <div class="success-msg">✅<br>You’re on the list! We'll notify you when SwapEra launches.</div>
+        </div>
     </div>
-  </main>
-  <!-- Footer -->
-  <footer>
-    <div class="footer-row">
-      <span class="footer-logo">SwapEra</span>
-      <span class="footer-social">
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="si si-instagram"></i></a>
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="si si-linkedin"></i></a>
-      </span>
-    </div>
-    <div class="footer-text">© 2025 SwapEra. All rights reserved.</div>
-  </footer>
-  <script>
-    // Hamburger menu
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
-    Array.from(navLinks.querySelectorAll('a')).forEach(link => {
-      link.addEventListener('click', () => { navLinks.classList.remove('open'); });
-    });
-    // Smooth scroll & active link
-    const navAnchorLinks = navLinks.querySelectorAll('a[href^="#"]');
-    navAnchorLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        const targetId = this.getAttribute('href').slice(1);
-        const target = document.getElementById(targetId);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({
-            top: target.getBoundingClientRect().top + window.pageYOffset - 56,
-            behavior: "smooth"
-          });
+
+    <footer>
+        <div class="footer-row">
+            <span class="footer-logo">SwapEra</span>
+            <span class="footer-social">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="si si-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="si si-linkedin"></i></a>
+            </span>
+        </div>
+        <div class="footer-text">© 2025 SwapEra. All rights reserved.</div>
+    </footer>
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if(link.getAttribute('href').startsWith('#')){
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                         const offset = navLinks.offsetHeight;
+                         window.scrollTo({
+                            top: targetElement.offsetTop - (navLinks.classList.contains('open') ? 0 : 80) ,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+                navLinks.classList.remove('open');
+            });
+        });
+
+        function fadeInOnScroll() {
+            const sections = document.querySelectorAll('.fade-scroll');
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100 && rect.bottom >= 0) {
+                    sec.style.opacity = '1';
+                    sec.style.transform = 'translateY(0)';
+                }
+            });
+             const cards = document.querySelectorAll('.how-card');
+             cards.forEach((card, i) => {
+                 const cardTop = card.getBoundingClientRect().top;
+                 if (cardTop < window.innerHeight - 80) {
+                     setTimeout(() => card.classList.add('visible'), i * 150);
+                 }
+             });
         }
-      });
-    });
-    // Fade-in on scroll for sections
-    function fadeInSections() {
-      document.querySelectorAll('.fade-scroll').forEach(sec => {
-        const secTop = sec.getBoundingClientRect().top;
-        if (secTop < window.innerHeight - 90) {
-          sec.classList.add('visible');
+        document.querySelectorAll('.fade-scroll').forEach(sec => {
+            sec.style.opacity = '0';
+            sec.style.transform = 'translateY(40px)';
+            sec.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        });
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('DOMContentLoaded', fadeInOnScroll);
+
+        const modalBg = document.getElementById('modalBg');
+        const successBg = document.getElementById('successBg');
+        
+        function openModal() {
+            modalBg.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
-      });
-    }
-    window.addEventListener('DOMContentLoaded', fadeInSections);
-    window.addEventListener('scroll', fadeInSections);
-    // How It Works slide-in cards
-    function slideInHowCards() {
-      const cards = document.querySelectorAll('.how-card');
-      cards.forEach((card, i) => {
-        const cardTop = card.getBoundingClientRect().top;
-        if (cardTop < window.innerHeight - 80) {
-          setTimeout(() => card.classList.add('visible'), i * 120);
+
+        function closeModal() {
+            modalBg.classList.remove('active');
+            document.body.style.overflow = '';
         }
-      });
-    }
-    window.addEventListener('DOMContentLoaded', slideInHowCards);
-    window.addEventListener('scroll', slideInHowCards);
-    // Modal logic
-    function openModal() {
-      document.getElementById('modalBg').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-      document.getElementById('modalBg').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    document.getElementById('registerBtn').addEventListener('click', openModal);
-    document.getElementById('closeModal').addEventListener('click', closeModal);
-    document.getElementById('modalBg').addEventListener('click', function(e) {
-      if (e.target === this) closeModal();
-    });
-    // Registration Form Submission
-    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      closeModal();
-      document.getElementById('successBg').style.display = 'flex';
-      document.getElementById('successBg').style.animation = 'fadeInModal 0.4s';
-      setTimeout(() => {
-        document.getElementById('successBg').querySelector('.success-msg').focus();
-      }, 200);
-      this.reset();
-    });
-    // Close success modal
-    function closeSuccess() {
-      document.getElementById('successBg').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    document.getElementById('successBg').addEventListener('click', function(e) {
-      if (e.target === this) closeSuccess();
-    });
-    // Allow all CTA buttons to open modal
-    document.querySelectorAll('.flex-btn').forEach(btn => {
-      btn.addEventListener('click', openModal);
-    });
-    // Keyboard accessibility for modals
-    window.addEventListener('keydown', function(e) {
-      if (e.key === "Escape") { closeModal(); closeSuccess(); }
-    });
-  </script>
+
+        function closeSuccess() {
+            successBg.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        document.getElementById('registerBtn').addEventListener('click', openModal);
+        document.querySelectorAll('.nav-links a[href="#register"], .flex-btn').forEach(btn => btn.addEventListener('click', openModal));
+        document.getElementById('closeModal').addEventListener('click', closeModal);
+        modalBg.addEventListener('click', (e) => e.target === modalBg && closeModal());
+
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            closeModal();
+            successBg.style.display = 'flex';
+            successBg.style.opacity = '1';
+            this.reset();
+        });
+
+        successBg.addEventListener('click', (e) => (e.target === successBg || e.target.classList.contains('modal-close')) && closeSuccess());
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                if (modalBg.classList.contains('active')) closeModal();
+                if (successBg.style.display === 'flex') closeSuccess();
+            }
+        });
+    </script>
 </body>
 </html>
